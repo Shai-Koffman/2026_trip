@@ -1,0 +1,277 @@
+/* ============ SCRAPBOOK TRIP BOOK ============ */
+
+:root {
+  /* Default theme: "Sunset Coast" */
+  --paper: #f2e5d0;
+  --paper-deep: #e4d3b4;
+  --ink: #1f1b24;
+  --ink-soft: #3d3640;
+  --ink-faded: #847a83;
+
+  --sun: #ffb72b;
+  --tomato: #e94f37;
+  --ocean: #0a6e8a;
+  --ocean-light: #7fc4d6;
+  --forest: #2e8b57;
+  --pink: #ef8b94;
+  --cream: #fff8ec;
+  --tape: #ffd97d;
+  --tape-blue: #9fd3e0;
+  --tape-pink: #f5b5be;
+
+  --shadow-paper: 0 1px 2px rgba(31, 27, 36, 0.10), 0 8px 24px rgba(31, 27, 36, 0.14);
+  --shadow-lifted: 0 4px 8px rgba(31, 27, 36, 0.14), 0 16px 40px rgba(31, 27, 36, 0.22);
+}
+
+/* Theme: Atlantic Mint */
+[data-theme="mint"] {
+  --paper: #e4ecdf;
+  --paper-deep: #cfdcc8;
+  --ink: #16302b;
+  --ink-soft: #2f4a44;
+  --ink-faded: #7a8c86;
+  --sun: #f6c94a;
+  --tomato: #ee6352;
+  --ocean: #0d4c73;
+  --ocean-light: #8ec6e3;
+  --forest: #2f7d5f;
+  --pink: #f0a5a5;
+  --cream: #f7f5e8;
+  --tape: #ffd97d;
+  --tape-blue: #a8d9e8;
+  --tape-pink: #f7b9b9;
+}
+
+/* Theme: Vintage Postcard */
+[data-theme="vintage"] {
+  --paper: #eddfc4;
+  --paper-deep: #dcc9a3;
+  --ink: #2a1d16;
+  --ink-soft: #4a372a;
+  --ink-faded: #8a7560;
+  --sun: #e0a236;
+  --tomato: #b83c2b;
+  --ocean: #3a5a78;
+  --ocean-light: #92b0c4;
+  --forest: #4a6b3a;
+  --pink: #d68c8e;
+  --cream: #fbf3de;
+  --tape: #f2d37b;
+  --tape-blue: #b0c5d4;
+  --tape-pink: #e6b5b2;
+}
+
+/* Theme: Modern Scrapbook */
+[data-theme="modern"] {
+  --paper: #ecebe5;
+  --paper-deep: #d9d7cc;
+  --ink: #15172b;
+  --ink-soft: #373a5a;
+  --ink-faded: #787a92;
+  --sun: #f0c419;
+  --tomato: #ff5a5f;
+  --ocean: #2e4ea8;
+  --ocean-light: #8da8e8;
+  --forest: #3f8f5c;
+  --pink: #ff8fa8;
+  --cream: #fafaf4;
+  --tape: #ffe066;
+  --tape-blue: #a0bef5;
+  --tape-pink: #ffb3c1;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(244, 185, 64, 0.08), transparent 50%),
+    radial-gradient(ellipse at 80% 60%, rgba(46, 107, 143, 0.06), transparent 50%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.14  0 0 0 0 0.12  0 0 0 0.08 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  color: var(--ink);
+  font-family: 'Assistant', 'Work Sans', -apple-system, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+/* Typography */
+.handwritten {
+  font-family: 'Caveat', 'Shlonsky', cursive;
+  font-weight: 500;
+}
+
+.display {
+  font-family: 'Playfair Display', 'Frank Ruhl Libre', serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.label {
+  font-family: 'Assistant', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ink-faded);
+}
+
+.en {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  direction: ltr;
+  display: inline-block;
+}
+
+/* Layout */
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 32px 120px;
+  position: relative;
+}
+
+section {
+  position: relative;
+  padding: 80px 0;
+  scroll-margin-top: 80px;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'Assistant', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  transform: rotate(-1.5deg);
+  margin-bottom: 12px;
+}
+
+h1, h2, h3 { margin: 0; }
+
+/* Paper card (the universal scrapbook sheet) */
+.paper {
+  background: var(--cream);
+  box-shadow: var(--shadow-paper);
+  position: relative;
+  padding: 32px;
+}
+
+.paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence baseFrequency='1.2' numOctaves='1' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.18  0 0 0 0 0.14  0 0 0 0.04 0'/></filter><rect width='100' height='100' filter='url(%23n)'/></svg>");
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+/* Washi tape */
+.tape {
+  position: absolute;
+  width: 110px;
+  height: 28px;
+  background: var(--tape);
+  opacity: 0.85;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(255,255,255,0.25) 6px, rgba(255,255,255,0.25) 12px);
+}
+.tape::before, .tape::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 8px;
+  background:
+    linear-gradient(135deg, transparent 50%, var(--tape) 50%) 0 0/4px 4px,
+    linear-gradient(-135deg, transparent 50%, var(--tape) 50%) 0 0/4px 4px;
+  background-color: transparent;
+  filter: blur(0.3px);
+}
+.tape.blue { background-color: var(--tape-blue); }
+.tape.blue::before, .tape.blue::after { background-color: var(--tape-blue); }
+.tape.pink { background-color: var(--tape-pink); }
+.tape.pink::before, .tape.pink::after { background-color: var(--tape-pink); }
+
+/* Polaroid */
+.polaroid {
+  background: white;
+  padding: 10px 10px 44px;
+  box-shadow: var(--shadow-paper);
+  position: relative;
+}
+.polaroid img, .polaroid .photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  background: #ddd;
+}
+.polaroid .caption {
+  position: absolute;
+  bottom: 8px;
+  left: 0; right: 0;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  color: var(--ink-soft);
+}
+
+/* Sticker */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--ink);
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 8px 14px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  text-transform: uppercase;
+}
+
+/* Utility */
+.rot-l1 { transform: rotate(-1deg); }
+.rot-l2 { transform: rotate(-2deg); }
+.rot-l3 { transform: rotate(-3deg); }
+.rot-r1 { transform: rotate(1deg); }
+.rot-r2 { transform: rotate(2deg); }
+.rot-r3 { transform: rotate(3deg); }
+
+/* Scrollbar lite */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--ink-faded); border-radius: 999px; opacity: 0.4; }
+
+/* Focus */
+button:focus-visible, a:focus-visible {
+  outline: 2px dashed var(--tomato);
+  outline-offset: 4px;
+}
+
+/* Animations */
+@keyframes wobble {
+  0%, 100% { transform: rotate(var(--r, 0deg)); }
+  50% { transform: rotate(calc(var(--r, 0deg) + 1deg)); }
+}
+
+@keyframes float-in {
+  from { opacity: 0; transform: translateY(20px) rotate(var(--r, 0deg)); }
+  to { opacity: 1; transform: translateY(0) rotate(var(--r, 0deg)); }
+}
+
+.floatin { animation: float-in 0.6s ease-out both; }

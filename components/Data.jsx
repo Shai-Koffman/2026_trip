@@ -277,14 +277,6 @@ const NYC_DAYS = [
   },
 ];
 
-// ============ ROAD RULES ============
-const ROAD_RULES = [
-  { icon: '🍟', title: 'אוכל שהם אוהבים', text: 'בדרכים, מוותרים על יוקרה. עוצרים ב-Chick-fil-A, Shake Shack או IHOP. לנוער — שיא החוויה.' },
-  { icon: '🔓', title: 'שבירת שגרה אינטראקטיבית', text: 'לא נוסעים שעות ברצף. חדר בריחה בעיר בדרך או תערוכה אינטראקטיבית מפעילים את הראש.' },
-  { icon: '📷', title: 'טבע עם "וואו"', text: 'לא גוררים מתבגרים למסלולים ארוכים. תצפית פסיכית, חצי שעה, תמונות לאינסטגרם, וממשיכים.' },
-  { icon: '🏆', title: 'משחק המשימות', text: 'צוברים נקודות: שלטי מדינות, החטיף האמריקאי הכי מוגזם בתחנת דלק, משהו מוזר בדרך. המנצח בוחר את המסעדה הבאה.' },
-];
-
 // ============ EXTENDED FAMILY (ALPERT) ============
 const ALPERT_FAMILIES = [
   {
@@ -320,4 +312,4 @@ const ALPERT_FAMILIES = [
   },
 ];
 
-Object.assign(window, { FAMILY, VOTERS, OPTIONS, NJ_DAYS, NYC_DAYS, ROAD_RULES, ALPERT_FAMILIES });
+Object.assign(window, { FAMILY, VOTERS, OPTIONS, NJ_DAYS, NYC_DAYS, ALPERT_FAMILIES });

@@ -158,7 +158,6 @@ function Hero() {
             { href: '#nj', label: 'ניו ג׳רזי' },
             { href: '#nyc', label: 'ניו יורק' },
             { href: '#vote', label: '★ הגיחה הגדולה' },
-            { href: '#rules', label: 'חוקי הדרך' },
           ].map((l, i) => (
             <a key={l.href} href={l.href} style={{
               padding: '10px 16px',

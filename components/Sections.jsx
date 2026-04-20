@@ -1,4 +1,4 @@
-/* global React, NJ_DAYS, NYC_DAYS, ROAD_RULES, ALPERT_FAMILIES, Tape, Star, Coaster, Palm, Stamp */
+/* global React, NJ_DAYS, NYC_DAYS, ALPERT_FAMILIES, Tape, Stamp */
 const { useState } = React;
 
 // ============ EXTENDED FAMILY (ALPERTS) ============
@@ -345,58 +345,4 @@ function NYCSection() {
   );
 }
 
-// ============ ROAD RULES ============
-function RoadRules() {
-  return (
-    <section id="rules">
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 30, flexWrap: 'wrap' }}>
-        <div className="section-label" style={{ background: 'var(--forest)' }}>חוקי זהב</div>
-        <h2 className="display" style={{ fontSize: 48 }}>חוקי הדרך</h2>
-        <span className="handwritten" style={{ fontSize: 28, color: 'var(--tomato)' }}>4 חוקי זהב לרוד-טריפ</span>
-      </div>
-
-      <p style={{ maxWidth: 700, color: 'var(--ink-soft)', marginBottom: 32 }}>
-        כדי שהנסיעות הארוכות לגיחות המורחבות יהיו כיפיות ולא מעייפות.
-      </p>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 24 }}>
-        {ROAD_RULES.map((rule, idx) => {
-          const rot = [-1.5, 1, -0.8, 1.5][idx];
-          const tapeC = ['var(--tape)', 'var(--tape-blue)', 'var(--tape-pink)', 'var(--tape)'][idx];
-          return (
-            <div key={rule.title} style={{
-              background: 'var(--cream)',
-              padding: '26px 22px',
-              boxShadow: 'var(--shadow-paper)',
-              transform: `rotate(${rot}deg)`,
-              position: 'relative',
-              border: '1px solid rgba(42,36,32,0.08)',
-            }}>
-              <Tape color={tapeC} rotate={[-6, 4, -3, 5][idx]} />
-              <div style={{
-                fontSize: 56,
-                lineHeight: 1,
-                marginBottom: 10,
-                filter: 'drop-shadow(1px 2px 0 rgba(0,0,0,0.1))',
-              }}>{rule.icon}</div>
-              <div style={{
-                position: 'absolute',
-                top: 18, left: 18,
-                fontFamily: "'Playfair Display', serif",
-                fontWeight: 900,
-                fontSize: 48,
-                color: 'var(--ink)',
-                opacity: 0.12,
-                lineHeight: 1,
-              }} dir="ltr">0{idx + 1}</div>
-              <h3 className="display" style={{ fontSize: 22, marginBottom: 8 }}>{rule.title}</h3>
-              <p style={{ fontSize: 15, color: 'var(--ink-soft)', margin: 0, lineHeight: 1.5 }}>{rule.text}</p>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
-Object.assign(window, { NJSection, NYCSection, RoadRules, ExtendedFamilySection });
+Object.assign(window, { NJSection, NYCSection, ExtendedFamilySection });

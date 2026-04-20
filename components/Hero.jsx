@@ -239,6 +239,15 @@ function FamilySection() {
               <div style={{ marginTop: 12, textAlign: 'center' }}>
                 <div className="display" style={{ fontSize: 28, lineHeight: 1 }}>{p.name}</div>
                 <div className="en" style={{ fontSize: 13, color: 'var(--ink-faded)', marginTop: 2 }}>{p.nameEn}</div>
+                {p.tag && (
+                  <div style={{
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: p.color,
+                    marginTop: 6,
+                    letterSpacing: '0.02em',
+                  }}>{p.tag}</div>
+                )}
               </div>
             </div>
           );

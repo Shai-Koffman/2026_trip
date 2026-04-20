@@ -460,6 +460,64 @@ function VoteSection() {
         <span>כל המשפחות מצביעות · קופמן + אלפרט NJ + אלפרט GA (אם מצטרפים)</span>
       </div>
 
+      {/* Gemini analysis callout */}
+      <div style={{
+        position: 'relative',
+        marginTop: 30,
+        padding: '22px 26px 24px',
+        background: 'linear-gradient(155deg, #fff8ec 0%, #fdeee0 100%)',
+        border: '2px solid var(--ink)',
+        boxShadow: '5px 5px 0 var(--ink)',
+        transform: 'rotate(-0.4deg)',
+      }}>
+        <Tape color="var(--tape-blue)" rotate={-5} width={120} />
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 8,
+          padding: '4px 12px',
+          background: 'var(--ink)',
+          color: 'var(--cream)',
+          fontFamily: "'Assistant', sans-serif",
+          fontWeight: 700,
+          fontSize: 12,
+          letterSpacing: '0.08em',
+          marginBottom: 12,
+        }}>
+          <span>🤖</span>
+          <span>GEMINI · ניתוח האופציות</span>
+        </div>
+        <h3 className="display" style={{ fontSize: 26, lineHeight: 1.2, marginBottom: 8 }}>
+          🏆 המקום הראשון והמושלם עבורכם: אופציה 5
+          <span style={{ display: 'block', fontSize: 18, color: 'var(--ink-soft)', marginTop: 4, fontStyle: 'italic' }}>
+            טורונטו ומפלי הניאגרה
+          </span>
+        </h3>
+        <p style={{ fontSize: 16, color: 'var(--ink-soft)', lineHeight: 1.55, margin: '0 0 14px' }}>
+          זו האופציה היחידה שנותנת 100% מענה לכל אחד מכם בלי להתפשר על כלום:
+        </p>
+        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <li style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+            <span style={{ fontSize: 22, lineHeight: 1, flexShrink: 0 }}>🎢</span>
+            <div style={{ fontSize: 15, color: 'var(--ink-soft)', lineHeight: 1.55 }}>
+              <strong style={{ color: 'var(--ink)' }}>למחפשי הריגושים (שי והילדים):</strong> פארק Canada's Wonderland הוא אחד מפארקי רכבות ההרים הטובים בעולם (18 רכבות הרים!). זה ייתן להם את מנת האדרנלין המטורפת שהם מחפשים.
+            </div>
+          </li>
+          <li style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+            <span style={{ fontSize: 22, lineHeight: 1, flexShrink: 0 }}>💧</span>
+            <div style={{ fontSize: 15, color: 'var(--ink-soft)', lineHeight: 1.55 }}>
+              <strong style={{ color: 'var(--ink)' }}>לדינה (טבע בלי סירות!):</strong> מפלי הניאגרה הם פוטוגניים בטירוף, והדבר הכי טוב? אתם יכולים לעשות את סיור ה-Journey Behind the Falls — הליכה בטוחה ויציבה בתוך מנהרות סלע היישר אל מאחורי המפלים, בלי לעלות על סירה אחת שמתנדנדת.
+            </div>
+          </li>
+          <li style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+            <span style={{ fontSize: 22, lineHeight: 1, flexShrink: 0 }}>🛍️</span>
+            <div style={{ fontSize: 15, color: 'var(--ink-soft)', lineHeight: 1.55 }}>
+              <strong style={{ color: 'var(--ink)' }}>שופינג וקולינריה:</strong> טורונטו היא עיר סופר-טרנדית. דינה תעוף על השווקים (Kensington Market ויד שנייה, או קניון Eaton Centre הענק לדילים), וכולם ייהנו לאכול ב-St. Lawrence Market — כל אחד בוחר מה שבא לו בלי להתווכח על מסעדה אחת.
+            </div>
+          </li>
+        </ul>
+      </div>
+
       {/* Leaderboard strip */}
       <div style={{
         display: 'flex',

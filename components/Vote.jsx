@@ -36,7 +36,7 @@ function VoteStrip({ optionId, votes, setVotes, accent }) {
       gap: 10,
     }}>
       <div className="label" style={{ fontSize: 11 }}>
-        <span>ההצבעות של כולם · 10 איש</span>
+        <span>ההצבעות · עד 10 איש</span>
       </div>
 
       {['קופמן', 'אלפרט'].map(group => {
@@ -452,7 +452,7 @@ function VoteSection() {
         boxShadow: '3px 3px 0 var(--ink)',
       }}>
         <span style={{ fontSize: 18 }}>✈️</span>
-        <span>10 איש · 2 משפחות · כולם מצביעים — בועז וליבי מצטרפים עם הילדים מאטלנטה</span>
+        <span>אם בועז וליבי מצטרפים — גם אלה, גל ואייל מצביעים · עד 10 איש, 2 משפחות</span>
       </div>
 
       {/* Leaderboard strip */}

@@ -11,7 +11,7 @@ function ExtendedFamilySection() {
         <span className="handwritten" style={{ fontSize: 28, color: 'var(--tomato)' }}>משני הצדדים של אמריקה</span>
       </div>
       <p style={{ maxWidth: 720, color: 'var(--ink-soft)', marginBottom: 32, lineHeight: 1.6 }}>
-        יאיר ועינת בבית · בועז וליבי בגיחה · <span style={{ fontWeight: 600 }}>זאת הסיבה שבאנו</span>.
+        יאיר ועינת בבית · בועז וליבי <span style={{ fontStyle: 'italic' }}>אולי</span> מצטרפים לגיחה · <span style={{ fontWeight: 600 }}>זאת הסיבה שבאנו</span>.
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>

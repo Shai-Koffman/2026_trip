@@ -91,8 +91,25 @@ function Hero() {
       </div>
 
       <div style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
-        <div className="label" style={{ marginBottom: 16 }}>
-          <span>{TWEAKS.familyName}</span>
+        <div style={{
+          display: 'inline-block',
+          position: 'relative',
+          marginBottom: 24,
+          padding: 10,
+          background: 'white',
+          boxShadow: 'var(--shadow-lifted)',
+          transform: 'rotate(-1.5deg)',
+        }}>
+          <Tape color="var(--tape)" rotate={-6} />
+          <img
+            src="assets/logo.jpg"
+            alt={TWEAKS.familyName}
+            style={{
+              display: 'block',
+              width: 'min(420px, 80vw)',
+              height: 'auto',
+            }}
+          />
         </div>
 
         <h1 className="display" style={{ fontSize: 'clamp(56px, 9vw, 120px)', color: 'var(--ink)', marginBottom: 8 }}>

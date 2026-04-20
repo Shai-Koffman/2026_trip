@@ -36,10 +36,10 @@ function VoteStrip({ optionId, votes, setVotes, accent }) {
       gap: 10,
     }}>
       <div className="label" style={{ fontSize: 11 }}>
-        <span>ההצבעות · עד 10 איש</span>
+        <span>ההצבעות · כל המשפחות</span>
       </div>
 
-      {['קופמן', 'אלפרט'].map(group => {
+      {Array.from(new Set(VOTERS.map(v => v.group))).map(group => {
         const groupVoters = VOTERS.filter(v => v.group === group);
         return (
           <div key={group} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -50,7 +50,7 @@ function VoteStrip({ optionId, votes, setVotes, accent }) {
               letterSpacing: '0.06em',
               borderBottom: '1px dashed var(--ink-faded)',
               paddingBottom: 3,
-            }}>משפחת {group}</div>
+            }}>{group.startsWith('אלפרט') ? group : `משפחת ${group}`}</div>
             {groupVoters.map(p => {
               const v = optVotes[p.id];
               return (
@@ -452,7 +452,7 @@ function VoteSection() {
         boxShadow: '3px 3px 0 var(--ink)',
       }}>
         <span style={{ fontSize: 18 }}>✈️</span>
-        <span>אם בועז וליבי מצטרפים — גם אלה, גל ואייל מצביעים · עד 10 איש, 2 משפחות</span>
+        <span>כל המשפחות מצביעות · קופמן + אלפרט NJ + אלפרט GA (אם מצטרפים)</span>
       </div>
 
       {/* Leaderboard strip */}

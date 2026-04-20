@@ -10,14 +10,20 @@ const FAMILY = [
   { id: 'rotem', name: 'רותם', nameEn: 'Rotem', age: 10, color: '#3f6b3a', emoji: '🤸\u200d♀️' },
 ];
 
-// ============ VOTERS (everyone on the גיחה — includes GA Alperts) ============
+// ============ VOTERS (everyone — all three family groups) ============
 const VOTERS = [
   ...FAMILY.map(p => ({ ...p, group: 'קופמן' })),
-  { id: 'boaz',  name: 'בועז', nameEn: 'Boaz',  color: '#2e6b8f', emoji: '👨', group: 'אלפרט' },
-  { id: 'libby', name: 'ליבי', nameEn: 'Libby', color: '#e89ba8', emoji: '👩', group: 'אלפרט' },
-  { id: 'ella',  name: 'אלה',  nameEn: 'Ella',  age: 16, color: '#f4b940', emoji: '✨', group: 'אלפרט' },
-  { id: 'gal',   name: 'גל',   nameEn: 'Gal',   age: 14, color: '#e05a3e', emoji: '⚡', group: 'אלפרט' },
-  { id: 'eyal',  name: 'אייל', nameEn: 'Eyal',  age: 11, color: '#3f6b3a', emoji: '🚀', group: 'אלפרט' },
+  // NJ Alperts
+  { id: 'yair',  name: 'יאיר',  nameEn: 'Yair',  color: '#2e6b8f', emoji: '👨', group: 'אלפרט · ניו ג׳רזי' },
+  { id: 'einat', name: 'עינת', nameEn: 'Einat', color: '#e89ba8', emoji: '👩', group: 'אלפרט · ניו ג׳רזי' },
+  { id: 'rom',   name: 'רום',   nameEn: 'Rom',   age: 6, color: '#f4b940', emoji: '🎈', group: 'אלפרט · ניו ג׳רזי' },
+  { id: 'nur',   name: 'נור',   nameEn: 'Nur',   age: 2, color: '#ee6352', emoji: '🧸', group: 'אלפרט · ניו ג׳רזי' },
+  // GA Alperts
+  { id: 'boaz',  name: 'בועז', nameEn: 'Boaz',  color: '#2e6b8f', emoji: '👨', group: 'אלפרט · ג׳ורג׳יה' },
+  { id: 'libby', name: 'ליבי', nameEn: 'Libby', color: '#e89ba8', emoji: '👩', group: 'אלפרט · ג׳ורג׳יה' },
+  { id: 'ella',  name: 'אלה',  nameEn: 'Ella',  age: 16, color: '#f4b940', emoji: '✨', group: 'אלפרט · ג׳ורג׳יה' },
+  { id: 'gal',   name: 'גל',   nameEn: 'Gal',   age: 14, color: '#e05a3e', emoji: '⚡', group: 'אלפרט · ג׳ורג׳יה' },
+  { id: 'eyal',  name: 'אייל', nameEn: 'Eyal',  age: 11, color: '#3f6b3a', emoji: '🚀', group: 'אלפרט · ג׳ורג׳יה' },
 ];
 
 // ============ EXTENDED TRIP OPTIONS ============

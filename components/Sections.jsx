@@ -5,80 +5,67 @@ const { useState } = React;
 function ExtendedFamilySection() {
   return (
     <section id="alperts">
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 30, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 14, flexWrap: 'wrap' }}>
         <div className="section-label" style={{ background: 'var(--ocean)' }}>החבורה המורחבת</div>
-        <h2 className="display" style={{ fontSize: 48 }}>משפחת אלפרט</h2>
-        <span className="handwritten" style={{ fontSize: 28, color: 'var(--tomato)' }}>משני הצדדים של אמריקה</span>
+        <h2 className="display" style={{ fontSize: 40 }}>משפחת אלפרט</h2>
+        <span className="handwritten" style={{ fontSize: 24, color: 'var(--tomato)' }}>משני הצדדים של אמריקה</span>
       </div>
-      <p style={{ maxWidth: 720, color: 'var(--ink-soft)', marginBottom: 32, lineHeight: 1.6 }}>
+      <p style={{ maxWidth: 720, color: 'var(--ink-soft)', marginBottom: 24, lineHeight: 1.55, fontSize: 15 }}>
         יאיר ועינת בבית · בועז וליבי <span style={{ fontStyle: 'italic' }}>אולי</span> מצטרפים לגיחה · <span style={{ fontWeight: 600 }}>זאת הסיבה שבאנו</span>.
       </p>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
         {ALPERT_FAMILIES.map((fam) => (
           <div key={fam.id} style={{
             position: 'relative',
-            padding: '28px 28px 30px',
+            padding: '18px 22px 22px',
             background: 'var(--cream)',
             boxShadow: 'var(--shadow-paper)',
-            borderInlineStart: `6px solid ${fam.color}`,
+            borderInlineStart: `5px solid ${fam.color}`,
           }}>
-            <Tape color={fam.tape} rotate={fam.tapeRotate} width={130} />
+            <Tape color={fam.tape} rotate={fam.tapeRotate} width={90} />
 
-            <div style={{ marginBottom: 22 }}>
-              <div className="label" style={{ color: fam.color, fontSize: 12 }}>{fam.location}</div>
-              <h3 className="display" style={{ fontSize: 30, marginTop: 4 }}>{fam.label}</h3>
-              <p style={{ fontSize: 15, color: 'var(--ink-soft)', margin: '8px 0 0', lineHeight: 1.55 }}>{fam.note}</p>
+            <div style={{ marginBottom: 14 }}>
+              <div className="label" style={{ color: fam.color, fontSize: 11, marginBottom: 2 }}>{fam.location}</div>
+              <h3 className="display" style={{ fontSize: 22, lineHeight: 1.15 }}>{fam.label}</h3>
+              <p style={{ fontSize: 13, color: 'var(--ink-soft)', margin: '6px 0 0', lineHeight: 1.5 }}>{fam.note}</p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 16 }}>
-              {fam.members.map((m, i) => {
-                const rot = [-2, 1.5, -1, 2, -1.5][i % 5];
-                return (
-                  <div key={m.name} style={{
-                    background: 'white',
-                    padding: '12px 12px 14px',
-                    boxShadow: 'var(--shadow-paper)',
-                    transform: `rotate(${rot}deg)`,
-                    transition: 'transform 0.2s',
-                  }}
-                    onMouseEnter={e => e.currentTarget.style.transform = 'rotate(0deg) scale(1.03)'}
-                    onMouseLeave={e => e.currentTarget.style.transform = `rotate(${rot}deg)`}
-                  >
-                    <div style={{
-                      width: '100%',
-                      aspectRatio: '1',
-                      background: m.color,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: 58,
-                      color: 'white',
-                      position: 'relative',
-                    }}>
-                      <span style={{ filter: 'drop-shadow(2px 2px 0 rgba(0,0,0,0.2))' }}>{m.emoji}</span>
-                      {m.age != null && (
-                        <div style={{
-                          position: 'absolute',
-                          bottom: 6, left: 6,
-                          background: 'var(--cream)',
-                          color: 'var(--ink)',
-                          fontWeight: 600,
-                          fontSize: 11,
-                          padding: '2px 6px',
-                        }}>גיל {m.age}</div>
-                      )}
-                    </div>
-                    <div style={{ marginTop: 10, textAlign: 'center' }}>
-                      <div className="display" style={{ fontSize: 22, lineHeight: 1 }}>{m.name}</div>
-                      <div className="en" style={{ fontSize: 12, color: 'var(--ink-faded)', marginTop: 2 }}>{m.nameEn}</div>
-                      {m.role && (
-                        <div style={{ fontSize: 12, color: fam.color, fontWeight: 600, marginTop: 4 }}>{m.role}</div>
-                      )}
-                    </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
+              {fam.members.map(m => (
+                <div key={m.name} style={{
+                  display: 'flex', flexDirection: 'column', alignItems: 'center',
+                  width: 60,
+                }}>
+                  <div style={{
+                    width: 48, height: 48,
+                    borderRadius: '50%',
+                    background: m.color,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 22,
+                    color: 'white',
+                    position: 'relative',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.22)',
+                  }}>
+                    <span>{m.emoji}</span>
+                    {m.age != null && (
+                      <div style={{
+                        position: 'absolute',
+                        bottom: -4, insetInlineEnd: -4,
+                        background: 'var(--cream)',
+                        color: 'var(--ink)',
+                        width: 22, height: 22,
+                        borderRadius: '50%',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: 10, fontWeight: 700,
+                        border: '1.5px solid var(--ink)',
+                      }}>{m.age}</div>
+                    )}
                   </div>
-                );
-              })}
+                  <div style={{ fontSize: 13, fontWeight: 600, marginTop: 8, textAlign: 'center', lineHeight: 1.1 }}>{m.name}</div>
+                  <div className="en" style={{ fontSize: 10, color: 'var(--ink-faded)', lineHeight: 1.1, fontStyle: 'normal' }}>{m.nameEn}</div>
+                </div>
+              ))}
             </div>
           </div>
         ))}

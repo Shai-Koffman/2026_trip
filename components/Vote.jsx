@@ -219,7 +219,7 @@ function OptionCard({ option, idx, isExpanded, onToggle, votes, setVotes, rank }
               <span style={{ opacity: 0.4 }}>·</span>
               <span>{option.days}</span>
               <span style={{ opacity: 0.4 }}>·</span>
-              <span>🚗 {option.drive}</span>
+              <span>{option.travel.mode === 'flight' ? '✈️' : '🚗'} {option.travel.duration}</span>
             </div>
             <h3 className="display" style={{ fontSize: 36, marginTop: 6, lineHeight: 1.05 }}>{option.name}</h3>
             <div className="en" style={{ fontSize: 16, color: 'var(--ink-faded)', marginTop: 4 }}>{option.nameEn}</div>

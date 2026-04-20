@@ -3,11 +3,11 @@ const { useState, useEffect } = React;
 
 // ============ FAMILY ============
 const FAMILY = [
-  { id: 'shai', name: 'שי', nameEn: 'Shai', age: 46, color: '#2e6b8f', emoji: '🎢', tag: 'אבא' },
-  { id: 'dina', name: 'דינה', nameEn: 'Dina', age: 49, color: '#e89ba8', emoji: '🌸', tag: 'אמא' },
-  { id: 'omer', name: 'עומר', nameEn: 'Omer', age: 15, color: '#e05a3e', emoji: '🥷', tag: 'נינג׳ה ווריור' },
-  { id: 'inbar', name: 'ענבר', nameEn: 'Inbar', age: 13, color: '#f4b940', emoji: '💃', tag: 'רקדנית' },
-  { id: 'rotem', name: 'רותם', nameEn: 'Rotem', age: 10, color: '#3f6b3a', emoji: '🤸\u200d♀️', tag: 'התעמלות + ריקוד' },
+  { id: 'shai', name: 'שי', nameEn: 'Shai', age: 46, color: '#2e6b8f', emoji: '🗺️' },
+  { id: 'dina', name: 'דינה', nameEn: 'Dina', age: 49, color: '#e89ba8', emoji: '📷' },
+  { id: 'omer', name: 'עומר', nameEn: 'Omer', age: 15, color: '#e05a3e', emoji: '🧗\u200d♂️' },
+  { id: 'inbar', name: 'ענבר', nameEn: 'Inbar', age: 13, color: '#f4b940', emoji: '💃' },
+  { id: 'rotem', name: 'רותם', nameEn: 'Rotem', age: 10, color: '#3f6b3a', emoji: '🤸\u200d♀️' },
 ];
 
 // ============ EXTENDED TRIP OPTIONS ============

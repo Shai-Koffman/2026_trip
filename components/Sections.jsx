@@ -10,8 +10,8 @@ function ExtendedFamilySection() {
         <h2 className="display" style={{ fontSize: 48 }}>משפחת אלפרט</h2>
         <span className="handwritten" style={{ fontSize: 28, color: 'var(--tomato)' }}>משני הצדדים של אמריקה</span>
       </div>
-      <p style={{ maxWidth: 720, color: 'var(--ink-soft)', marginBottom: 32 }}>
-        בסופו של דבר, בשביל זה אנחנו טסים. יאיר ועינת מארחים אותנו בניו ג׳רזי. בועז וליבי טסים מאטלנטה להצטרף אלינו בגיחה הגדולה — ועם הילדים שלהם, הקבוצה מגיעה ל-10 איש בטיפוסים מכל הגילאים.
+      <p style={{ maxWidth: 720, color: 'var(--ink-soft)', marginBottom: 32, lineHeight: 1.6 }}>
+        יאיר ועינת בבית · בועז וליבי בגיחה · <span style={{ fontWeight: 600 }}>זאת הסיבה שבאנו</span>.
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>

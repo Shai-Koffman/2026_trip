@@ -10,6 +10,16 @@ const FAMILY = [
   { id: 'rotem', name: 'רותם', nameEn: 'Rotem', age: 10, color: '#3f6b3a', emoji: '🤸\u200d♀️' },
 ];
 
+// ============ VOTERS (everyone on the גיחה — includes GA Alperts) ============
+const VOTERS = [
+  ...FAMILY.map(p => ({ ...p, group: 'קופמן' })),
+  { id: 'boaz',  name: 'בועז', nameEn: 'Boaz',  color: '#2e6b8f', emoji: '👨', group: 'אלפרט' },
+  { id: 'libby', name: 'ליבי', nameEn: 'Libby', color: '#e89ba8', emoji: '👩', group: 'אלפרט' },
+  { id: 'ella',  name: 'אלה',  nameEn: 'Ella',  age: 16, color: '#f4b940', emoji: '✨', group: 'אלפרט' },
+  { id: 'gal',   name: 'גל',   nameEn: 'Gal',   age: 14, color: '#e05a3e', emoji: '⚡', group: 'אלפרט' },
+  { id: 'eyal',  name: 'אייל', nameEn: 'Eyal',  age: 11, color: '#3f6b3a', emoji: '🚀', group: 'אלפרט' },
+];
+
 // ============ EXTENDED TRIP OPTIONS ============
 // Each option has:
 //  - highlights: attractions with links
@@ -304,4 +314,4 @@ const ALPERT_FAMILIES = [
   },
 ];
 
-Object.assign(window, { FAMILY, OPTIONS, NJ_DAYS, NYC_DAYS, ROAD_RULES, ALPERT_FAMILIES });
+Object.assign(window, { FAMILY, VOTERS, OPTIONS, NJ_DAYS, NYC_DAYS, ROAD_RULES, ALPERT_FAMILIES });

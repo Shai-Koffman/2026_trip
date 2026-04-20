@@ -1,4 +1,4 @@
-/* global React, OPTIONS, FAMILY, Tape, Stamp, Star, Heart */
+/* global React, OPTIONS, VOTERS, Tape, Stamp, Star, Heart */
 const { useState, useEffect } = React;
 
 const VOTE_KEY = 'koffman-votes-v1';
@@ -36,58 +36,71 @@ function VoteStrip({ optionId, votes, setVotes, accent }) {
       gap: 10,
     }}>
       <div className="label" style={{ fontSize: 11 }}>
-        <span>ההצבעות של המשפחה</span>
+        <span>ההצבעות של כולם · 10 איש</span>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        {FAMILY.map(p => {
-          const v = optVotes[p.id];
-          return (
-            <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{
-                width: 32, height: 32, borderRadius: '50%',
-                background: p.color, color: 'white',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 16, flexShrink: 0,
-                boxShadow: '0 1px 2px rgba(0,0,0,0.2)',
-              }}>{p.emoji}</div>
-              <div style={{ flex: 1, fontSize: 15, fontWeight: 500 }}>{p.name}</div>
-              <button
-                onClick={() => handle(p.id, 'up')}
-                aria-label={`${p.name} אוהב`}
-                style={{
-                  width: 36, height: 36,
-                  border: '1.5px solid var(--ink)',
-                  background: v === 'up' ? '#3f6b3a' : 'white',
-                  color: v === 'up' ? 'white' : 'var(--ink)',
-                  cursor: 'pointer',
-                  fontSize: 16,
-                  borderRadius: '50%',
-                  transition: 'all 0.15s',
-                  transform: v === 'up' ? 'scale(1.1)' : 'scale(1)',
-                  boxShadow: v === 'up' ? '2px 2px 0 var(--ink)' : 'none',
-                }}
-              >👍</button>
-              <button
-                onClick={() => handle(p.id, 'down')}
-                aria-label={`${p.name} פחות מתלהב`}
-                style={{
-                  width: 36, height: 36,
-                  border: '1.5px solid var(--ink)',
-                  background: v === 'down' ? '#c14050' : 'white',
-                  color: v === 'down' ? 'white' : 'var(--ink)',
-                  cursor: 'pointer',
-                  fontSize: 16,
-                  borderRadius: '50%',
-                  transition: 'all 0.15s',
-                  transform: v === 'down' ? 'scale(1.1)' : 'scale(1)',
-                  boxShadow: v === 'down' ? '2px 2px 0 var(--ink)' : 'none',
-                }}
-              >👎</button>
-            </div>
-          );
-        })}
-      </div>
+      {['קופמן', 'אלפרט'].map(group => {
+        const groupVoters = VOTERS.filter(v => v.group === group);
+        return (
+          <div key={group} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <div style={{
+              fontSize: 11,
+              fontWeight: 700,
+              color: 'var(--ink-faded)',
+              letterSpacing: '0.06em',
+              borderBottom: '1px dashed var(--ink-faded)',
+              paddingBottom: 3,
+            }}>משפחת {group}</div>
+            {groupVoters.map(p => {
+              const v = optVotes[p.id];
+              return (
+                <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{
+                    width: 28, height: 28, borderRadius: '50%',
+                    background: p.color, color: 'white',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 14, flexShrink: 0,
+                    boxShadow: '0 1px 2px rgba(0,0,0,0.2)',
+                  }}>{p.emoji}</div>
+                  <div style={{ flex: 1, fontSize: 14, fontWeight: 500 }}>{p.name}</div>
+                  <button
+                    onClick={() => handle(p.id, 'up')}
+                    aria-label={`${p.name} אוהב`}
+                    style={{
+                      width: 30, height: 30,
+                      border: '1.5px solid var(--ink)',
+                      background: v === 'up' ? '#3f6b3a' : 'white',
+                      color: v === 'up' ? 'white' : 'var(--ink)',
+                      cursor: 'pointer',
+                      fontSize: 14,
+                      borderRadius: '50%',
+                      transition: 'all 0.15s',
+                      transform: v === 'up' ? 'scale(1.1)' : 'scale(1)',
+                      boxShadow: v === 'up' ? '2px 2px 0 var(--ink)' : 'none',
+                    }}
+                  >👍</button>
+                  <button
+                    onClick={() => handle(p.id, 'down')}
+                    aria-label={`${p.name} פחות מתלהב`}
+                    style={{
+                      width: 30, height: 30,
+                      border: '1.5px solid var(--ink)',
+                      background: v === 'down' ? '#c14050' : 'white',
+                      color: v === 'down' ? 'white' : 'var(--ink)',
+                      cursor: 'pointer',
+                      fontSize: 14,
+                      borderRadius: '50%',
+                      transition: 'all 0.15s',
+                      transform: v === 'down' ? 'scale(1.1)' : 'scale(1)',
+                      boxShadow: v === 'down' ? '2px 2px 0 var(--ink)' : 'none',
+                    }}
+                  >👎</button>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
 
       {/* Score bar */}
       <VoteScore optVotes={optVotes} accent={accent} />
@@ -439,7 +452,7 @@ function VoteSection() {
         boxShadow: '3px 3px 0 var(--ink)',
       }}>
         <span style={{ fontSize: 18 }}>✈️</span>
-        <span>בועז, ליבי, אלה, גל ואייל מצטרפים אלינו לגיחה — הבחירה שלנו היא גם בחירה שלהם</span>
+        <span>10 איש · 2 משפחות · כולם מצביעים — בועז וליבי מצטרפים עם הילדים מאטלנטה</span>
       </div>
 
       {/* Leaderboard strip */}
@@ -467,7 +480,7 @@ function VoteSection() {
         <div style={{ display: 'flex', gap: 22, flexWrap: 'wrap' }}>
           <div>
             <div className="label" style={{ color: 'var(--tape-blue)', fontSize: 12 }}>הצבעות</div>
-            <div className="display" style={{ fontSize: 26, color: 'var(--cream)' }} dir="ltr">{totalVotesCast} / {FAMILY.length * OPTIONS.length}</div>
+            <div className="display" style={{ fontSize: 26, color: 'var(--cream)' }} dir="ltr">{totalVotesCast} / {VOTERS.length * OPTIONS.length}</div>
           </div>
           <div>
             <div className="label" style={{ color: 'var(--tape-pink)', fontSize: 12 }}>מיון</div>

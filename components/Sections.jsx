@@ -1,7 +1,192 @@
 /* global React, NJ_DAYS, NYC_DAYS, ROAD_RULES, Tape, Star, Coaster, Palm, Stamp */
+const { useState } = React;
+
+// ============ Shared: a linked or plain stop row ============
+function StopRow({ item, color }) {
+  const content = (
+    <>
+      {item.icon && (
+        <div style={{
+          width: 44, height: 44,
+          background: color,
+          color: 'white',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 22,
+          flexShrink: 0,
+        }}>{item.icon}</div>
+      )}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        {item.time && (
+          <div className="label" style={{ color, fontSize: 11, marginBottom: 2 }}>{item.time}</div>
+        )}
+        <div style={{ fontWeight: 700, fontSize: 17, lineHeight: 1.25 }}>
+          {item.title}
+          {item.link && <span style={{ marginInlineStart: 6, fontSize: 13, opacity: 0.55 }}>↗</span>}
+        </div>
+        {item.en && (
+          <div className="en" style={{ fontSize: 13, color: 'var(--ink-faded)', marginTop: 2, fontStyle: 'normal' }}>
+            {item.en}
+          </div>
+        )}
+        {item.note && (
+          <div style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 6, lineHeight: 1.5 }}>{item.note}</div>
+        )}
+      </div>
+    </>
+  );
+
+  const baseStyle = {
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: 14,
+    padding: '14px 16px',
+    background: 'white',
+    border: `1.5px solid ${color}33`,
+    borderInlineStart: `4px solid ${color}`,
+    textDecoration: 'none',
+    color: 'inherit',
+    transition: 'transform 0.15s, border-color 0.15s, box-shadow 0.15s',
+  };
+
+  if (!item.link) {
+    return <div style={baseStyle}>{content}</div>;
+  }
+
+  return (
+    <a
+      href={item.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={baseStyle}
+      onMouseEnter={e => {
+        e.currentTarget.style.borderColor = color;
+        e.currentTarget.style.borderInlineStartColor = color;
+        e.currentTarget.style.transform = 'translateX(-2px)';
+        e.currentTarget.style.boxShadow = `-3px 3px 0 ${color}`;
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.borderColor = `${color}33`;
+        e.currentTarget.style.borderInlineStartColor = color;
+        e.currentTarget.style.transform = 'none';
+        e.currentTarget.style.boxShadow = 'none';
+      }}
+    >
+      {content}
+    </a>
+  );
+}
+
+// ============ Shared: expandable day card ============
+function DayCard({
+  cover, coverLabel, color, title, subtitle, extraStamp,
+  isExpanded, onToggle, items, tapeColor, tapeRotate, rotation,
+}) {
+  return (
+    <div style={{
+      position: 'relative',
+      background: 'var(--cream)',
+      boxShadow: isExpanded ? 'var(--shadow-lifted)' : 'var(--shadow-paper)',
+      transform: isExpanded ? 'rotate(0deg)' : `rotate(${rotation}deg)`,
+      transition: 'transform 0.3s, box-shadow 0.3s',
+      overflow: 'visible',
+    }}>
+      <Tape color={tapeColor} rotate={tapeRotate} width={130} />
+
+      <button
+        onClick={onToggle}
+        style={{
+          width: '100%',
+          padding: 0,
+          border: 'none',
+          background: 'transparent',
+          cursor: 'pointer',
+          textAlign: 'inherit',
+          color: 'inherit',
+          fontFamily: 'inherit',
+          display: 'block',
+        }}
+      >
+        {/* Cover */}
+        <div style={{
+          width: '100%',
+          aspectRatio: '16/7',
+          background: `linear-gradient(155deg, ${color}, ${color}cc)`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          <div style={{
+            fontSize: 110,
+            lineHeight: 1,
+            filter: 'drop-shadow(2px 4px 0 rgba(0,0,0,0.22))',
+          }}>{cover}</div>
+          {coverLabel && (
+            <div style={{
+              position: 'absolute',
+              bottom: 12, right: 12,
+              background: 'rgba(255,255,255,0.95)',
+              padding: '4px 10px',
+              fontFamily: "'Assistant', sans-serif",
+              fontWeight: 600,
+              fontSize: 12,
+              color: 'var(--ink)',
+            }}>{coverLabel}</div>
+          )}
+        </div>
+
+        {/* Title block */}
+        <div style={{ padding: '22px 26px 20px' }}>
+          <h3 className="display" style={{ fontSize: 28, lineHeight: 1.1 }}>{title}</h3>
+          {subtitle && (
+            <div className="en" style={{ fontSize: 15, color: 'var(--ink-faded)', marginTop: 4 }}>{subtitle}</div>
+          )}
+          <div style={{
+            marginTop: 14,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            fontFamily: "'Caveat', cursive",
+            fontSize: 22,
+            color,
+            fontWeight: 700,
+          }}>
+            {isExpanded ? '↑ לסגור' : '↓ לפתוח לפרטים'}
+          </div>
+        </div>
+      </button>
+
+      {/* Expanded content */}
+      {isExpanded && (
+        <div style={{
+          borderTop: '2px dashed var(--ink-faded)',
+          padding: '22px 26px 28px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 12,
+          animation: 'float-in 0.4s ease-out',
+        }}>
+          {items.map((item, i) => (
+            <StopRow key={i} item={item} color={color} />
+          ))}
+        </div>
+      )}
+
+      {extraStamp}
+    </div>
+  );
+}
 
 // ============ NJ SECTION ============
 function NJSection() {
+  const [expanded, setExpanded] = useState(new Set());
+  const toggle = (idx) => {
+    const next = new Set(expanded);
+    next.has(idx) ? next.delete(idx) : next.add(idx);
+    setExpanded(next);
+  };
+
   return (
     <section id="nj">
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 30, flexWrap: 'wrap' }}>
@@ -16,43 +201,25 @@ function NJSection() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 40 }}>
         {NJ_DAYS.map((day, idx) => (
-          <div key={day.title} className="paper" style={{
-            transform: `rotate(${idx === 0 ? -0.8 : 0.8}deg)`,
-            padding: '28px 26px',
-          }}>
-            <Tape color={idx === 0 ? 'var(--tape-blue)' : 'var(--tape-pink)'} rotate={idx === 0 ? -4 : 5} />
-
-            <div style={{ marginBottom: 18 }}>
-              <div className="label" style={{ color: day.color }}>יום {idx + 1}</div>
-              <h3 className="display" style={{ fontSize: 32, marginTop: 6 }}>{day.title}</h3>
-              <div className="en" style={{ fontSize: 15, color: 'var(--ink-faded)', marginTop: 2 }}>{day.subtitle}</div>
-            </div>
-
-            <div style={{ borderInlineStart: `3px solid ${day.color}`, paddingInlineStart: 16 }}>
-              {day.blocks.map((b, bi) => (
-                <div key={bi} style={{ marginBottom: 18, position: 'relative' }}>
-                  <div style={{
-                    position: 'absolute',
-                    right: -22, top: 4,
-                    width: 12, height: 12,
-                    borderRadius: '50%',
-                    background: day.color,
-                    border: '2px solid var(--cream)',
-                  }} />
-                  <div className="label" style={{ color: day.color, fontSize: 11 }}>{b.time}</div>
-                  <div style={{ fontWeight: 600, fontSize: 18, marginTop: 2 }}>{b.title}</div>
-                  {b.en && <div className="en" style={{ fontSize: 13, color: 'var(--ink-faded)' }}>{b.en}</div>}
-                  {b.note && <div style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 4 }}>{b.note}</div>}
-                </div>
-              ))}
-            </div>
-
-            {idx === 0 && (
-              <div style={{ position: 'absolute', bottom: -14, left: -10, transform: 'rotate(-8deg)' }}>
+          <DayCard
+            key={day.title}
+            cover={day.icon}
+            coverLabel={`יום ${idx + 1}`}
+            color={day.color}
+            title={day.title}
+            subtitle={day.subtitle}
+            items={day.blocks}
+            isExpanded={expanded.has(idx)}
+            onToggle={() => toggle(idx)}
+            tapeColor={idx === 0 ? 'var(--tape-blue)' : 'var(--tape-pink)'}
+            tapeRotate={idx === 0 ? -4 : 5}
+            rotation={idx === 0 ? -0.8 : 0.8}
+            extraStamp={idx === 0 ? (
+              <div style={{ position: 'absolute', bottom: -14, left: -10, transform: 'rotate(-8deg)', zIndex: 5 }}>
                 <Stamp color="var(--forest)">TAX · FREE</Stamp>
               </div>
-            )}
-          </div>
+            ) : null}
+          />
         ))}
       </div>
     </section>
@@ -61,6 +228,17 @@ function NJSection() {
 
 // ============ NYC SECTION ============
 function NYCSection() {
+  const [expanded, setExpanded] = useState(new Set());
+  const toggle = (idx) => {
+    const next = new Set(expanded);
+    next.has(idx) ? next.delete(idx) : next.add(idx);
+    setExpanded(next);
+  };
+
+  const tapeColors = ['var(--tape)', 'var(--tape-blue)', 'var(--tape-pink)'];
+  const tapeRotates = [-5, 4, -3];
+  const rotations = [-1.5, 0.8, -0.5];
+
   return (
     <section id="nyc">
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 30, flexWrap: 'wrap' }}>
@@ -73,78 +251,22 @@ function NYCSection() {
         ימים ממוקדים למתבגרים ולמבוגרים שרוצים חוויות טרנדיות, אינטראקטיביות ופוטוגניות.
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
-        {NYC_DAYS.map((day, idx) => {
-          const rot = [-1.5, 0.8, -0.5][idx];
-          return (
-            <div key={day.theme} style={{
-              position: 'relative',
-              background: 'white',
-              padding: '12px 12px 26px',
-              boxShadow: 'var(--shadow-paper)',
-              transform: `rotate(${rot}deg)`,
-            }}>
-              <Tape color={['var(--tape)', 'var(--tape-blue)', 'var(--tape-pink)'][idx]} rotate={[-5, 4, -3][idx]} />
-
-              {/* Photo block - colored placeholder with landmark emoji */}
-              <div style={{
-                width: '100%',
-                aspectRatio: '4/3',
-                background: `linear-gradient(160deg, ${day.color}, ${day.color}dd)`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                overflow: 'hidden',
-              }}>
-                <div style={{
-                  fontSize: 100,
-                  filter: 'drop-shadow(2px 4px 0 rgba(0,0,0,0.2))',
-                }}>
-                  {['🔦', '🦋', '🌉'][idx]}
-                </div>
-                <div style={{
-                  position: 'absolute',
-                  bottom: 10, right: 10,
-                  background: 'rgba(255,255,255,0.95)',
-                  padding: '4px 10px',
-                  fontFamily: "'Assistant', sans-serif",
-                  fontWeight: 600,
-                  fontSize: 12,
-                  color: 'var(--ink)',
-                }}>ניו יורק · יום {idx + 1}</div>
-              </div>
-
-              <div style={{ padding: '18px 14px 0' }}>
-                <h3 className="display" style={{ fontSize: 24 }}>{day.theme}</h3>
-                <div style={{ marginTop: 14 }}>
-                  {day.stops.map((stop, si) => (
-                    <div key={si} style={{
-                      display: 'flex',
-                      gap: 10,
-                      padding: '10px 0',
-                      borderTop: si > 0 ? '1px dashed var(--ink-faded)' : 'none',
-                      alignItems: 'flex-start',
-                    }}>
-                      <div style={{
-                        fontFamily: "'Caveat', cursive",
-                        fontSize: 24,
-                        fontWeight: 700,
-                        color: day.color,
-                        lineHeight: 1,
-                        minWidth: 24,
-                      }} dir="ltr">{si + 1}.</div>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontWeight: 600, fontSize: 16 }} className="en">{stop.title}</div>
-                        <div style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 2 }}>{stop.note}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 28 }}>
+        {NYC_DAYS.map((day, idx) => (
+          <DayCard
+            key={day.theme}
+            cover={day.icon}
+            coverLabel={`ניו יורק · יום ${idx + 1}`}
+            color={day.color}
+            title={day.theme}
+            items={day.stops}
+            isExpanded={expanded.has(idx)}
+            onToggle={() => toggle(idx)}
+            tapeColor={tapeColors[idx]}
+            tapeRotate={tapeRotates[idx]}
+            rotation={rotations[idx]}
+          />
+        ))}
       </div>
     </section>
   );

@@ -146,19 +146,20 @@ const NJ_DAYS = [
     title: 'יום פארק מים + שופינג',
     subtitle: 'American Dream + The Mills',
     color: '#78b4d0',
+    icon: '💦',
     blocks: [
-      { time: 'בוקר', title: 'DreamWorks Water Park', en: 'American Dream Mall', note: 'פארק המים המקורה הגדול בצפון אמריקה' },
-      { time: '15 דק׳', title: 'מעבר ב-15 דקות', en: '', note: '' },
-      { time: 'צהריים', title: 'The Mills at Jersey Gardens', en: 'Outlets', note: 'נייקי · ליוויס · גאפ — ללא מע"מ על ביגוד' },
+      { time: 'בוקר', icon: '💦', title: 'DreamWorks Water Park', en: 'American Dream Mall', note: 'פארק המים המקורה הגדול בצפון אמריקה — גלישות, בריכת גלים, נהר עצל', link: 'https://www.americandream.com/attractions/dreamworks-water-park' },
+      { time: 'צהריים', icon: '🛍️', title: 'The Mills at Jersey Gardens', en: 'Outlets · 15 min drive', note: 'נייקי · ליוויס · גאפ — ללא מע"מ על ביגוד, 15 דק׳ מ-American Dream', link: 'https://www.simon.com/mall/the-mills-at-jersey-gardens' },
     ],
   },
   {
     title: 'יום רכבות הרים',
     subtitle: 'Six Flags או פרינסטון',
     color: '#e05a3e',
+    icon: '🎢',
     blocks: [
-      { time: 'למחפשי ריגושים', title: 'Six Flags Great Adventure', en: 'Kingda Ka', note: 'רכבות ההרים הגבוהות בעולם' },
-      { time: 'במקביל', title: 'האלטרנטיבה של דינה', en: 'Princeton (40 min)', note: 'קמפוס היסטורי, בוטיקים ב-Palmer Square, ארוחה שקטה' },
+      { time: 'למחפשי ריגושים', icon: '🎢', title: 'Six Flags Great Adventure', en: 'Kingda Ka · El Toro', note: 'רכבות ההרים הגבוהות בעולם — כולל Kingda Ka ו-El Toro', link: 'https://www.sixflags.com/greatadventure' },
+      { time: 'במקביל', icon: '🎓', title: 'פרינסטון · Palmer Square', en: 'Princeton (40 min)', note: 'קמפוס היסטורי, בוטיקים ב-Palmer Square, ארוחה שקטה — האלטרנטיבה של דינה', link: 'https://www.palmersquare.com/' },
     ],
   },
 ];
@@ -168,28 +169,31 @@ const NYC_DAYS = [
   {
     theme: 'ריגול, תצפיות, שופינג',
     color: '#2e6b8f',
+    icon: '🔦',
     stops: [
-      { title: 'SPYSCAPE', note: 'מוזיאון ריגול עם מעברי לייזר' },
-      { title: 'The Edge', note: 'המרפסת התלויה + רצפת זכוכית' },
-      { title: "Macy's Herald Square", note: 'הסניף הענק, הנחות תיירים' },
+      { icon: '🕵️', title: 'SPYSCAPE', note: 'מוזיאון ריגול עם מעברי לייזר · משימות אישיות וגדג׳טים', link: 'https://spyscape.com/' },
+      { icon: '🏙️', title: 'The Edge', note: 'המרפסת התלויה הגבוהה במערב · רצפת זכוכית · קוקטיילים למעלה', link: 'https://www.edgenyc.com/' },
+      { icon: '🛒', title: "Macy's Herald Square", note: 'הסניף הענק · הנחות תיירים · Visitor Center בקומה התחתונה', link: 'https://www.visitmacysusa.com/stores/herald-square' },
     ],
   },
   {
     theme: 'טבע היי-טק',
     color: '#3f6b3a',
+    icon: '🦋',
     stops: [
-      { title: 'Gilder Center · AMNH', note: 'אגף חדש, ארכיטקטורה עתידנית' },
-      { title: 'פרפרים חיים', note: 'באותו בניין' },
-      { title: 'Central Park + Columbus Circle', note: 'ארוחה קלילה אחרי' },
+      { icon: '🦖', title: 'Gilder Center · AMNH', note: 'אגף חדש, ארכיטקטורה עתידנית · מוזיאון הטבע באותה כניסה', link: 'https://www.amnh.org/exhibitions/gilder-center' },
+      { icon: '🦋', title: 'Butterfly Vivarium', en: 'פרפרים חיים', note: 'חממה חמה באותו בניין · פרפרים נוחתים עליכם', link: 'https://www.amnh.org/exhibitions/butterflies' },
+      { icon: '🌳', title: 'Central Park + Columbus Circle', note: 'סיום יום קליל · Bow Bridge · ארוחה קלילה ב-Time Warner Center', link: 'https://www.centralparknyc.org/' },
     ],
   },
   {
     theme: 'הווייב של ברוקלין',
     color: '#e05a3e',
+    icon: '🌉',
     stops: [
-      { title: 'גשר ברוקלין ל-DUMBO', note: 'הליכה קלאסית' },
-      { title: 'Time Out Market', note: 'שוק אוכל מקורה' },
-      { title: "Brooklyn Flea + Vintage", note: 'מציאות ייחודיות' },
+      { icon: '🌉', title: 'Brooklyn Bridge → DUMBO', note: 'הליכה קלאסית · נוף לקו הרקיע · סיום בסמטת Washington-Water לפיקצ׳ר', link: 'https://www.dumbo.is/visit' },
+      { icon: '🍽️', title: 'Time Out Market', note: 'שוק אוכל מקורה · גג פתוח עם נוף מנהטן', link: 'https://www.timeoutmarket.com/newyork/' },
+      { icon: '🛒', title: 'Brooklyn Flea + Vintage', note: 'יריד מציאות · Williamsburg או DUMBO בסופ"ש', link: 'https://www.brooklynflea.com/' },
     ],
   },
 ];

@@ -126,10 +126,7 @@ function Hero() {
         </div>
 
         <p style={{ fontSize: 19, maxWidth: 640, margin: '0 auto 28px', color: 'var(--ink-soft)' }}>
-          16 ימים · 5 אופציות לגיחה · רכבות הרים, אאוטלטים, פוטין, לובסטר רולס —
-          <span className="handwritten" style={{ fontSize: 26, color: 'var(--tomato)', marginInlineStart: 8 }}>
-            והמון אינסטה.
-          </span>
+          16 ימים · 5 אופציות לגיחה · רכבות הרים, אאוטלטים, פוטין, לובסטר רולס.
         </p>
 
         {/* Dates stamp */}

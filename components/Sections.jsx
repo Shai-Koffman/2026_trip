@@ -66,7 +66,7 @@ function NYCSection() {
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 30, flexWrap: 'wrap' }}>
         <div className="section-label" style={{ background: 'var(--tomato)' }}>חלק שני</div>
         <h2 className="display" style={{ fontSize: 48 }}>ימי השיא · ניו יורק</h2>
-        <span className="handwritten" style={{ fontSize: 28, color: 'var(--ocean)' }}>Mega-Days · בלי סיורים מייגעים</span>
+        <span className="handwritten" style={{ fontSize: 28, color: 'var(--ocean)' }}>Mega-Days</span>
       </div>
 
       <p style={{ maxWidth: 700, color: 'var(--ink-soft)', marginBottom: 32 }}>

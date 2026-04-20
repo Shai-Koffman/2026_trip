@@ -138,7 +138,7 @@ const OPTIONS = [
     color: '#c14050',
     accent: '#f08070',
     days: '4-5 ימים',
-    travel: { mode: 'drive', duration: '8:00 שעות' },
+    travel: { mode: 'flight', duration: '1:45 טיסה' },
     photo: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=1400&q=80',
     highlights: [
       { icon: '🎢', title: "Canada's Wonderland", text: 'רכבות הרים שוברות שיאים', link: 'https://www.canadaswonderland.com/' },
@@ -152,7 +152,7 @@ const OPTIONS = [
       { name: 'Pai Northern Thai', style: 'Khao soi · נואר-שאן', note: 'הכי טוב בעיר — שורש, חריף, תור מהיר', link: 'https://www.paitoronto.com/' },
       { name: 'Seven Lives (Kensington)', style: 'טאקו דגים מסוג Baja', note: 'טאקו חוף קליפורני-מקסיקני שמעיפים את הראש', link: 'https://www.instagram.com/sevenlivestacos/' },
     ],
-    detail: 'טורונטו היא אולי סצנת האוכל הכי מגוונת בצפון אמריקה. Alo לארוחה חגיגית, Pai לערב משפחתי, Seven Lives לארוחת רחוב. St. Lawrence Market הוא הפתיחה המושלמת לבוקר.',
+    detail: 'טיסה ישירה של שעה וחצי מ-EWR/JFK ל-YYZ חוסכת 16 שעות נהיגה הלוך-חזור. מפלי הניאגרה שעה וחצי מהעיר — Canada\'s Wonderland, Kensington Market, St. Lawrence Market ו-Journey Behind the Falls כולם נגישים ללא נסיעה ארוכה.',
   },
   {
     id: 'bermuda',

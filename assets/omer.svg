@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <g fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Warped wall (the iconic obstacle) -->
+    <path d="M 10 90 Q 10 20, 82 14" opacity="0.4" stroke-width="6"/>
+    <!-- Figure mid-jump -->
+    <!-- head -->
+    <circle cx="62" cy="30" r="6.5" fill="#ffffff" stroke="none"/>
+    <!-- torso leaning forward -->
+    <path d="M 62 37 L 52 58"/>
+    <!-- arms reaching up toward the top -->
+    <path d="M 58 45 L 74 30"/>
+    <path d="M 56 50 L 66 56"/>
+    <!-- legs pushing off -->
+    <path d="M 52 58 L 42 72"/>
+    <path d="M 52 58 L 60 74"/>
+  </g>
+</svg>

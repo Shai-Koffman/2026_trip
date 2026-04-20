@@ -5,7 +5,7 @@ const { useState, useEffect } = React;
 const FAMILY = [
   { id: 'shai', name: 'שי', nameEn: 'Shai', age: 46, color: '#2e6b8f', emoji: '🗺️' },
   { id: 'dina', name: 'דינה', nameEn: 'Dina', age: 49, color: '#e89ba8', emoji: '💃' },
-  { id: 'omer', name: 'עומר', nameEn: 'Omer', age: 15, color: '#e05a3e', emoji: '🥷' },
+  { id: 'omer', name: 'עומר', nameEn: 'Omer', age: 15, color: '#e05a3e', emoji: '🥷', image: 'assets/omer.svg' },
   { id: 'inbar', name: 'ענבר', nameEn: 'Inbar', age: 13, color: '#f4b940', emoji: '🩰' },
   { id: 'rotem', name: 'רותם', nameEn: 'Rotem', age: 10, color: '#3f6b3a', emoji: '🤸\u200d♀️' },
 ];

@@ -220,7 +220,15 @@ function FamilySection() {
                 color: 'white',
                 position: 'relative',
               }}>
-                <span style={{ filter: 'drop-shadow(2px 2px 0 rgba(0,0,0,0.2))' }}>{p.emoji}</span>
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={p.nameEn}
+                    style={{ width: '80%', height: '80%', objectFit: 'contain', filter: 'drop-shadow(2px 2px 0 rgba(0,0,0,0.2))' }}
+                  />
+                ) : (
+                  <span style={{ filter: 'drop-shadow(2px 2px 0 rgba(0,0,0,0.2))' }}>{p.emoji}</span>
+                )}
                 <div style={{
                   position: 'absolute',
                   bottom: 8, left: 8,

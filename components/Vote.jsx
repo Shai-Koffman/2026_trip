@@ -61,7 +61,12 @@ function VoteStrip({ optionId, votes, setVotes, accent }) {
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: 14, flexShrink: 0,
                     boxShadow: '0 1px 2px rgba(0,0,0,0.2)',
-                  }}>{p.emoji}</div>
+                    overflow: 'hidden',
+                  }}>
+                    {p.image ? (
+                      <img src={p.image} alt={p.nameEn} style={{ width: '78%', height: '78%', objectFit: 'contain' }} />
+                    ) : p.emoji}
+                  </div>
                   <div style={{ flex: 1, fontSize: 14, fontWeight: 500 }}>{p.name}</div>
                   <button
                     onClick={() => handle(p.id, 'up')}

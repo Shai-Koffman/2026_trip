@@ -190,7 +190,6 @@ function FamilySection() {
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 30, flexWrap: 'wrap' }}>
         <div className="section-label">החבורה</div>
         <h2 className="display" style={{ fontSize: 48 }}>מי בטיול</h2>
-        <span className="handwritten" style={{ fontSize: 28, color: 'var(--ink-faded)' }}>5 אנשים, 5 תשוקות</span>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 20 }}>

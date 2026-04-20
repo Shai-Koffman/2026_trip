@@ -125,8 +125,8 @@ function Hero() {
           </div>
         </div>
 
-        <p style={{ fontSize: 19, maxWidth: 640, margin: '0 auto 28px', color: 'var(--ink-soft)' }}>
-          16 ימים · 5 אופציות לגיחה · רכבות הרים, אאוטלטים, ומלא חוויות משפחתיות.
+        <p style={{ fontSize: 19, maxWidth: 680, margin: '0 auto 28px', color: 'var(--ink-soft)' }}>
+          16 ימים · משפחת אלפרט משני הצדדים של אמריקה · בסיס אצל יאיר ועינת בניו ג׳רזי · גיחה לבחירה עם בועז וליבי.
         </p>
 
         {/* Dates stamp */}
@@ -154,6 +154,7 @@ function Hero() {
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center', maxWidth: 720, margin: '0 auto' }}>
           {[
             { href: '#family', label: 'המשפחה' },
+            { href: '#alperts', label: 'משפחת אלפרט' },
             { href: '#nj', label: 'ניו ג׳רזי' },
             { href: '#nyc', label: 'ניו יורק' },
             { href: '#vote', label: '★ הגיחה הגדולה' },
@@ -167,12 +168,12 @@ function Hero() {
               fontSize: 15,
               fontWeight: 500,
               border: '1.5px solid var(--ink)',
-              transform: `rotate(${[-1, 1, -1, 1.5, -1.5][i]}deg)`,
+              transform: `rotate(${[-1, 1.5, -1, 1, -1.5, 1.2][i]}deg)`,
               boxShadow: '2px 2px 0 var(--ink)',
               transition: 'transform 0.15s, box-shadow 0.15s',
             }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'rotate(0) translate(-1px, -1px)'; e.currentTarget.style.boxShadow = '3px 3px 0 var(--ink)'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = `rotate(${[-1, 1, -1, 1.5, -1.5][i]}deg)`; e.currentTarget.style.boxShadow = '2px 2px 0 var(--ink)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = `rotate(${[-1, 1.5, -1, 1, -1.5, 1.2][i]}deg)`; e.currentTarget.style.boxShadow = '2px 2px 0 var(--ink)'; }}
             >
               {l.label}
             </a>

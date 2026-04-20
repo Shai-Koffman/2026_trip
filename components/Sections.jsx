@@ -1,5 +1,91 @@
-/* global React, NJ_DAYS, NYC_DAYS, ROAD_RULES, Tape, Star, Coaster, Palm, Stamp */
+/* global React, NJ_DAYS, NYC_DAYS, ROAD_RULES, ALPERT_FAMILIES, Tape, Star, Coaster, Palm, Stamp */
 const { useState } = React;
+
+// ============ EXTENDED FAMILY (ALPERTS) ============
+function ExtendedFamilySection() {
+  return (
+    <section id="alperts">
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 30, flexWrap: 'wrap' }}>
+        <div className="section-label" style={{ background: 'var(--ocean)' }}>החבורה המורחבת</div>
+        <h2 className="display" style={{ fontSize: 48 }}>משפחת אלפרט</h2>
+        <span className="handwritten" style={{ fontSize: 28, color: 'var(--tomato)' }}>משני הצדדים של אמריקה</span>
+      </div>
+      <p style={{ maxWidth: 720, color: 'var(--ink-soft)', marginBottom: 32 }}>
+        בסופו של דבר, בשביל זה אנחנו טסים. יאיר ועינת מארחים אותנו בניו ג׳רזי. בועז וליבי טסים מאטלנטה להצטרף אלינו בגיחה הגדולה — ועם הילדים שלהם, הקבוצה מגיעה ל-10 איש בטיפוסים מכל הגילאים.
+      </p>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>
+        {ALPERT_FAMILIES.map((fam) => (
+          <div key={fam.id} style={{
+            position: 'relative',
+            padding: '28px 28px 30px',
+            background: 'var(--cream)',
+            boxShadow: 'var(--shadow-paper)',
+            borderInlineStart: `6px solid ${fam.color}`,
+          }}>
+            <Tape color={fam.tape} rotate={fam.tapeRotate} width={130} />
+
+            <div style={{ marginBottom: 22 }}>
+              <div className="label" style={{ color: fam.color, fontSize: 12 }}>{fam.location}</div>
+              <h3 className="display" style={{ fontSize: 30, marginTop: 4 }}>{fam.label}</h3>
+              <p style={{ fontSize: 15, color: 'var(--ink-soft)', margin: '8px 0 0', lineHeight: 1.55 }}>{fam.note}</p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 16 }}>
+              {fam.members.map((m, i) => {
+                const rot = [-2, 1.5, -1, 2, -1.5][i % 5];
+                return (
+                  <div key={m.name} style={{
+                    background: 'white',
+                    padding: '12px 12px 14px',
+                    boxShadow: 'var(--shadow-paper)',
+                    transform: `rotate(${rot}deg)`,
+                    transition: 'transform 0.2s',
+                  }}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'rotate(0deg) scale(1.03)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = `rotate(${rot}deg)`}
+                  >
+                    <div style={{
+                      width: '100%',
+                      aspectRatio: '1',
+                      background: m.color,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: 58,
+                      color: 'white',
+                      position: 'relative',
+                    }}>
+                      <span style={{ filter: 'drop-shadow(2px 2px 0 rgba(0,0,0,0.2))' }}>{m.emoji}</span>
+                      {m.age != null && (
+                        <div style={{
+                          position: 'absolute',
+                          bottom: 6, left: 6,
+                          background: 'var(--cream)',
+                          color: 'var(--ink)',
+                          fontWeight: 600,
+                          fontSize: 11,
+                          padding: '2px 6px',
+                        }}>גיל {m.age}</div>
+                      )}
+                    </div>
+                    <div style={{ marginTop: 10, textAlign: 'center' }}>
+                      <div className="display" style={{ fontSize: 22, lineHeight: 1 }}>{m.name}</div>
+                      <div className="en" style={{ fontSize: 12, color: 'var(--ink-faded)', marginTop: 2 }}>{m.nameEn}</div>
+                      {m.role && (
+                        <div style={{ fontSize: 12, color: fam.color, fontWeight: 600, marginTop: 4 }}>{m.role}</div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 // ============ Shared: a linked or plain stop row ============
 function StopRow({ item, color }) {
@@ -196,7 +282,7 @@ function NJSection() {
       </div>
 
       <p style={{ maxWidth: 700, color: 'var(--ink-soft)', marginBottom: 32 }}>
-        מתארחים אצל המשפחה. מנצלים את הפארקים הגדולים באמצע השבוע (פחות תורים), ואת חוקי הפטור ממס על ביגוד.
+        מתארחים אצל יאיר, עינת, רום ונור. מנצלים את הפארקים הגדולים באמצע השבוע (פחות תורים), ואת חוקי הפטור ממס על ביגוד.
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 40 }}>
@@ -326,4 +412,4 @@ function RoadRules() {
   );
 }
 
-Object.assign(window, { NJSection, NYCSection, RoadRules });
+Object.assign(window, { NJSection, NYCSection, RoadRules, ExtendedFamilySection });

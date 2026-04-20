@@ -420,11 +420,27 @@ function VoteSection() {
         <div className="section-label" style={{ background: 'var(--tomato)' }}>ההחלטה</div>
         <h2 className="display" style={{ fontSize: 52 }}>הגיחה הגדולה</h2>
       </div>
-      <p style={{ fontSize: 18, color: 'var(--ink-soft)', maxWidth: 700, marginTop: 0 }}>
-        חמש אופציות. שלוש-חמישה ימים. כולם מצביעים
+      <p style={{ fontSize: 18, color: 'var(--ink-soft)', maxWidth: 720, marginTop: 0 }}>
+        שמונה אופציות. שלוש-חמישה ימים. כולם מצביעים
         <span className="handwritten" style={{ fontSize: 26, color: 'var(--tomato)', marginInlineStart: 8, marginInlineEnd: 4 }}>👍 או 👎</span>
         וההצבעה נשמרת אוטומטית.
       </p>
+      <div style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 10,
+        marginTop: 10,
+        padding: '8px 14px',
+        background: '#c14050',
+        color: 'white',
+        fontSize: 14,
+        fontWeight: 600,
+        transform: 'rotate(-0.8deg)',
+        boxShadow: '3px 3px 0 var(--ink)',
+      }}>
+        <span style={{ fontSize: 18 }}>✈️</span>
+        <span>בועז, ליבי, אלה, גל ואייל מצטרפים אלינו לגיחה — הבחירה שלנו היא גם בחירה שלהם</span>
+      </div>
 
       {/* Leaderboard strip */}
       <div style={{

@@ -56,19 +56,19 @@ const OPTIONS = [
     ],
     food: [
       { name: "Schwartz's Deli", style: 'Smoked meat · מוסד מאז 1928', note: 'הכריך הכי מפורסם בקנדה. לעמוד בתור, להזמין medium-fat', link: 'https://schwartzsdeli.com/' },
-      { name: 'Au Pied de Cochon', style: 'Foie gras · שפ Martin Picard', note: 'מקדש לאוכלי בשר — פוטין עם פואה גרא, Bib Gourmand', link: 'https://www.aupieddecochon.ca/en' },
+      { name: 'Au Pied de Cochon', style: 'Foie gras · שפ Martin Picard', note: 'מקדש לאוכלי בשר, Bib Gourmand', link: 'https://www.aupieddecochon.ca/en' },
       { name: 'Joe Beef', style: 'צרפתי מודרני · Little Burgundy', note: 'אחת המסעדות הכי חגיגיות בצפון אמריקה — חובה לשריין', link: 'https://joebeef.com/' },
       { name: 'Le Chien Fumant', style: 'ביסטרו מקומי', note: 'כולל "אצל השכנים" — אינטימי, יצירתי, לא תיירותי', link: 'https://lechienfumant.com/' },
       { name: "Aux Anciens Canadiens (Québec City)", style: 'מטבח קוויבקי מסורתי', note: 'בבית מ-1675 בתוך החומות. פאי בשר, סירופ מייפל', link: 'https://auxancienscanadiens.qc.ca/en/' },
     ],
-    detail: 'אירופה 6 שעות מהבית. מונטריאול היא אחת מערי האוכל הגדולות בצפון אמריקה — חובה לשריין את Joe Beef ו-Au Pied de Cochon מראש. בקוויבק סיטי: Aux Anciens Canadiens למנות קוויבקיות מסורתיות בתוך בית עתיק. פוטין חובה בדרך.',
+    detail: 'אירופה 6 שעות מהבית. אווירה צרפתית, רחובות מרוצפים, עגלות רחוב ואגם באמצע העיר. בקוויבק סיטי: Aux Anciens Canadiens למנות קוויבקיות מסורתיות בתוך בית עתיק. מונטמורנסי (המפלים) חובה.',
   },
   {
     id: 'newport',
     name: 'ניופורט',
     nameEn: 'Newport, RI',
     region: 'רוד איילנד',
-    vibe: 'אחוזות פאר, Cliff Walk, ועיר-נמל עם לובסטר רולס ברמה',
+    vibe: 'אחוזות פאר, Cliff Walk מעל האוקיינוס, ועיר-נמל קטנה וקסומה',
     color: '#e05a3e',
     accent: '#f4b940',
     days: '3 ימים',
@@ -81,7 +81,7 @@ const OPTIONS = [
     ],
     food: [
       { name: 'The Mooring', style: 'Seafood · בקצה המרינה', note: 'ה-Bag of Doughnuts (כדורי לובסטר-פילו) אגדי', link: 'https://www.mooringrestaurant.com/' },
-      { name: "Flo's Clam Shack", style: 'קלאסיקה ימית', note: 'לובסטר רולס, קלאם קייקס, רעשני וכיפי — מזה 1936', link: 'https://www.flosclamshack.com/' },
+      { name: "Flo's Clam Shack", style: 'קלאסיקה ימית', note: 'מסעדת צדפים ומאכלי ים מ-1936 · משפחתי, רעשני וכיפי', link: 'https://www.flosclamshack.com/' },
       { name: 'The Black Pearl', style: 'New England fine dining', note: 'Chowder שזכה בפרסים, על המים בעיירה העתיקה', link: 'https://blackpearlnewport.com/' },
       { name: 'Brick Alley Pub', style: 'פאב משפחתי', note: 'מלא מזכרות ספורט, תפריט ענק, מחירים סבירים', link: 'https://www.brickalley.com/' },
       { name: "Thames Street Kitchen", style: 'ניו-אמריקאי יצירתי', note: 'שפ טייבל קטן, מתחלף לפי העונה — שווה לשריין', link: 'https://thamesstreetkitchen.com/' },
@@ -269,4 +269,39 @@ const ROAD_RULES = [
   { icon: '🏆', title: 'משחק המשימות', text: 'צוברים נקודות: שלטי מדינות, החטיף האמריקאי הכי מוגזם בתחנת דלק, משהו מוזר בדרך. המנצח בוחר את המסעדה הבאה.' },
 ];
 
-Object.assign(window, { FAMILY, OPTIONS, NJ_DAYS, NYC_DAYS, ROAD_RULES });
+// ============ EXTENDED FAMILY (ALPERT) ============
+const ALPERT_FAMILIES = [
+  {
+    id: 'alpert-nj',
+    label: 'משפחת אלפרט · ניו ג׳רזי',
+    location: 'בסיס האם',
+    note: 'מארחים אותנו בפתיחה — יאיר הוא בן-הדוד שלנו',
+    color: '#2e6b8f',
+    tape: 'var(--tape-blue)',
+    tapeRotate: -4,
+    members: [
+      { name: 'יאיר', nameEn: 'Yair', role: 'אבא', emoji: '👨', color: '#2e6b8f' },
+      { name: 'עינת', nameEn: 'Einat', role: 'אמא', emoji: '👩', color: '#e89ba8' },
+      { name: 'רום', nameEn: 'Rom', age: 6, emoji: '🎈', color: '#f4b940' },
+      { name: 'נור', nameEn: 'Nur', age: 2, emoji: '🧸', color: '#ee6352' },
+    ],
+  },
+  {
+    id: 'alpert-ga',
+    label: 'משפחת אלפרט · ג׳ורג׳יה',
+    location: 'מצטרפים לגיחה',
+    note: 'טסים מאטלנטה להיפגש איתנו בגיחה הגדולה — אותם גילאים כמו עומר, ענבר ורותם',
+    color: '#c14050',
+    tape: 'var(--tape-pink)',
+    tapeRotate: 4,
+    members: [
+      { name: 'בועז', nameEn: 'Boaz', role: 'אבא', emoji: '👨', color: '#2e6b8f' },
+      { name: 'ליבי', nameEn: 'Libby', role: 'אמא', emoji: '👩', color: '#e89ba8' },
+      { name: 'אלה', nameEn: 'Ella', age: 16, emoji: '✨', color: '#f4b940' },
+      { name: 'גל', nameEn: 'Gal', age: 14, emoji: '⚡', color: '#e05a3e' },
+      { name: 'אייל', nameEn: 'Eyal', age: 11, emoji: '🚀', color: '#3f6b3a' },
+    ],
+  },
+];
+
+Object.assign(window, { FAMILY, OPTIONS, NJ_DAYS, NYC_DAYS, ROAD_RULES, ALPERT_FAMILIES });

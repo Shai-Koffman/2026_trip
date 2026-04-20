@@ -237,7 +237,14 @@ function OptionCard({ option, idx, isExpanded, onToggle, votes, setVotes, rank }
               <span style={{ opacity: 0.4 }}>·</span>
               <span>{option.days}</span>
               <span style={{ opacity: 0.4 }}>·</span>
-              <span>{option.travel.mode === 'flight' ? '✈️' : '🚗'} {option.travel.duration}</span>
+              <span>
+                {(Array.isArray(option.travel) ? option.travel : [option.travel]).map((t, ti) => (
+                  <React.Fragment key={ti}>
+                    {ti > 0 && <span style={{ opacity: 0.4, margin: '0 4px' }}>או</span>}
+                    {t.mode === 'flight' ? '✈️' : '🚗'} {t.duration}
+                  </React.Fragment>
+                ))}
+              </span>
             </div>
             <h3 className="display" style={{ fontSize: 36, marginTop: 6, lineHeight: 1.05 }}>{option.name}</h3>
             <div className="en" style={{ fontSize: 16, color: 'var(--ink-faded)', marginTop: 4 }}>{option.nameEn}</div>

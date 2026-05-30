@@ -58,10 +58,16 @@
           </div>
           <div className="label">{familyName}</div>
           <div style={{ marginTop: 18, fontSize: 13 }}>
-            עשוי באהבה · ההצבעות נשמרות אוטומטית במכשיר שלך
+            עשוי באהבה · ההצבעות נשמרות אוטומטית
           </div>
           <button
-            onClick={() => { if (confirm('למחוק את כל ההצבעות במכשיר הזה?')) resetVotes(); }}
+            onClick={() => {
+              const shared = (typeof voteMode === 'function') && voteMode() === 'firebase';
+              const msg = shared
+                ? '⚠️ במצב משותף זה מוחק את ההצבעות של כל המשפחות, לא רק שלך. להמשיך?'
+                : 'למחוק את כל ההצבעות במכשיר הזה?';
+              if (confirm(msg)) resetVotes();
+            }}
             style={{
               marginTop: 16, padding: '8px 16px', background: 'transparent',
               color: 'var(--ink-faded)', border: '1px dashed var(--ink-faded)',

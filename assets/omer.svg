@@ -1,17 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
   <g fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Warped wall (the iconic obstacle) -->
-    <path d="M 10 90 Q 10 20, 82 14" opacity="0.4" stroke-width="6"/>
-    <!-- Figure mid-jump -->
-    <!-- head -->
-    <circle cx="62" cy="30" r="6.5" fill="#ffffff" stroke="none"/>
-    <!-- torso leaning forward -->
-    <path d="M 62 37 L 52 58"/>
-    <!-- arms reaching up toward the top -->
-    <path d="M 58 45 L 74 30"/>
-    <path d="M 56 50 L 66 56"/>
-    <!-- legs pushing off -->
-    <path d="M 52 58 L 42 72"/>
-    <path d="M 52 58 L 60 74"/>
+    <!-- obstacle rig: top bar + faint side posts (monkey-bar / salmon-ladder frame) -->
+    <path d="M 14 24 L 14 36" opacity="0.4"/>
+    <path d="M 86 24 L 86 36" opacity="0.4"/>
+    <path d="M 14 22 L 86 22" stroke-width="6"/>
+    <!-- arms reaching up, gripping the bar -->
+    <path d="M 45 23 L 50 43"/>
+    <path d="M 61 23 L 55 43"/>
+    <!-- head hanging below the grip -->
+    <circle cx="52" cy="34" r="6" fill="#ffffff" stroke="none"/>
+    <!-- torso swinging to the side (mid-traverse momentum) -->
+    <path d="M 52 43 L 60 62"/>
+    <!-- legs tucked & swinging for the speed run -->
+    <path d="M 60 62 L 72 64 L 75 76"/>
+    <path d="M 60 62 L 53 71 L 59 83"/>
   </g>
 </svg>

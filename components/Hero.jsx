@@ -125,8 +125,8 @@ function Hero() {
           </div>
         </div>
 
-        <p style={{ fontSize: 19, maxWidth: 680, margin: '0 auto 28px', color: 'var(--ink-soft)' }}>
-          16 ימים · משפחת אלפרט משני הצדדים של אמריקה · בסיס אצל יאיר ועינת בניו ג׳רזי · גיחה לבחירה (אולי עם בועז וליבי).
+        <p style={{ fontSize: 19, maxWidth: 700, margin: '0 auto 28px', color: 'var(--ink-soft)' }}>
+          16 ימים · 3 משפחות · 3 יעדים — ניו יורק אצל יאיר ועינת, אטלנטה אצל בועז וליבי, וכולם יחד בטולום 🇲🇽
         </p>
 
         {/* Dates stamp */}
@@ -138,7 +138,7 @@ function Hero() {
           <div style={{ width: 60, borderTop: '2px dashed var(--ink-faded)' }} />
           <div style={{ textAlign: 'center' }}>
             <div className="label">עד</div>
-            <div className="display" style={{ fontSize: 36 }}>30 ביולי</div>
+            <div className="display" style={{ fontSize: 36 }}>29 ביולי</div>
           </div>
         </div>
 
@@ -155,9 +155,9 @@ function Hero() {
           {[
             { href: '#family', label: 'המשפחה' },
             { href: '#alperts', label: 'משפחת אלפרט' },
-            { href: '#nj', label: 'ניו ג׳רזי' },
-            { href: '#nyc', label: 'ניו יורק' },
-            { href: '#vote', label: '★ הגיחה הגדולה' },
+            { href: '#ny', label: '① ניו יורק' },
+            { href: '#atl', label: '② אטלנטה' },
+            { href: '#tul', label: '③ טולום' },
           ].map((l, i) => (
             <a key={l.href} href={l.href} style={{
               padding: '10px 16px',

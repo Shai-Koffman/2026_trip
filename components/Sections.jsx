@@ -1,4 +1,4 @@
-/* global React, NJ_DAYS, NYC_DAYS, ALPERT_FAMILIES, Tape, Stamp */
+/* global React, LEGS, TIME_ORDER, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn */
 const { useState } = React;
 
 // ============ EXTENDED FAMILY (ALPERTS) ============
@@ -10,8 +10,8 @@ function ExtendedFamilySection() {
         <h2 className="display" style={{ fontSize: 40 }}>משפחת אלפרט</h2>
         <span className="handwritten" style={{ fontSize: 24, color: 'var(--tomato)' }}>משני הצדדים של אמריקה</span>
       </div>
-      <p style={{ maxWidth: 720, color: 'var(--ink-soft)', marginBottom: 24, lineHeight: 1.55, fontSize: 15 }}>
-        יאיר ועינת בבית · בועז וליבי <span style={{ fontStyle: 'italic' }}>אולי</span> מצטרפים לגיחה · <span style={{ fontWeight: 600 }}>זאת הסיבה שבאנו</span>.
+      <p style={{ maxWidth: 760, color: 'var(--ink-soft)', marginBottom: 24, lineHeight: 1.55, fontSize: 15 }}>
+        יאיר ועינת מארחים אותנו בניו ג׳רזי · בועז וליבי מארחים באטלנטה · וכולם נפגשים בטולום. <span style={{ fontWeight: 600 }}>זאת הסיבה שבאנו</span>.
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
@@ -74,275 +74,322 @@ function ExtendedFamilySection() {
   );
 }
 
-// ============ Shared: a linked or plain stop row ============
-function StopRow({ item, color }) {
-  const content = (
-    <>
-      {item.icon && (
-        <div style={{
-          width: 44, height: 44,
-          background: color,
-          color: 'white',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 22,
-          flexShrink: 0,
-        }}>{item.icon}</div>
-      )}
-      <div style={{ flex: 1, minWidth: 0 }}>
-        {item.time && (
-          <div className="label" style={{ color, fontSize: 11, marginBottom: 2 }}>{item.time}</div>
-        )}
-        <div style={{ fontWeight: 700, fontSize: 17, lineHeight: 1.25 }}>
-          {item.title}
-          {item.link && <span style={{ marginInlineStart: 6, fontSize: 13, opacity: 0.55 }}>↗</span>}
-        </div>
-        {item.en && (
-          <div className="en" style={{ fontSize: 13, color: 'var(--ink-faded)', marginTop: 2, fontStyle: 'normal' }}>
-            {item.en}
-          </div>
-        )}
-        {item.note && (
-          <div style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 6, lineHeight: 1.5 }}>{item.note}</div>
-        )}
-      </div>
-    </>
-  );
-
-  const baseStyle = {
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: 14,
-    padding: '14px 16px',
-    background: 'white',
-    border: `1.5px solid ${color}33`,
-    borderInlineStart: `4px solid ${color}`,
-    textDecoration: 'none',
-    color: 'inherit',
-    transition: 'transform 0.15s, border-color 0.15s, box-shadow 0.15s',
-  };
-
-  if (!item.link) {
-    return <div style={baseStyle}>{content}</div>;
-  }
-
+// ============ HOW VOTING WORKS (one-time band) ============
+function HowVoting() {
   return (
-    <a
-      href={item.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={baseStyle}
-      onMouseEnter={e => {
-        e.currentTarget.style.borderColor = color;
-        e.currentTarget.style.borderInlineStartColor = color;
-        e.currentTarget.style.transform = 'translateX(-2px)';
-        e.currentTarget.style.boxShadow = `-3px 3px 0 ${color}`;
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.borderColor = `${color}33`;
-        e.currentTarget.style.borderInlineStartColor = color;
-        e.currentTarget.style.transform = 'none';
-        e.currentTarget.style.boxShadow = 'none';
-      }}
-    >
-      {content}
-    </a>
+    <div style={{
+      position: 'relative',
+      margin: '0 0 8px',
+      padding: '16px 20px',
+      background: 'linear-gradient(155deg, #fff8ec 0%, #fdeee0 100%)',
+      border: '2px solid var(--ink)',
+      boxShadow: '4px 4px 0 var(--ink)',
+      transform: 'rotate(-0.3deg)',
+      display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap',
+    }}>
+      <Tape color="var(--tape-blue)" rotate={-5} width={110} />
+      <span style={{ fontSize: 30, lineHeight: 1 }}>👍</span>
+      <div style={{ flex: 1, minWidth: 240 }}>
+        <div className="display" style={{ fontSize: 20, lineHeight: 1.15 }}>ככה בוחרים יחד</div>
+        <p style={{ fontSize: 14, color: 'var(--ink-soft)', margin: '4px 0 0', lineHeight: 1.5 }}>
+          כל יום מציע כמה אופציות, ולכל אחת יש <strong>שעה</strong> (🕒 בוקר · צהריים · אחה״צ · ערב) — אז אפשר לשלב כמה דברים ביום אחד, לא רק לבחור אחד. פותחים יום, ולכל אופציה לוחצים על הפרצוף שלכם כדי לסמן "אני בעניין"; האופציה עם הכי הרבה מצביעים מקבלת תג <strong>מוביל/ה</strong>. בימים עם תג <strong>🔀 אפשר להתפצל</strong> תת-קבוצות יכולות לעשות דברים שונים לפי גיל ורצון, ולהיפגש אחר כך. ההצבעות נשמרות במכשיר שלכם.
+        </p>
+      </div>
+    </div>
   );
 }
 
-// ============ Shared: expandable day card ============
-function DayCard({
-  cover, coverLabel, color, title, subtitle, extraStamp,
-  isExpanded, onToggle, items, tapeColor, tapeRotate, rotation,
-}) {
+// ============ OPTION ROW (with who's-in voting) ============
+function OptionRow({ option, color, isLeader }) {
+  const titleNode = (
+    <span style={{ fontWeight: 700, fontSize: 17, lineHeight: 1.25 }}>
+      {option.title}
+      {option.link && <span style={{ marginInlineStart: 6, fontSize: 13, opacity: 0.55 }}>↗</span>}
+    </span>
+  );
+
+  return (
+    <div style={{
+      position: 'relative',
+      padding: '14px 16px',
+      background: 'white',
+      borderTop: `1.5px solid ${isLeader ? color : color + '33'}`,
+      borderBottom: `1.5px solid ${isLeader ? color : color + '33'}`,
+      borderInlineEnd: `1.5px solid ${isLeader ? color : color + '33'}`,
+      borderInlineStart: `4px solid ${color}`,
+      boxShadow: isLeader ? `-3px 3px 0 ${color}` : 'none',
+      transition: 'box-shadow 0.2s, border-color 0.2s',
+    }}>
+      {isLeader && (
+        <div style={{
+          position: 'absolute', top: -11, insetInlineEnd: 12,
+          background: '#f4b940', color: 'var(--ink)',
+          border: '1.5px solid var(--ink)',
+          padding: '1px 10px', fontSize: 11, fontWeight: 700,
+          letterSpacing: '0.04em', transform: 'rotate(-2deg)',
+          boxShadow: '1px 1px 0 var(--ink)',
+        }}>★ מוביל/ה</div>
+      )}
+
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
+        {option.icon && (
+          <div style={{
+            width: 44, height: 44, flexShrink: 0,
+            background: color, color: 'white',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 22,
+          }}>{option.icon}</div>
+        )}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          {option.time && (
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 5,
+              background: color, color: 'white',
+              fontSize: 11, fontWeight: 700, letterSpacing: '0.02em',
+              padding: '2px 9px', borderRadius: 999, marginBottom: 6,
+            }}>
+              <span style={{ fontSize: 11 }}>🕒</span>{option.time}
+            </div>
+          )}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+            {option.link ? (
+              <a href={option.link} target="_blank" rel="noopener noreferrer"
+                style={{ textDecoration: 'none', color: 'inherit' }}>{titleNode}</a>
+            ) : titleNode}
+            {option.tag && (
+              <span style={{
+                fontSize: 11, fontWeight: 700, color,
+                background: `${color}1a`, border: `1px solid ${color}55`,
+                padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap',
+              }}>{option.tag}</span>
+            )}
+          </div>
+          {option.en && (
+            <div className="en" style={{ fontSize: 13, color: 'var(--ink-faded)', marginTop: 2, fontStyle: 'normal' }}>
+              {option.en}
+            </div>
+          )}
+          {option.note && (
+            <div style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 6, lineHeight: 1.5 }}>{option.note}</div>
+          )}
+        </div>
+      </div>
+
+      <WhoIsIn optionId={option.id} color={color} />
+    </div>
+  );
+}
+
+// ============ DAY CARD (expandable) ============
+function DayCard({ day, color, tapeColor, tapeRotate, rotation }) {
+  const [open, setOpen] = useState(false);
+  const votes = useVotes();
+
+  // Order options into a loose timeline (morning → evening) so a day can stack several.
+  const rank = t => { const i = TIME_ORDER.indexOf(t); return i === -1 ? 99 : i; };
+  const ordered = [...day.options].sort((a, b) => rank(a.time) - rank(b.time));
+
+  // Leader = option(s) with the highest (>0) "in" count within this day.
+  let max = 0;
+  day.options.forEach(o => { const c = countIn(votes, o.id); if (c > max) max = c; });
+  const leaders = new Set(max > 0 ? day.options.filter(o => countIn(votes, o.id) === max).map(o => o.id) : []);
+
   return (
     <div style={{
       position: 'relative',
       background: 'var(--cream)',
-      boxShadow: isExpanded ? 'var(--shadow-lifted)' : 'var(--shadow-paper)',
-      transform: isExpanded ? 'rotate(0deg)' : `rotate(${rotation}deg)`,
+      boxShadow: open ? 'var(--shadow-lifted)' : 'var(--shadow-paper)',
+      transform: open ? 'rotate(0deg)' : `rotate(${rotation}deg)`,
       transition: 'transform 0.3s, box-shadow 0.3s',
       overflow: 'visible',
     }}>
       <Tape color={tapeColor} rotate={tapeRotate} width={130} />
 
       <button
-        onClick={onToggle}
+        onClick={() => setOpen(o => !o)}
         style={{
-          width: '100%',
-          padding: 0,
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
-          textAlign: 'inherit',
-          color: 'inherit',
-          fontFamily: 'inherit',
-          display: 'block',
+          width: '100%', padding: 0, border: 'none', background: 'transparent',
+          cursor: 'pointer', textAlign: 'inherit', color: 'inherit',
+          fontFamily: 'inherit', display: 'block',
         }}
       >
         {/* Cover */}
         <div style={{
-          width: '100%',
-          aspectRatio: '16/7',
+          width: '100%', aspectRatio: '16/7',
           background: `linear-gradient(155deg, ${color}, ${color}cc)`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'relative',
-          overflow: 'hidden',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          position: 'relative', overflow: 'hidden',
         }}>
+          <div style={{ fontSize: 100, lineHeight: 1, filter: 'drop-shadow(2px 4px 0 rgba(0,0,0,0.22))' }}>{day.icon}</div>
           <div style={{
-            fontSize: 110,
-            lineHeight: 1,
-            filter: 'drop-shadow(2px 4px 0 rgba(0,0,0,0.22))',
-          }}>{cover}</div>
-          {coverLabel && (
-            <div style={{
-              position: 'absolute',
-              bottom: 12, right: 12,
-              background: 'rgba(255,255,255,0.95)',
-              padding: '4px 10px',
-              fontFamily: "'Assistant', sans-serif",
-              fontWeight: 600,
-              fontSize: 12,
-              color: 'var(--ink)',
-            }}>{coverLabel}</div>
-          )}
+            position: 'absolute', bottom: 12, insetInlineEnd: 12,
+            background: 'rgba(255,255,255,0.95)', padding: '4px 10px',
+            fontFamily: "'Assistant', sans-serif", fontWeight: 600, fontSize: 12, color: 'var(--ink)',
+          }}>{day.dow} · {day.date}</div>
         </div>
 
         {/* Title block */}
-        <div style={{ padding: '22px 26px 20px' }}>
-          <h3 className="display" style={{ fontSize: 28, lineHeight: 1.1 }}>{title}</h3>
-          {subtitle && (
-            <div className="en" style={{ fontSize: 15, color: 'var(--ink-faded)', marginTop: 4 }}>{subtitle}</div>
+        <div style={{ padding: '20px 24px 18px' }}>
+          <h3 className="display" style={{ fontSize: 26, lineHeight: 1.1 }}>{day.title}</h3>
+          {day.subtitle && (
+            <div style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 6, lineHeight: 1.45 }}>{day.subtitle}</div>
+          )}
+          {day.split && (
+            <div style={{
+              marginTop: 10,
+              display: 'flex', alignItems: 'flex-start', gap: 7,
+              padding: '7px 11px',
+              background: `${color}12`,
+              border: `1.5px dashed ${color}`,
+              borderRadius: 4,
+              fontSize: 12.5, color: 'var(--ink-soft)', lineHeight: 1.4,
+            }}>
+              <span style={{ fontSize: 15, lineHeight: 1.2 }}>🔀</span>
+              <span><strong style={{ color }}>יום שאפשר להתפצל בו:</strong> {day.split.replace(/^אפשר להתפצל — ?/, '')}</span>
+            </div>
           )}
           <div style={{
-            marginTop: 14,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 6,
-            fontFamily: "'Caveat', cursive",
-            fontSize: 22,
-            color,
-            fontWeight: 700,
+            marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 6,
+            fontFamily: "'Caveat', cursive", fontSize: 22, color, fontWeight: 700,
           }}>
-            {isExpanded ? '↑ לסגור' : '↓ לפתוח לפרטים'}
+            {open ? '↑ לסגור' : `↓ ${day.options.length} אופציות · לתכנן את היום`}
           </div>
         </div>
       </button>
 
-      {/* Expanded content */}
-      {isExpanded && (
+      {open && (
         <div style={{
           borderTop: '2px dashed var(--ink-faded)',
-          padding: '22px 26px 28px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 12,
+          padding: '20px 24px 26px',
+          display: 'flex', flexDirection: 'column', gap: 14,
           animation: 'float-in 0.4s ease-out',
         }}>
-          {items.map((item, i) => (
-            <StopRow key={i} item={item} color={color} />
+          {ordered.map(o => (
+            <OptionRow key={o.id} option={o} color={color} isLeader={leaders.has(o.id)} />
           ))}
         </div>
       )}
-
-      {extraStamp}
     </div>
   );
 }
 
-// ============ NJ SECTION ============
-function NJSection() {
-  const [expanded, setExpanded] = useState(new Set());
-  const toggle = (idx) => {
-    const next = new Set(expanded);
-    next.has(idx) ? next.delete(idx) : next.add(idx);
-    setExpanded(next);
-  };
+// ============ LEG SECTION ============
+const TAPES = ['var(--tape)', 'var(--tape-blue)', 'var(--tape-pink)'];
+const TAPE_ROT = [-5, 4, -3, 5, -4, 3];
+const ROTS = [-0.8, 0.7, -0.6, 0.8, -0.7, 0.6];
 
+function LegSection({ leg, index }) {
+  const labelBg = ['var(--ocean)', 'var(--tomato)', 'var(--forest)'][index] || 'var(--ink)';
   return (
-    <section id="nj">
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 30, flexWrap: 'wrap' }}>
-        <div className="section-label" style={{ background: 'var(--ocean)' }}>חלק ראשון</div>
-        <h2 className="display" style={{ fontSize: 48 }}>בסיס האם · ניו ג׳רזי</h2>
-        <span className="handwritten" style={{ fontSize: 28, color: 'var(--tomato)' }}>אקשן + שופינג ללא מע"מ</span>
+    <section id={leg.id}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 10, flexWrap: 'wrap' }}>
+        <div className="section-label" style={{ background: labelBg }}>{leg.part}</div>
+        <h2 className="display" style={{ fontSize: 46 }}>{leg.name}</h2>
+        <span className="handwritten" style={{ fontSize: 26, color: leg.color }}>{leg.dates}</span>
       </div>
 
-      <p style={{ maxWidth: 700, color: 'var(--ink-soft)', marginBottom: 32 }}>
-        מתארחים אצל יאיר, עינת, רום ונור. מנצלים את הפארקים הגדולים באמצע השבוע (פחות תורים), ואת חוקי הפטור ממס על ביגוד.
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginBottom: 12 }}>
+        <div className="en" style={{ fontSize: 16, color: 'var(--ink-faded)', fontStyle: 'normal' }}>{leg.nameEn}</div>
+        <p style={{ fontSize: 15, color: 'var(--ink-soft)', margin: 0, fontWeight: 600 }}>{leg.hostLine}</p>
+      </div>
+
+      <div style={{
+        display: 'inline-flex', alignItems: 'center', gap: 8,
+        padding: '8px 14px', background: leg.color, color: 'white',
+        fontSize: 14, fontWeight: 600, marginBottom: 30,
+        transform: 'rotate(-0.5deg)', boxShadow: '3px 3px 0 var(--ink)',
+      }}>{leg.travel}</div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))', gap: 36 }}>
+        {leg.days.map((day, i) => (
+          <DayCard
+            key={day.id}
+            day={day}
+            color={leg.color}
+            tapeColor={TAPES[i % 3]}
+            tapeRotate={TAPE_ROT[i % TAPE_ROT.length]}
+            rotation={ROTS[i % ROTS.length]}
+          />
+        ))}
+      </div>
+
+      {leg.id === 'tul' && <TulumHouses color={leg.color} />}
+    </section>
+  );
+}
+
+// ============ TULUM HOUSE CANDIDATES ============
+function TulumHouses({ color }) {
+  const votes = useVotes();
+  let max = 0;
+  TULUM_HOUSES.forEach(h => { const c = countIn(votes, h.id); if (c > max) max = c; });
+
+  return (
+    <div style={{ marginTop: 52 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 10, flexWrap: 'wrap' }}>
+        <h3 className="display" style={{ fontSize: 30 }}>איפה אנחנו ישנים</h3>
+        <span className="handwritten" style={{ fontSize: 24, color }}>4 מועמדות · מצביעים על הבית</span>
+      </div>
+      <p style={{ fontSize: 15, color: 'var(--ink-soft)', maxWidth: 720, marginTop: 0, marginBottom: 16 }}>
+        ארבע וילות שאנחנו שוקלים לכל 14 האנשים. פותחים כל אחת ב-Airbnb, בודקים מול הצ׳קליסט, ומצביעים מי בעניין.
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 40 }}>
-        {NJ_DAYS.map((day, idx) => (
-          <DayCard
-            key={day.title}
-            cover={day.icon}
-            coverLabel={`יום ${idx + 1}`}
-            color={day.color}
-            title={day.title}
-            subtitle={day.subtitle}
-            items={day.blocks}
-            isExpanded={expanded.has(idx)}
-            onToggle={() => toggle(idx)}
-            tapeColor={idx === 0 ? 'var(--tape-blue)' : 'var(--tape-pink)'}
-            tapeRotate={idx === 0 ? -4 : 5}
-            rotation={idx === 0 ? -0.8 : 0.8}
-            extraStamp={idx === 0 ? (
-              <div style={{ position: 'absolute', bottom: -14, left: -10, transform: 'rotate(-8deg)', zIndex: 5 }}>
-                <Stamp color="var(--forest)">TAX · FREE</Stamp>
+      {/* Checklist */}
+      <div style={{
+        display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 24,
+        padding: '12px 16px', background: 'var(--cream)',
+        border: '1.5px dashed var(--ink-faded)',
+      }}>
+        <span className="label" style={{ fontSize: 11, alignSelf: 'center' }}>מה לבדוק:</span>
+        {TULUM_HOUSE_CHECKLIST.map((c, i) => (
+          <span key={i} style={{ fontSize: 13, color: 'var(--ink-soft)', display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+            <span style={{ fontSize: 16 }}>{c.icon}</span>{c.text}
+          </span>
+        ))}
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 18 }}>
+        {TULUM_HOUSES.map((h, i) => {
+          const isLeader = max > 0 && countIn(votes, h.id) === max;
+          return (
+            <div key={h.id} style={{
+              position: 'relative',
+              background: 'var(--cream)',
+              borderTop: `5px solid ${color}`,
+              borderBottom: `1.5px solid ${isLeader ? color : color + '33'}`,
+              borderInlineStart: `1.5px solid ${isLeader ? color : color + '33'}`,
+              borderInlineEnd: `1.5px solid ${isLeader ? color : color + '33'}`,
+              boxShadow: isLeader ? `4px 4px 0 ${color}` : 'var(--shadow-paper)',
+              padding: '18px 18px 16px',
+              transform: `rotate(${[-0.8, 0.6, -0.6, 0.8][i % 4]}deg)`,
+            }}>
+              {isLeader && (
+                <div style={{
+                  position: 'absolute', top: -11, insetInlineEnd: 12,
+                  background: '#f4b940', color: 'var(--ink)', border: '1.5px solid var(--ink)',
+                  padding: '1px 10px', fontSize: 11, fontWeight: 700, transform: 'rotate(-2deg)',
+                  boxShadow: '1px 1px 0 var(--ink)',
+                }}>★ מוביל/ה</div>
+              )}
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
+                <span style={{ fontSize: 26 }}>🏝️</span>
+                <h4 className="display" style={{ fontSize: 22 }}>{h.label}</h4>
               </div>
-            ) : null}
-          />
-        ))}
+              <a href={h.link} target="_blank" rel="noopener noreferrer" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 5,
+                fontSize: 13, fontWeight: 600, color, textDecoration: 'none',
+                marginBottom: 4,
+              }}>
+                <span className="en" style={{ fontStyle: 'normal' }}>{h.en}</span>
+                <span>· לצפייה ב-Airbnb ↗</span>
+              </a>
+              <WhoIsIn optionId={h.id} color={color} />
+            </div>
+          );
+        })}
       </div>
-    </section>
+    </div>
   );
 }
 
-// ============ NYC SECTION ============
-function NYCSection() {
-  const [expanded, setExpanded] = useState(new Set());
-  const toggle = (idx) => {
-    const next = new Set(expanded);
-    next.has(idx) ? next.delete(idx) : next.add(idx);
-    setExpanded(next);
-  };
-
-  const tapeColors = ['var(--tape)', 'var(--tape-blue)', 'var(--tape-pink)'];
-  const tapeRotates = [-5, 4, -3];
-  const rotations = [-1.5, 0.8, -0.5];
-
-  return (
-    <section id="nyc">
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 30, flexWrap: 'wrap' }}>
-        <div className="section-label" style={{ background: 'var(--tomato)' }}>חלק שני</div>
-        <h2 className="display" style={{ fontSize: 48 }}>ימי השיא · ניו יורק</h2>
-        <span className="handwritten" style={{ fontSize: 28, color: 'var(--ocean)' }}>Mega-Days</span>
-      </div>
-
-      <p style={{ maxWidth: 700, color: 'var(--ink-soft)', marginBottom: 32 }}>
-        ימים ממוקדים למתבגרים ולמבוגרים שרוצים חוויות טרנדיות, אינטראקטיביות ופוטוגניות.
-      </p>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 28 }}>
-        {NYC_DAYS.map((day, idx) => (
-          <DayCard
-            key={day.theme}
-            cover={day.icon}
-            coverLabel={`ניו יורק · יום ${idx + 1}`}
-            color={day.color}
-            title={day.theme}
-            items={day.stops}
-            isExpanded={expanded.has(idx)}
-            onToggle={() => toggle(idx)}
-            tapeColor={tapeColors[idx]}
-            tapeRotate={tapeRotates[idx]}
-            rotation={rotations[idx]}
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-Object.assign(window, { NJSection, NYCSection, ExtendedFamilySection });
+Object.assign(window, { ExtendedFamilySection, LegSection, HowVoting });

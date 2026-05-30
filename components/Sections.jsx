@@ -1,4 +1,4 @@
-/* global React, L, LEGS, PLACES, VOTERS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn, voteMode, setMe, useMe */
+/* global React, L, LEGS, PLACES, RESTAURANTS, VOTERS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn, voteMode, setMe, useMe */
 const { useState } = React;
 
 // ============ EXTENDED FAMILY (ALPERTS) ============
@@ -274,7 +274,8 @@ function OptionRow({ option, color, isLeader }) {
   );
 }
 
-// ============ LEG MAP (Leaflet — all places of a leg on one map) ============
+// ============ LEG MAP (Leaflet — all places + restaurants of a leg on one map) ============
+const FOOD_COLOR = '#e67e22';
 function LegMap({ leg }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
@@ -282,8 +283,16 @@ function LegMap({ leg }) {
     const pts = [];
     leg.days.forEach(d => d.options.forEach(o => {
       const m = PLACES[o.id];
-      if (m && m.lat != null && m.lng != null) pts.push({ o, m });
+      if (m && m.lat != null && m.lng != null) {
+        pts.push({ title: `${o.icon || ''} ${o.title}`, q: m.q, r: m.r, lat: m.lat, lng: m.lng, color: leg.color });
+      }
     }));
+    const food = (typeof RESTAURANTS !== 'undefined' && RESTAURANTS[leg.id]) || [];
+    food.forEach(r => {
+      if (r.lat != null && r.lng != null) {
+        pts.push({ title: `🍽️ ${r.name}`, q: r.q, r: r.r, lat: r.lat, lng: r.lng, color: FOOD_COLOR });
+      }
+    });
     if (!pts.length) return;
 
     const map = L.map(ref.current, { scrollWheelZoom: false });
@@ -292,17 +301,17 @@ function LegMap({ leg }) {
     }).addTo(map);
 
     const latlngs = [];
-    pts.forEach(({ o, m }) => {
-      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(m.q)}`;
+    pts.forEach(p => {
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.q)}`;
       const popup = `<div style="min-width:150px;font-family:Assistant,sans-serif;direction:rtl">
-        <strong style="font-size:14px">${o.icon || ''} ${o.title}</strong>
-        ${m.r != null ? `<div style="margin-top:2px">⭐ ${m.r}</div>` : ''}
-        <a href="${mapsUrl}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;color:${leg.color};font-weight:600">Google Maps ↗</a>
+        <strong style="font-size:14px">${p.title}</strong>
+        ${p.r != null ? `<div style="margin-top:2px">⭐ ${p.r}</div>` : ''}
+        <a href="${mapsUrl}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;color:${p.color};font-weight:600">Google Maps ↗</a>
       </div>`;
-      L.circleMarker([m.lat, m.lng], {
-        radius: 8, color: '#ffffff', weight: 2, fillColor: leg.color, fillOpacity: 0.95,
+      L.circleMarker([p.lat, p.lng], {
+        radius: 8, color: '#ffffff', weight: 2, fillColor: p.color, fillOpacity: 0.95,
       }).addTo(map).bindPopup(popup);
-      latlngs.push([m.lat, m.lng]);
+      latlngs.push([p.lat, p.lng]);
     });
     map.fitBounds(latlngs, { padding: [34, 34] });
     if (latlngs.length === 1) map.setZoom(13);
@@ -310,14 +319,75 @@ function LegMap({ leg }) {
     return () => map.remove();
   }, []);
 
+  const dot = (c) => ({
+    display: 'inline-block', width: 11, height: 11, borderRadius: '50%', background: c,
+    border: '1.5px solid #fff', boxShadow: '0 0 0 1px rgba(0,0,0,0.25)', marginInlineEnd: 5, verticalAlign: 'middle',
+  });
+
   return (
     <div style={{ marginBottom: 30 }}>
-      <div className="label" style={{ marginBottom: 8 }}>🗺️ כל המקומות של {leg.name} על המפה</div>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 8, flexWrap: 'wrap' }}>
+        <div className="label">🗺️ כל המקומות של {leg.name} על המפה</div>
+        <span style={{ fontSize: 12, color: 'var(--ink-soft)' }}><span style={dot(leg.color)} />מקומות ביקור</span>
+        <span style={{ fontSize: 12, color: 'var(--ink-soft)' }}><span style={dot(FOOD_COLOR)} />מסעדות 4.6★+</span>
+      </div>
       <div ref={ref} style={{
         height: 340, width: '100%',
         border: '2px solid var(--ink)', boxShadow: 'var(--shadow-paper)',
         background: '#dfe7ea',
       }} />
+    </div>
+  );
+}
+
+// ============ LEG RESTAURANTS ("where to eat" — 4.6★+ shortlist) ============
+function LegRestaurants({ leg }) {
+  const list = (typeof RESTAURANTS !== 'undefined' && RESTAURANTS[leg.id]) || [];
+  if (!list.length) return null;
+  return (
+    <div style={{ marginTop: 46 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 6, flexWrap: 'wrap' }}>
+        <h3 className="display" style={{ fontSize: 30 }}>איפה אוכלים</h3>
+        <span className="handwritten" style={{ fontSize: 24, color: leg.color }}>מדורגות 4.6★ ומעלה 🍽️</span>
+      </div>
+      <p style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 0, marginBottom: 16, maxWidth: 720 }}>
+        מבחר קצר של מסעדות מובחרות לקבוצה גדולה — רק דירוג גבוה. כדאי להזמין מקום מראש לקבוצה.
+      </p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(258px, 1fr))', gap: 16 }}>
+        {list.map((r, i) => {
+          const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.q)}`;
+          const linkStyle = {
+            display: 'inline-flex', alignItems: 'center', gap: 4,
+            fontSize: 12.5, fontWeight: 600, color: leg.color,
+            textDecoration: 'none', borderBottom: `1px solid ${leg.color}55`,
+          };
+          return (
+            <div key={i} style={{
+              position: 'relative', background: 'white', padding: '14px 16px',
+              borderTop: `4px solid ${leg.color}`,
+              borderBottom: `1.5px solid ${leg.color}33`,
+              borderInlineStart: `1.5px solid ${leg.color}33`,
+              borderInlineEnd: `1.5px solid ${leg.color}33`,
+              boxShadow: 'var(--shadow-paper)',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
+                <span className="en" style={{ fontSize: 16, fontWeight: 700, fontStyle: 'normal' }}>{r.name}</span>
+                <span dir="ltr" style={{
+                  fontSize: 12, fontWeight: 700, color: '#7a5d00',
+                  background: '#f4b94022', border: '1px solid #f4b94099',
+                  padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap',
+                }}>⭐ {r.r}</span>
+              </div>
+              <div style={{ fontSize: 12, color: leg.color, fontWeight: 600, marginTop: 2 }}>{r.cuisine}</div>
+              <div style={{ fontSize: 13.5, color: 'var(--ink-soft)', marginTop: 6, lineHeight: 1.45 }}>{r.note}</div>
+              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 8 }}>
+                <a href={mapsUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>🗺️ Google Maps ↗</a>
+                {r.link && <a href={r.link} target="_blank" rel="noopener noreferrer" style={linkStyle}>🌐 אתר ↗</a>}
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -452,6 +522,8 @@ function LegSection({ leg, index }) {
           />
         ))}
       </div>
+
+      <LegRestaurants leg={leg} />
 
       {leg.id === 'tul' && <TulumHouses color={leg.color} />}
     </section>

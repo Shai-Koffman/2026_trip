@@ -358,4 +358,32 @@ const PLACES = {
   'tul-29-zacilha':    { r: 4.5, lat: 20.2744, lng: -87.4884, q: 'Cenote Zacil-Ha Tulum' },
 };
 
-Object.assign(window, { FAMILY, VOTERS, LEGS, PLACES, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES });
+// ============ TOP-RATED RESTAURANTS per leg (Google ≥ 4.6★, group-friendly) ============
+const RESTAURANTS = {
+  ny: [
+    { name: "Tony's Di Napoli", r: 4.6, cuisine: 'איטלקי משפחתי', note: 'מנות ענק להגשה משותפת ושולחנות גדולים שמכילים בקלות חבורה שלמה, ליד טיימס סקוור.', link: 'https://www.tonysnyc.com/times-square', q: "Tony's Di Napoli Times Square New York", lat: 40.7570, lng: -73.9858 },
+    { name: 'Pylos', r: 4.6, cuisine: 'יווני', note: 'הכל מוגש משפחתי לשיתוף, אולם נינוח שמתאים לקבוצה רב-דורית.', link: 'https://pylosrestaurant.com/', q: 'Pylos Restaurant East 7th St New York', lat: 40.7256, lng: -73.9826 },
+    { name: 'Da Andrea', r: 4.6, cuisine: 'טרטוריה איטלקית', note: 'פסטה ביתית וקלאסיקות אהובות, מקבלים הזמנות גדולות ואוהבים משפחות ומתבגרים.', link: 'https://daandreanyc.com/', q: 'Da Andrea W 13th St New York', lat: 40.7359, lng: -73.9943 },
+    { name: 'Cafe Mogador', r: 4.6, cuisine: 'מרוקאי-ים תיכוני', note: "טאג'ין, קוסקוס וגריל לשיתוף, ווייב וויליאמסבורגי נינוח וידידותי לילדים.", link: 'https://www.cafemogador.com/', q: 'Cafe Mogador Williamsburg Brooklyn', lat: 40.7197, lng: -73.9583 },
+    { name: 'Win Son', r: 4.6, cuisine: 'טייוואני-אמריקאי', note: 'מנות טייוואניות כיפיות לשיתוף עם חבילות לקבוצות 10+. כדאי להזמין מראש.', link: 'https://winsonbrooklyn.com/', q: 'Win Son Brooklyn', lat: 40.7075, lng: -73.9434 },
+    { name: 'Rumba Cubana', r: 4.6, cuisine: 'קובני-לטיני', note: 'מקום קובני תוסס עם מגשים גדולים לשיתוף ואווירה חגיגית, נוח לקבוצה גדולה עם ילדים.', link: 'https://www.rumbacubana.com/', q: 'Rumba Cubana Jersey City', lat: 40.7270, lng: -74.0354 },
+  ],
+  atl: [
+    { name: 'Smokejack BBQ', r: 4.6, cuisine: 'ברביקיו דרומי', note: 'ברביקיו וקומפורט-פוד במרכז אלפארטה, מגשים גדולים לשיתוף שמרצים ילדים, מתבגרים ומבוגרים.', link: 'https://www.smokejackbbq.com/', q: 'Smokejack BBQ Alpharetta', lat: 34.0760, lng: -84.2952 },
+    { name: "Rena's Italian Fishery & Grill", r: 4.6, cuisine: 'איטלקי / דגים', note: 'איטלקי משפחתי עם פסטה ביתית וקומת אירועים, מכיל בקלות חבורה של 10 וידידותי לילדים.', link: 'https://renasifg.com/', q: "Rena's Italian Fishery Grill Alpharetta", lat: 34.0742, lng: -84.2951 },
+    { name: 'True Food Kitchen', r: 4.6, cuisine: 'אמריקאי בריא', note: 'מקום מואר ונינוח בבאקהד עם תפריט רחב (פיצות, באולים, המבורגרים) ותפריט ילדים — כולם מוצאים משהו.', link: 'https://www.truefoodkitchen.com/locations/atlanta/', q: 'True Food Kitchen Lenox Atlanta', lat: 33.8470, lng: -84.3620 },
+    { name: 'The Capital Grille', r: 4.7, cuisine: 'סטייקהאוס / דגים', note: 'סטייקהאוס מהוקצע בבאקהד עם תוספות נדיבות וחדר פרטי לעד 10 לארוחה חגיגית.', link: 'https://www.thecapitalgrille.com/locations/ga/atlanta/atlanta-buckhead-village/8016', q: 'The Capital Grille Buckhead Atlanta', lat: 33.8401, lng: -84.3805 },
+    { name: '9 Mile Station', r: 4.8, cuisine: 'אמריקאי על הגג', note: 'מסעדת גג מעל Ponce City Market ליד הארקייד והמיני-גולף, מזמינה קבוצות 20+ ולהיט אצל מתבגרים.', link: 'https://9milestation.com/', q: '9 Mile Station Ponce City Market Atlanta', lat: 33.7730, lng: -84.3664 },
+    { name: "Ray's in the City", r: 4.6, cuisine: 'דגים / סטייק', note: 'מוסד דגים-וסטייק במרכז, צעדים מהאקווריום, מכיל בנוחות קבוצות משפחתיות גדולות.', link: 'https://www.raysinthecity.com/', q: "Ray's in the City Atlanta", lat: 33.7607, lng: -84.3877 },
+  ],
+  tul: [
+    { name: 'Il Bacaro Tulum', r: 4.7, cuisine: 'טרטוריה איטלקית', note: 'טרטוריה פתוחה ומרווחת בעיירה עם פיצה ופסטה ביתיות, רגועה מספיק לקבוצה גדולה עם קטנטנים.', link: 'https://www.instagram.com/ilbacaro.tulum/', q: 'Il Bacaro Tulum Trattoria', lat: 20.2065, lng: -87.4625 },
+    { name: 'Sabor de Mar', r: 4.6, cuisine: 'דגים מקסיקני', note: 'דגים בסגנון סינלואה במרכז טולום עם מתקן משחקים לילדים ומגדלי פירות ים לשיתוף — אידיאלי לקבוצה עם פעוטה.', link: null, q: 'Sabor de Mar Tulum Centro', lat: 20.2125, lng: -87.4585 },
+    { name: 'Don Cafeto', r: 4.6, cuisine: 'מקסיקני מסורתי', note: "מוסד ותיק ומרווח בעיירה עם שירות מהיר ואדיב, מנות גדולות ותפריט מוכר (פחיטס, אנצ'ילדס) לכל הגילאים.", link: 'https://www.facebook.com/DonCafetoTulum/', q: 'Restaurant Don Cafeto Av Tulum', lat: 20.2118, lng: -87.4655 },
+    { name: 'Pizzeria Manglar', r: 4.6, cuisine: 'פיצה איטלקית', note: 'פיצרייה עם טרסת גן נינוחה בעיירה, משבחים אותה שוב ושוב על סבלנות עם משפחות, ילדים וסבים.', link: null, q: 'Pizzeria Manglar Tulum', lat: 20.2150, lng: -87.4610 },
+    { name: 'La Coqueta', r: 4.6, cuisine: 'מקסיקני', note: "מקום צבעוני ומשתלם באב' קובה בעיירה, תפריט מגוון וניסיון בהושבה ושירות מהיר לקבוצות גדולות.", link: 'https://lacoqueta.shop/', q: 'La Coqueta Mexican Food Av Coba Tulum', lat: 20.2155, lng: -87.4625 },
+    { name: 'La Zebra', r: 4.6, cuisine: 'מקסיקני על החוף', note: 'מסעדת חוף ידידותית למשפחות בזונה הוטלרה עם אזורי משחק, מקבלת הזמנות קבוצתיות — טאקו וגוואקמולי מול הים.', link: 'https://lazebratulum.com/restaurant-bar/', q: 'La Zebra Beach Restaurant Tulum', lat: 20.1545, lng: -87.4520 },
+  ],
+};
+
+Object.assign(window, { FAMILY, VOTERS, LEGS, PLACES, RESTAURANTS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES });

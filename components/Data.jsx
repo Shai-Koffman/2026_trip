@@ -47,7 +47,7 @@ const LEGS = [
         id: 'ny-14', date: '14 ביולי', dow: 'שלישי', icon: '✈️',
         title: 'נחיתה ומפגש', subtitle: 'יום רגוע אחרי הטיסה · עם יאיר, עינת, רום ונור',
         options: [
-          { id: 'ny-14-hoboken', duration: '~1–2 שעות', icon: '🌆', title: 'טיילת הובוקן + Pier C Park', en: 'Hoboken Waterfront', tag: 'פעוט-פרנדלי', note: 'טיילת שטוחה מול קו הרקיע של מנהטן, פארק משחקי מים וחול לקטנים, וגלידה לאורך Washington St. פתיחה רכה ומושלמת.', link: 'https://www.hobokennj.gov/resources/pier-c-park' },
+          { id: 'ny-14-hoboken', duration: '~1–2 שעות', icon: '🌆', title: 'טיילת הובוקן + Pier C Park', en: 'Hoboken Waterfront', tag: 'פעוטה-פרנדלי', note: 'טיילת שטוחה מול קו הרקיע של מנהטן, פארק משחקי מים וחול לקטנים, וגלידה לאורך Washington St. פתיחה רכה ומושלמת.', link: 'https://www.hobokennj.gov/resources/pier-c-park' },
           { id: 'ny-14-liberty', duration: '~1–2 שעות', icon: '🗽', title: 'Liberty State Park', en: 'Jersey City', tag: 'כל המשפחה', note: 'מדשאות ענק עם פסל החירות וקו הרקיע ברקע, מתקני משחק וטיילת — בלי כרטיסים, סתם להיות יחד.', link: 'https://dep.nj.gov/parksandforests/state-park/liberty-state-park/' },
           { id: 'ny-14-montclair', duration: '~1–2 שעות', icon: '🍦', title: 'שיטוט במונטקלייר + גלידה', en: 'Montclair', tag: 'רגוע', note: 'עיירה ירוקה והליכתית עם חנויות, פארקים וגלידריית Absolute המפורסמת — נינוח ולא מאמץ.', link: 'https://www.absoluteicecream.com/' },
           { id: 'ny-14-home', duration: 'גמיש', icon: '🏡', title: 'סתם בבית עם המשפחה', en: 'Backyard & BBQ', tag: 'ג׳ט-לג', note: 'אם הטיסה גמרה אתכם — מנגל בחצר, הילדים מתחברים, והתאקלמות שקטה לקראת השבוע.' },
@@ -101,7 +101,7 @@ const LEGS = [
         title: 'טיול עם יאיר ועינת', subtitle: 'מקום יפהפה ליום שלם · בוחרים יעד אחד',
         options: [
           { id: 'ny-19-grounds', duration: '~3–4 שעות', icon: '🗿', title: 'Grounds For Sculpture', en: 'Hamilton, NJ', tag: 'כל המשפחה', note: 'פארק פיסול וגנים על 42 דונם — שבילים נוחים לעגלה, פסלים ענקיים שהילדים מתים עליהם. הבחירה הכי כל-גילאית. (כרטיסים מראש!)', link: 'https://www.groundsforsculpture.org/' },
-          { id: 'ny-19-sandyhook', duration: 'יום שלם', icon: '🏖️', title: 'Sandy Hook', en: 'Gateway NRA beach', tag: 'פעוט-פרנדלי', note: 'חופי מפרץ ואוקיינוס עם נוף לקו הרקיע של ניו יורק, מצילים ומים רדודים ונוחים לקטנטנים.', link: 'https://www.nps.gov/gate/planyourvisit/sandy-hook.htm' },
+          { id: 'ny-19-sandyhook', duration: 'יום שלם', icon: '🏖️', title: 'Sandy Hook', en: 'Gateway NRA beach', tag: 'פעוטה-פרנדלי', note: 'חופי מפרץ ואוקיינוס עם נוף לקו הרקיע של ניו יורק, מצילים ומים רדודים ונוחים לקטנטנים.', link: 'https://www.nps.gov/gate/planyourvisit/sandy-hook.htm' },
           { id: 'ny-19-stormking', duration: '~3–4 שעות', icon: '🎨', title: 'Storm King Art Center', en: 'New Windsor, NY', tag: 'נוף עוצר נשימה', note: 'נוף פיסול ענק על 500 דונם — שדות מתגלגלים ויצירות מונומנטליות. המקום הכי מרהיב; הרבה הליכה, מומלצת עגלה/מנשא.', link: 'https://stormking.org/' },
           { id: 'ny-19-asbury', duration: 'חצי יום', icon: '🎡', title: 'Asbury Park Boardwalk', en: 'Jersey Shore', tag: 'כיף לכולם', note: 'טיילת שורצת חיים מול הים — חוף לקטנים וארקייד פינבול Silverball לגדולים. קליל ומהנה.', link: 'https://apboardwalk.com/' },
         ],
@@ -201,7 +201,7 @@ const LEGS = [
         options: [
           { id: 'tul-26-villa', duration: 'גמיש', icon: '🏊', title: 'יום בריכה בוילה', en: 'Pool & chill', tag: 'אפס לוגיסטיקה', note: 'פורקים, שוחים ומתאקלמים — ערב ראשון רגוע אחרי הטיסה, בלי שום תכנון.' },
           { id: 'tul-26-calavera', duration: '~1–2 שעות', icon: '🦴', title: 'Cenote Calavera', en: '"Temple of Doom"', tag: 'מתבגרים + רדוד', note: 'הסנוטה הקרובה ביותר לעיר — קפיצות לתוך המים לגדולים, ופינה רדודה ובטוחה לקטנטנים. כניסה במקום.' },
-          { id: 'tul-26-pueblo', duration: '~2 שעות', icon: '🛍️', title: 'Tulum Pueblo', en: 'Town center', tag: 'פעוט-פרנדלי', note: 'שיטוט קליל בעיירה — חנויות, גלידה וארוחת ערב נינוחה. שטוח ונוח לעגלה.', link: 'https://www.tulum.com/' },
+          { id: 'tul-26-pueblo', duration: '~2 שעות', icon: '🛍️', title: 'Tulum Pueblo', en: 'Town center', tag: 'פעוטה-פרנדלי', note: 'שיטוט קליל בעיירה — חנויות, גלידה וארוחת ערב נינוחה. שטוח ונוח לעגלה.', link: 'https://www.tulum.com/' },
         ],
       },
       {
@@ -209,9 +209,9 @@ const LEGS = [
         title: 'פארק אקולוגי גדול', subtitle: 'יום עוגן אחד לכל החבורה',
         split: 'אפשר להתפצל — תת-קבוצת מתבגרים ל-Xplor/Xavage, כל השאר ל-Xel-Há',
         options: [
-          { id: 'tul-27-xelha', duration: 'יום שלם', icon: '🐠', title: 'Xel-Há', en: 'All-inclusive snorkel', tag: '★ כל המשפחה', note: 'פארק מים טבעי הכל-כלול — מפרץ שנורקלינג רגוע, נהר עצל בצמיגים, סנוטות עדינות ואזור ילדים. בטוח לפעוט וכיף למתבגרים, הכל במקום אחד.', link: 'https://www.xelha.com/en/' },
+          { id: 'tul-27-xelha', duration: 'יום שלם', icon: '🐠', title: 'Xel-Há', en: 'All-inclusive snorkel', tag: '★ כל המשפחה', note: 'פארק מים טבעי הכל-כלול — מפרץ שנורקלינג רגוע, נהר עצל בצמיגים, סנוטות עדינות ואזור ילדים. בטוח לפעוטה וכיף למתבגרים, הכל במקום אחד.', link: 'https://www.xelha.com/en/' },
           { id: 'tul-27-xcaret', duration: 'יום שלם', icon: '🪶', title: 'Xcaret', en: 'Eco-cultural park', tag: 'הכי מגוון', note: 'נהרות תת-קרקעיים, חיות בר, ביתן פרפרים ומופע ערב מרהיב. אם רוצים יום שלם אחד שיש בו הכל — זה הוא.', link: 'https://www.xcaret.com/en/' },
-          { id: 'tul-27-xplor', duration: 'חצי יום–יום', icon: '⚡', title: 'Xplor', en: 'Zip-lines & rivers', tag: 'מתבגרים בלבד', note: 'אומגות הגבוהות בריביירה מאיה, רכבי שטח אמפיביים ונהרות תת-קרקעיים. הגבלת גיל/גובה — לגדולים ולמבוגרים, לא לפעוט.', link: 'https://www.xcaret.com/en/parks-and-tours/about-xplor/' },
+          { id: 'tul-27-xplor', duration: 'חצי יום–יום', icon: '⚡', title: 'Xplor', en: 'Zip-lines & rivers', tag: 'מתבגרים בלבד', note: 'אומגות הגבוהות בריביירה מאיה, רכבי שטח אמפיביים ונהרות תת-קרקעיים. הגבלת גיל/גובה — לגדולים ולמבוגרים, לא לפעוטה.', link: 'https://www.xcaret.com/en/parks-and-tours/about-xplor/' },
           { id: 'tul-27-xavage', duration: 'חצי יום', icon: '🌊', title: 'Xavage', en: 'Adventure park', tag: 'אקסטרים', note: 'שייט מים אדירים, מאנסטר-טראק, סירת ג׳ט ומסלול חבלים. הכי אדרנלין — לתת-קבוצת המתבגרים.', link: 'https://www.grupoxcaret.com/en/xavage/' },
         ],
       },
@@ -219,9 +219,9 @@ const LEGS = [
         id: 'tul-28', date: '28 ביולי', dow: 'שלישי', icon: '🏛️',
         title: 'היסטוריה + טבע', subtitle: 'מאיה, חופים וסנוטות — אפשר לשלב כמה',
         options: [
-          { id: 'tul-28-ruins', duration: '~2 שעות', icon: '🏛️', title: 'חורבות המאיה של טולום', en: 'Tulum Ruins', tag: 'כל המשפחה', note: 'חורבות מאיה על צוק מעל הים הקריבי — הליכה קצרה ושטוחה, נוף אייקוני וחוף למטה. הכי טוב להגיע מוקדם (פתיחה 8:00) עם הפעוט.', link: 'https://www.inah.gob.mx/zonas/41-zona-arqueologica-de-tulum' },
-          { id: 'tul-28-akumal', duration: '~2–3 שעות', icon: '🐢', title: 'Akumal Bay', en: 'Swim with turtles', tag: 'צבי ים', note: 'שנורקלינג עם צבי ים ירוקים במים רדודים (סיור מודרך נדרש), בעוד הפעוט משחק בחוף. מפרץ רגוע.' },
-          { id: 'tul-28-grancenote', duration: '~1.5–2 שעות', icon: '🐢', title: 'Gran Cenote', en: 'Family-friendly cenote', tag: 'פעוט-פרנדלי', note: 'מים טורקיז, נטיפים, צבים אמיתיים ושבילי עץ רדודים — מהסנוטות הכי ידידותיות למשפחה. כניסה במקום.', link: 'https://www.cenote.org/en/gran-cenote-in-tulum/' },
+          { id: 'tul-28-ruins', duration: '~2 שעות', icon: '🏛️', title: 'חורבות המאיה של טולום', en: 'Tulum Ruins', tag: 'כל המשפחה', note: 'חורבות מאיה על צוק מעל הים הקריבי — הליכה קצרה ושטוחה, נוף אייקוני וחוף למטה. הכי טוב להגיע מוקדם (פתיחה 8:00) עם הפעוטה.', link: 'https://www.inah.gob.mx/zonas/41-zona-arqueologica-de-tulum' },
+          { id: 'tul-28-akumal', duration: '~2–3 שעות', icon: '🐢', title: 'Akumal Bay', en: 'Swim with turtles', tag: 'צבי ים', note: 'שנורקלינג עם צבי ים ירוקים במים רדודים (סיור מודרך נדרש), בעוד הפעוטה משחקת בחוף. מפרץ רגוע.' },
+          { id: 'tul-28-grancenote', duration: '~1.5–2 שעות', icon: '🐢', title: 'Gran Cenote', en: 'Family-friendly cenote', tag: 'פעוטה-פרנדלי', note: 'מים טורקיז, נטיפים, צבים אמיתיים ושבילי עץ רדודים — מהסנוטות הכי ידידותיות למשפחה. כניסה במקום.', link: 'https://www.cenote.org/en/gran-cenote-in-tulum/' },
           { id: 'tul-28-cristal', duration: '~1.5–2 שעות', icon: '🏞️', title: 'Cenote Cristal & Escondido', en: 'Open-air cenotes', tag: 'שקט', note: 'שתי סנוטות פתוחות זו מול זו — רדודות, פחות מפותחות ופחות עמוסות. קל ונעים עם ילדים קטנים.' },
         ],
       },
@@ -230,10 +230,10 @@ const LEGS = [
         title: 'יום אחרון · גמיש לפי הטיסה', subtitle: 'בוחרים לפי שעת הטיסה הביתה',
         split: 'אפשר להתפצל — מטפסים על Cobá או נחים במועדון חוף, לפי הגיל והכוח',
         options: [
-          { id: 'tul-29-coba', duration: '~3–4 שעות', icon: '⛰️', title: 'חורבות Cobá', en: 'Climb the pyramid', tag: 'מתבגרים', note: 'פירמידת Nohoch Mul נפתחה שוב לטיפוס (דצמבר 2025!) — הפירמידה היחידה ביוקטן שמותר לטפס עליה. שוכרים אופניים לשבילי הג׳ונגל (גם הפעוט נהנה ברכיבה).', link: 'https://yucatanmagazine.com/coba-nohoch-mul/' },
+          { id: 'tul-29-coba', duration: '~3–4 שעות', icon: '⛰️', title: 'חורבות Cobá', en: 'Climb the pyramid', tag: 'מתבגרים', note: 'פירמידת Nohoch Mul נפתחה שוב לטיפוס (דצמבר 2025!) — הפירמידה היחידה ביוקטן שמותר לטפס עליה. שוכרים אופניים לשבילי הג׳ונגל (גם הפעוטה נהנית ברכיבה).', link: 'https://yucatanmagazine.com/coba-nohoch-mul/' },
           { id: 'tul-29-siankaan', duration: 'יום שלם', icon: '🐊', title: 'Sian Ka\'an · Muyil', en: 'Forest & Float', tag: 'טבע UNESCO', note: 'שמורת ביוספרה של אונסק"ו — חורבות Muyil ואז ציפה בתעלת מנגרובים טבעית כמו נהר עצל. יפהפה, לכל גיל.', link: 'https://siankaantours.org/' },
-          { id: 'tul-29-beachclub', duration: 'חצי יום', icon: '🏖️', title: 'מועדון חוף', en: 'La Zebra / Ikal', tag: 'נינוח', note: 'חוף רחב, מתקני ילדים ותפריט ידידותי — סיום נינוח עם מיטות חוף נוחות לשנ"צ של הפעוט.', link: 'https://lazebratulum.com/' },
-          { id: 'tul-29-zacilha', duration: '~2 שעות', icon: '💎', title: 'Cenote Zacil-Há', en: 'Pool + zip-line', tag: 'כיף מתוחם', note: 'סנוטה בסגנון נופש — בריכה פתוחה, אומגה לתוך המים ומסעדה במקום. רגוע ומתוחם, שילוב אחרון של פעוט ומתבגרים.' },
+          { id: 'tul-29-beachclub', duration: 'חצי יום', icon: '🏖️', title: 'מועדון חוף', en: 'La Zebra / Ikal', tag: 'נינוח', note: 'חוף רחב, מתקני ילדים ותפריט ידידותי — סיום נינוח עם מיטות חוף נוחות לשנ"צ של הפעוטה.', link: 'https://lazebratulum.com/' },
+          { id: 'tul-29-zacilha', duration: '~2 שעות', icon: '💎', title: 'Cenote Zacil-Há', en: 'Pool + zip-line', tag: 'כיף מתוחם', note: 'סנוטה בסגנון נופש — בריכה פתוחה, אומגה לתוך המים ומסעדה במקום. רגוע ומתוחם, שילוב אחרון של פעוטה ומתבגרים.' },
         ],
       },
     ],
@@ -253,7 +253,7 @@ const TULUM_HOUSE_CHECKLIST = [
   { icon: '🛏️', text: 'ישנה 14+ אנשים · 5+ חדרי שינה' },
   { icon: '🏊', text: 'בריכה פרטית' },
   { icon: '🌊', text: 'גישה לים או טקסי קצר למועדון חוף' },
-  { icon: '🚼', text: 'בטוח ונוח לעגלה (פעוט)' },
+  { icon: '🚼', text: 'בטוח ונוח לעגלה (פעוטה)' },
 ];
 
 // ============ EXTENDED FAMILY (ALPERT) ============

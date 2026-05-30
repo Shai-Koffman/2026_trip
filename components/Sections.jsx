@@ -1,4 +1,4 @@
-/* global React, L, LEGS, PLACES, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn, voteMode */
+/* global React, L, LEGS, PLACES, VOTERS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn, voteMode, setMe, useMe */
 const { useState } = React;
 
 // ============ EXTENDED FAMILY (ALPERTS) ============
@@ -93,7 +93,7 @@ function HowVoting() {
       <div style={{ flex: 1, minWidth: 240 }}>
         <div className="display" style={{ fontSize: 20, lineHeight: 1.15 }}>ככה בוחרים יחד</div>
         <p style={{ fontSize: 14, color: 'var(--ink-soft)', margin: '4px 0 0', lineHeight: 1.5 }}>
-          כל יום הוא <strong>תפריט</strong> של אטרקציות, ולכל אחת יש <strong>משך זמן משוער</strong> (🕒 כמה זמן זה לוקח) — אז אפשר לשלב כמה ביום אחד, לא רק לבחור אחת. פותחים יום, ולכל אופציה לוחצים על הפרצוף שלכם כדי לסמן "אני בעניין"; האופציה עם הכי הרבה מצביעים מקבלת תג <strong>מוביל/ה</strong>. בימים עם תג <strong>🔀 אפשר להתפצל</strong> תת-קבוצות יכולות לעשות דברים שונים לפי גיל ורצון, ולהיפגש אחר כך.
+          כל יום הוא <strong>תפריט</strong> של אטרקציות, ולכל אחת יש <strong>משך זמן משוער</strong> (🕒 כמה זמן זה לוקח) — אז אפשר לשלב כמה ביום אחד, לא רק לבחור אחת. קודם בוחרים מי אתם (למטה ⬇️), ואז פותחים יום ולכל אופציה לוחצים <strong>"אני בעניין"</strong> — וזהו. האופציה עם הכי הרבה מצביעים מקבלת תג <strong>מוביל/ה</strong>. בימים עם תג <strong>🔀 אפשר להתפצל</strong> תת-קבוצות יכולות לעשות דברים שונים לפי גיל ורצון, ולהיפגש אחר כך.
         </p>
         <div style={{
           marginTop: 8, display: 'inline-flex', alignItems: 'center', gap: 6,
@@ -107,6 +107,71 @@ function HowVoting() {
         </div>
       </div>
     </div>
+  );
+}
+
+// ============ IDENTITY PICKER ("who am I") ============
+function IdentityPicker() {
+  const me = useMe();
+  const meVoter = VOTERS.find(v => v.id === me);
+  const groups = Array.from(new Set(VOTERS.map(v => v.group)));
+  return (
+    <section id="identity" style={{ paddingTop: 18, paddingBottom: 0, scrollMarginTop: 16 }}>
+      <div style={{
+        position: 'relative', padding: '18px 22px 20px',
+        background: 'var(--cream)', boxShadow: 'var(--shadow-paper)',
+        border: '2px solid var(--ink)',
+      }}>
+        <Tape color="var(--tape-pink)" rotate={-4} width={120} />
+        <div className="label" style={{ marginBottom: 2 }}>צעד 1 · מי אתם?</div>
+        <h3 className="display" style={{ fontSize: 24, lineHeight: 1.1 }}>בחרו את עצמכם</h3>
+        <p style={{ fontSize: 14, color: 'var(--ink-soft)', margin: '6px 0 14px', lineHeight: 1.5 }}>
+          לוחצים פעם אחת על הפרצוף שלכם — ואז בכל יום פשוט מסמנים <strong>"אני בעניין"</strong>, וההצבעה נשמרת על שמכם.
+        </p>
+        {groups.map(g => (
+          <div key={g} style={{ marginBottom: 12 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--ink-faded)', letterSpacing: '0.06em', marginBottom: 6 }}>
+              {g.startsWith('אלפרט') ? g : `משפחת ${g}`}
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {VOTERS.filter(v => v.group === g).map(p => {
+                const sel = p.id === me;
+                return (
+                  <button key={p.id} onClick={() => setMe(sel ? null : p.id)} style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 7,
+                    padding: '5px 13px 5px 6px', borderRadius: 999, cursor: 'pointer', fontFamily: 'inherit',
+                    border: sel ? '2px solid var(--ink)' : '1.5px solid var(--ink-faded)',
+                    background: sel ? p.color : 'white',
+                    color: sel ? 'white' : 'var(--ink)',
+                    fontSize: 14, fontWeight: 600,
+                    boxShadow: sel ? '2px 2px 0 var(--ink)' : 'none',
+                    transition: 'all 0.15s',
+                  }}>
+                    <span style={{
+                      width: 26, height: 26, borderRadius: '50%',
+                      background: sel ? 'rgba(255,255,255,0.25)' : p.color, color: 'white',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, overflow: 'hidden',
+                    }}>
+                      {p.image ? <img src={p.image} alt={p.nameEn} style={{ width: '78%', height: '78%', objectFit: 'contain' }} /> : p.emoji}
+                    </span>
+                    {p.name}{sel ? ' ✓' : ''}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+        {meVoter ? (
+          <div style={{ marginTop: 8, fontSize: 14, fontWeight: 600 }}>
+            אתם מצביעים בתור <span style={{ color: meVoter.color }}>{meVoter.name}</span> — אפשר להחליף בכל רגע.
+          </div>
+        ) : (
+          <div style={{ marginTop: 8, fontSize: 14, color: 'var(--tomato)', fontWeight: 600 }}>
+            עדיין לא בחרתם — בחרו את עצמכם כדי שתוכלו להצביע 👆
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
@@ -467,4 +532,4 @@ function TulumHouses({ color }) {
   );
 }
 
-Object.assign(window, { ExtendedFamilySection, LegSection, HowVoting });
+Object.assign(window, { ExtendedFamilySection, LegSection, HowVoting, IdentityPicker });

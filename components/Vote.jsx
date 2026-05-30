@@ -46,22 +46,24 @@ function _saveLocal() { try { localStorage.setItem(VOTE_KEY, JSON.stringify(_vot
 function voteMode() { return _mode; }
 
 function toggleVote(optionId, personId) {
-  const inIt = !!(_votes[optionId] && _votes[optionId][personId]);
-  if (_mode === 'firebase' && _db) {
-    const ref = _db.ref('votes/' + optionId + '/' + personId);
-    if (inIt) ref.remove(); else ref.set(true);
-    // The 'value' subscription updates _votes and re-renders everyone.
-    return;
-  }
+  // Optimistic local update for instant feedback (both modes).
   const next = { ..._votes };
   const cur = { ...(next[optionId] || {}) };
-  if (cur[personId]) delete cur[personId];
+  const wasIn = !!cur[personId];
+  if (wasIn) delete cur[personId];
   else cur[personId] = true;
   if (Object.keys(cur).length) next[optionId] = cur;
   else delete next[optionId];
   _votes = next;
-  _saveLocal();
   _emit();
+
+  if (_mode === 'firebase' && _db) {
+    // Persist to the shared DB; the 'value' subscription reconciles everyone.
+    const ref = _db.ref('votes/' + optionId + '/' + personId);
+    if (wasIn) ref.remove(); else ref.set(true);
+  } else {
+    _saveLocal();
+  }
 }
 
 function resetVotes() {
@@ -72,6 +74,28 @@ function resetVotes() {
   _votes = {};
   _saveLocal();
   _emit();
+}
+
+// ============ IDENTITY ("who am I") — per device ============
+const ME_KEY = 'koffman-me-v1';
+let _me = null;
+try { _me = localStorage.getItem(ME_KEY) || null; } catch (e) {}
+const _meListeners = new Set();
+
+function setMe(id) {
+  _me = id || null;
+  try { if (id) localStorage.setItem(ME_KEY, id); else localStorage.removeItem(ME_KEY); } catch (e) {}
+  _meListeners.forEach(fn => fn());
+}
+function getMe() { return _me; }
+function useMe() {
+  const [, force] = useState(0);
+  useEffect(() => {
+    const fn = () => force(x => x + 1);
+    _meListeners.add(fn);
+    return () => _meListeners.delete(fn);
+  }, []);
+  return _me;
 }
 
 // Subscribe to the shared vote store; re-renders the caller on any change.
@@ -89,53 +113,68 @@ function countIn(votes, optionId) {
   return Object.keys(votes[optionId] || {}).length;
 }
 
-// ============ WHO'S IN — compact avatar row ============
+// ============ WHO'S IN — one button for "me" + a read-only tally ============
 function WhoIsIn({ optionId, color }) {
   const votes = useVotes();
+  const me = useMe();
   const optVotes = votes[optionId] || {};
-  const n = Object.keys(optVotes).length;
+  const voterIds = Object.keys(optVotes);
+  const n = voterIds.length;
+  const iAmIn = me ? !!optVotes[me] : false;
 
   return (
     <div style={{
       marginTop: 12,
       paddingTop: 12,
       borderTop: '1px dashed var(--ink-faded)',
+      display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap',
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
-        <span className="label" style={{ fontSize: 11 }}>מי בעניין?</span>
-        <span style={{
-          fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 16,
-          color: n > 0 ? color : 'var(--ink-faded)',
-        }} dir="ltr">{n > 0 ? `${n} 👍` : '—'}</span>
-      </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-        {VOTERS.map(p => {
-          const inIt = !!optVotes[p.id];
+      {me ? (
+        <button
+          onClick={() => toggleVote(optionId, me)}
+          aria-pressed={iAmIn}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            padding: '7px 14px', borderRadius: 999, cursor: 'pointer',
+            fontFamily: 'inherit', fontSize: 14, fontWeight: 700,
+            border: `2px solid ${color}`,
+            background: iAmIn ? color : 'white',
+            color: iAmIn ? 'white' : color,
+            boxShadow: iAmIn ? '2px 2px 0 var(--ink)' : 'none',
+            transition: 'all 0.15s',
+          }}
+        >{iAmIn ? '✓ אני בעניין' : 'אני בעניין 👍'}</button>
+      ) : (
+        <button
+          onClick={() => { const el = document.getElementById('identity'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}
+          style={{
+            padding: '7px 14px', borderRadius: 999, cursor: 'pointer',
+            fontFamily: 'inherit', fontSize: 13, fontWeight: 600,
+            border: '1.5px dashed var(--ink-faded)', background: 'transparent',
+            color: 'var(--ink-faded)',
+          }}
+        >👆 בחרו מי אתם כדי להצביע</button>
+      )}
+
+      <span style={{ fontSize: 13, fontWeight: 600, color: n > 0 ? 'var(--ink-soft)' : 'var(--ink-faded)' }}>
+        {n > 0 ? `${n} בעניין` : 'עוד אף אחד'}
+      </span>
+
+      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+        {voterIds.map(id => {
+          const p = VOTERS.find(v => v.id === id);
+          if (!p) return null;
           return (
-            <button
-              key={p.id}
-              onClick={() => toggleVote(optionId, p.id)}
-              title={p.name}
-              aria-label={`${p.name}${inIt ? ' — בעניין' : ''}`}
-              aria-pressed={inIt}
-              style={{
-                width: 30, height: 30, borderRadius: '50%',
-                border: inIt ? `2px solid var(--ink)` : '1.5px dashed var(--ink-faded)',
-                background: inIt ? p.color : 'transparent',
-                color: inIt ? 'white' : 'var(--ink-faded)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 13, cursor: 'pointer', padding: 0,
-                overflow: 'hidden',
-                opacity: inIt ? 1 : 0.55,
-                transform: inIt ? 'scale(1.08)' : 'scale(1)',
-                transition: 'all 0.15s',
-                boxShadow: inIt ? '1px 1px 0 var(--ink)' : 'none',
-              }}
-            >
-              {p.image ? (
-                <img src={p.image} alt={p.nameEn} style={{ width: '80%', height: '80%', objectFit: 'contain' }} />
-              ) : p.emoji}
-            </button>
+            <div key={id} title={p.name} style={{
+              width: 26, height: 26, borderRadius: '50%',
+              background: p.color, color: 'white',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 12, overflow: 'hidden',
+              border: id === me ? '2px solid var(--ink)' : '1px solid rgba(0,0,0,0.15)',
+              boxShadow: '0 1px 2px rgba(0,0,0,0.2)',
+            }}>
+              {p.image ? <img src={p.image} alt={p.nameEn} style={{ width: '78%', height: '78%', objectFit: 'contain' }} /> : p.emoji}
+            </div>
           );
         })}
       </div>
@@ -143,4 +182,4 @@ function WhoIsIn({ optionId, color }) {
   );
 }
 
-Object.assign(window, { useVotes, toggleVote, resetVotes, countIn, voteMode, WhoIsIn });
+Object.assign(window, { useVotes, toggleVote, resetVotes, countIn, voteMode, setMe, getMe, useMe, WhoIsIn });

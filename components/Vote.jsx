@@ -1,21 +1,58 @@
-/* global React, VOTERS */
+/* global React, VOTERS, firebase */
 const { useState, useEffect } = React;
 
 // ============ VOTE STORE ============
 // Model: votes[optionId][personId] = true  (a person is "in" for that option)
 // "Who's in" — positive only. Score = how many people want it.
+//
+// Two modes, chosen automatically at load:
+//   • "firebase" — if window.FIREBASE_CONFIG is set: votes are SHARED & LIVE,
+//     synced across everyone's devices via Realtime Database.
+//   • "local"    — otherwise: votes are saved per-device in localStorage.
 const VOTE_KEY = 'koffman-votes-v2';
 
-function _load() {
-  try { return JSON.parse(localStorage.getItem(VOTE_KEY)) || {}; } catch (e) { return {}; }
-}
-function _save(v) { localStorage.setItem(VOTE_KEY, JSON.stringify(v)); }
-
-let _votes = _load();
+let _votes = {};
+let _mode = 'local';
+let _db = null;
 const _listeners = new Set();
 function _emit() { _listeners.forEach(fn => fn()); }
 
+function _loadLocal() {
+  try { return JSON.parse(localStorage.getItem(VOTE_KEY)) || {}; } catch (e) { return {}; }
+}
+function _saveLocal() { try { localStorage.setItem(VOTE_KEY, JSON.stringify(_votes)); } catch (e) {} }
+
+(function initVoteStore() {
+  const cfg = window.FIREBASE_CONFIG;
+  if (cfg && typeof firebase !== 'undefined') {
+    try {
+      firebase.initializeApp(cfg);
+      _db = firebase.database();
+      _mode = 'firebase';
+      _db.ref('votes').on('value', snap => {
+        _votes = snap.val() || {};
+        _emit();
+      });
+      return;
+    } catch (e) {
+      console.warn('Firebase init failed — falling back to per-device voting.', e);
+      _mode = 'local';
+      _db = null;
+    }
+  }
+  _votes = _loadLocal();
+})();
+
+function voteMode() { return _mode; }
+
 function toggleVote(optionId, personId) {
+  const inIt = !!(_votes[optionId] && _votes[optionId][personId]);
+  if (_mode === 'firebase' && _db) {
+    const ref = _db.ref('votes/' + optionId + '/' + personId);
+    if (inIt) ref.remove(); else ref.set(true);
+    // The 'value' subscription updates _votes and re-renders everyone.
+    return;
+  }
   const next = { ..._votes };
   const cur = { ...(next[optionId] || {}) };
   if (cur[personId]) delete cur[personId];
@@ -23,13 +60,17 @@ function toggleVote(optionId, personId) {
   if (Object.keys(cur).length) next[optionId] = cur;
   else delete next[optionId];
   _votes = next;
-  _save(_votes);
+  _saveLocal();
   _emit();
 }
 
 function resetVotes() {
+  if (_mode === 'firebase' && _db) {
+    _db.ref('votes').remove();
+    return;
+  }
   _votes = {};
-  _save(_votes);
+  _saveLocal();
   _emit();
 }
 
@@ -102,4 +143,4 @@ function WhoIsIn({ optionId, color }) {
   );
 }
 
-Object.assign(window, { useVotes, toggleVote, resetVotes, countIn, WhoIsIn });
+Object.assign(window, { useVotes, toggleVote, resetVotes, countIn, voteMode, WhoIsIn });

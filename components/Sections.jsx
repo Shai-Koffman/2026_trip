@@ -1,4 +1,4 @@
-/* global React, LEGS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn */
+/* global React, LEGS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn, voteMode */
 const { useState } = React;
 
 // ============ EXTENDED FAMILY (ALPERTS) ============
@@ -76,6 +76,7 @@ function ExtendedFamilySection() {
 
 // ============ HOW VOTING WORKS (one-time band) ============
 function HowVoting() {
+  const shared = (typeof voteMode === 'function') && voteMode() === 'firebase';
   return (
     <div style={{
       position: 'relative',
@@ -92,8 +93,18 @@ function HowVoting() {
       <div style={{ flex: 1, minWidth: 240 }}>
         <div className="display" style={{ fontSize: 20, lineHeight: 1.15 }}>ככה בוחרים יחד</div>
         <p style={{ fontSize: 14, color: 'var(--ink-soft)', margin: '4px 0 0', lineHeight: 1.5 }}>
-          כל יום הוא <strong>תפריט</strong> של אטרקציות, ולכל אחת יש <strong>משך זמן משוער</strong> (🕒 כמה זמן זה לוקח) — אז אפשר לשלב כמה ביום אחד, לא רק לבחור אחת. פותחים יום, ולכל אופציה לוחצים על הפרצוף שלכם כדי לסמן "אני בעניין"; האופציה עם הכי הרבה מצביעים מקבלת תג <strong>מוביל/ה</strong>. בימים עם תג <strong>🔀 אפשר להתפצל</strong> תת-קבוצות יכולות לעשות דברים שונים לפי גיל ורצון, ולהיפגש אחר כך. ההצבעות נשמרות במכשיר שלכם.
+          כל יום הוא <strong>תפריט</strong> של אטרקציות, ולכל אחת יש <strong>משך זמן משוער</strong> (🕒 כמה זמן זה לוקח) — אז אפשר לשלב כמה ביום אחד, לא רק לבחור אחת. פותחים יום, ולכל אופציה לוחצים על הפרצוף שלכם כדי לסמן "אני בעניין"; האופציה עם הכי הרבה מצביעים מקבלת תג <strong>מוביל/ה</strong>. בימים עם תג <strong>🔀 אפשר להתפצל</strong> תת-קבוצות יכולות לעשות דברים שונים לפי גיל ורצון, ולהיפגש אחר כך.
         </p>
+        <div style={{
+          marginTop: 8, display: 'inline-flex', alignItems: 'center', gap: 6,
+          fontSize: 12.5, fontWeight: 600,
+          color: shared ? 'var(--forest)' : 'var(--ink-faded)',
+        }}>
+          <span>{shared ? '🟢' : '📱'}</span>
+          {shared
+            ? 'הצבעות משותפות — מסונכרן בין כל המכשירים בזמן אמת.'
+            : 'ההצבעות נשמרות במכשיר הזה בלבד — כדי לראות את ההצבעות של כולם, הצביעו יחד על מסך אחד.'}
+        </div>
       </div>
     </div>
   );

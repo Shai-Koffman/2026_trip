@@ -1,4 +1,4 @@
-/* global React, LEGS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn, voteMode */
+/* global React, L, LEGS, PLACES, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn, voteMode */
 const { useState } = React;
 
 // ============ EXTENDED FAMILY (ALPERTS) ============
@@ -112,12 +112,16 @@ function HowVoting() {
 
 // ============ OPTION ROW (with who's-in voting) ============
 function OptionRow({ option, color, isLeader }) {
-  const titleNode = (
-    <span style={{ fontWeight: 700, fontSize: 17, lineHeight: 1.25 }}>
-      {option.title}
-      {option.link && <span style={{ marginInlineStart: 6, fontSize: 13, opacity: 0.55 }}>↗</span>}
-    </span>
-  );
+  const meta = (typeof PLACES !== 'undefined' && PLACES[option.id]) || {};
+  const mapsUrl = meta.q ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(meta.q)}` : null;
+  const website = option.link;
+  const rating = meta.r;
+
+  const linkStyle = {
+    display: 'inline-flex', alignItems: 'center', gap: 4,
+    fontSize: 12.5, fontWeight: 600, color,
+    textDecoration: 'none', borderBottom: `1px solid ${color}55`,
+  };
 
   return (
     <div style={{
@@ -163,16 +167,20 @@ function OptionRow({ option, color, isLeader }) {
             </div>
           )}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-            {option.link ? (
-              <a href={option.link} target="_blank" rel="noopener noreferrer"
-                style={{ textDecoration: 'none', color: 'inherit' }}>{titleNode}</a>
-            ) : titleNode}
+            <span style={{ fontWeight: 700, fontSize: 17, lineHeight: 1.25 }}>{option.title}</span>
             {option.tag && (
               <span style={{
                 fontSize: 11, fontWeight: 700, color,
                 background: `${color}1a`, border: `1px solid ${color}55`,
                 padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap',
               }}>{option.tag}</span>
+            )}
+            {rating != null && (
+              <span dir="ltr" style={{
+                fontSize: 12, fontWeight: 700, color: '#7a5d00',
+                background: '#f4b94022', border: '1px solid #f4b94099',
+                padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap',
+              }}>⭐ {rating}</span>
             )}
           </div>
           {option.en && (
@@ -183,10 +191,68 @@ function OptionRow({ option, color, isLeader }) {
           {option.note && (
             <div style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 6, lineHeight: 1.5 }}>{option.note}</div>
           )}
+          {(mapsUrl || website) && (
+            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 8 }}>
+              {mapsUrl && (
+                <a href={mapsUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>🗺️ Google Maps ↗</a>
+              )}
+              {website && (
+                <a href={website} target="_blank" rel="noopener noreferrer" style={linkStyle}>🌐 אתר רשמי ↗</a>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
       <WhoIsIn optionId={option.id} color={color} />
+    </div>
+  );
+}
+
+// ============ LEG MAP (Leaflet — all places of a leg on one map) ============
+function LegMap({ leg }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (typeof L === 'undefined' || !ref.current || typeof PLACES === 'undefined') return;
+    const pts = [];
+    leg.days.forEach(d => d.options.forEach(o => {
+      const m = PLACES[o.id];
+      if (m && m.lat != null && m.lng != null) pts.push({ o, m });
+    }));
+    if (!pts.length) return;
+
+    const map = L.map(ref.current, { scrollWheelZoom: false });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap', maxZoom: 19,
+    }).addTo(map);
+
+    const latlngs = [];
+    pts.forEach(({ o, m }) => {
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(m.q)}`;
+      const popup = `<div style="min-width:150px;font-family:Assistant,sans-serif;direction:rtl">
+        <strong style="font-size:14px">${o.icon || ''} ${o.title}</strong>
+        ${m.r != null ? `<div style="margin-top:2px">⭐ ${m.r}</div>` : ''}
+        <a href="${mapsUrl}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;color:${leg.color};font-weight:600">Google Maps ↗</a>
+      </div>`;
+      L.circleMarker([m.lat, m.lng], {
+        radius: 8, color: '#ffffff', weight: 2, fillColor: leg.color, fillOpacity: 0.95,
+      }).addTo(map).bindPopup(popup);
+      latlngs.push([m.lat, m.lng]);
+    });
+    map.fitBounds(latlngs, { padding: [34, 34] });
+    if (latlngs.length === 1) map.setZoom(13);
+
+    return () => map.remove();
+  }, []);
+
+  return (
+    <div style={{ marginBottom: 30 }}>
+      <div className="label" style={{ marginBottom: 8 }}>🗺️ כל המקומות של {leg.name} על המפה</div>
+      <div ref={ref} style={{
+        height: 340, width: '100%',
+        border: '2px solid var(--ink)', boxShadow: 'var(--shadow-paper)',
+        background: '#dfe7ea',
+      }} />
     </div>
   );
 }
@@ -306,6 +372,8 @@ function LegSection({ leg, index }) {
         fontSize: 14, fontWeight: 600, marginBottom: 30,
         transform: 'rotate(-0.5deg)', boxShadow: '3px 3px 0 var(--ink)',
       }}>{leg.travel}</div>
+
+      <LegMap leg={leg} />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))', gap: 36 }}>
         {leg.days.map((day, i) => (

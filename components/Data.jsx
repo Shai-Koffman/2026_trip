@@ -291,4 +291,71 @@ const ALPERT_FAMILIES = [
   },
 ];
 
-Object.assign(window, { FAMILY, VOTERS, LEGS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES });
+// ============ PLACES METADATA ============
+// Per-option: r = Google rating (≈, omit if unknown), lat/lng, q = Google Maps query.
+// Used for the ⭐ badge, the "open in Maps" link, and the leg map pins.
+// (Entries omitted for non-places: at-home BBQ, Friday dinner, villa pool.)
+const PLACES = {
+  // NY / NJ
+  'ny-14-hoboken':     { r: 4.8, lat: 40.7401, lng: -74.0259, q: 'Pier C Park Hoboken NJ' },
+  'ny-14-liberty':     { r: 4.7, lat: 40.7058, lng: -74.0491, q: 'Liberty State Park' },
+  'ny-14-montclair':   { r: 4.7, lat: 40.8129, lng: -74.2166, q: 'Absolute Zero Ice Cream Montclair NJ' },
+  'ny-15-spyscape':    { r: 4.5, lat: 40.7652, lng: -73.9835, q: 'SPYSCAPE New York' },
+  'ny-15-edge':        { r: 4.6, lat: 40.7536, lng: -74.0015, q: 'The Edge Hudson Yards' },
+  'ny-15-icecream':    { r: 4.2, lat: 40.7236, lng: -73.9976, q: 'Museum of Ice Cream New York' },
+  'ny-15-amnh':        { r: 4.6, lat: 40.7813, lng: -73.9740, q: 'American Museum of Natural History' },
+  'ny-15-brooklyn':    { r: 4.5, lat: 40.7034, lng: -73.9921, q: 'Time Out Market New York DUMBO' },
+  'ny-16-dreamworks':  { r: 4.3, lat: 40.8074, lng: -74.0688, q: 'DreamWorks Water Park American Dream' },
+  'ny-16-mills':       { r: 4.5, lat: 40.6600, lng: -74.1715, q: 'The Mills at Jersey Gardens' },
+  'ny-16-amdream':     {        lat: 40.8104, lng: -74.0712, q: 'American Dream Mall' },
+  'ny-17-centralpark': { r: 4.8, lat: 40.7681, lng: -73.9819, q: 'Central Park New York' },
+  'ny-17-topofrock':   { r: 4.7, lat: 40.7591, lng: -73.9794, q: 'Top of the Rock New York' },
+  'ny-17-fifth':       { r: 4.7, lat: 40.7589, lng: -73.9851, q: 'Times Square New York' },
+  'ny-18-smorg':       { r: 4.5, lat: 40.7211, lng: -73.9626, q: 'Smorgasburg Williamsburg' },
+  'ny-18-artistsfleas':{ r: 4.3, lat: 40.7199, lng: -73.9613, q: 'Artists and Fleas Williamsburg' },
+  'ny-18-bedford':     { r: 4.3, lat: 40.7236, lng: -73.9526, q: "Beacon's Closet Brooklyn" },
+  'ny-18-flea':        { r: 4.1, lat: 40.7028, lng: -73.9878, q: 'Brooklyn Flea DUMBO' },
+  'ny-19-grounds':     { r: 4.8, lat: 40.2368, lng: -74.7189, q: 'Grounds for Sculpture Hamilton NJ' },
+  'ny-19-sandyhook':   {        lat: 40.4300, lng: -73.9900, q: 'Sandy Hook Beach NJ' },
+  'ny-19-stormking':   { r: 4.7, lat: 41.4234, lng: -74.0623, q: 'Storm King Art Center' },
+  'ny-19-asbury':      { r: 4.6, lat: 40.2209, lng: -73.9996, q: 'Asbury Park Boardwalk' },
+  // Atlanta
+  'atl-20-avalon':     { r: 4.6, lat: 34.0708, lng: -84.2772, q: 'Avalon Alpharetta' },
+  'atl-20-topgolf':    { r: 4.4, lat: 34.0448, lng: -84.3083, q: 'Topgolf Alpharetta' },
+  'atl-20-citycenter': { r: 4.8, lat: 34.0756, lng: -84.2945, q: 'Downtown Alpharetta City Center' },
+  'atl-21-vickery':    { r: 4.7, lat: 34.0128, lng: -84.3596, q: 'Vickery Creek Old Mill Park Roswell GA' },
+  'atl-21-beltline':   { r: 4.8, lat: 33.7819, lng: -84.3685, q: 'Atlanta BeltLine Eastside Trail' },
+  'atl-21-piedmont':   { r: 4.7, lat: 33.7900, lng: -84.3726, q: 'Atlanta Botanical Garden' },
+  'atl-21-stonemtn':   { r: 4.6, lat: 33.8052, lng: -84.1451, q: 'Stone Mountain Park' },
+  'atl-22-sixflags':   { r: 4.1, lat: 33.7684, lng: -84.5500, q: 'Six Flags Over Georgia' },
+  'atl-22-andretti':   { r: 4.2, lat: 33.9524, lng: -84.5153, q: 'Andretti Indoor Karting Marietta' },
+  'atl-22-ifly':       { r: 4.6, lat: 33.8847, lng: -84.4713, q: 'iFLY Indoor Skydiving Atlanta' },
+  'atl-23-avalon':     { r: 4.6, lat: 34.0708, lng: -84.2772, q: 'Avalon Alpharetta' },
+  'atl-23-lenox':      { r: 4.4, lat: 33.8459, lng: -84.3619, q: 'Lenox Square Atlanta' },
+  'atl-23-phipps':     { r: 4.5, lat: 33.8525, lng: -84.3620, q: 'Phipps Plaza Atlanta' },
+  'atl-23-ponce':      { r: 4.6, lat: 33.7728, lng: -84.3656, q: 'Ponce City Market Atlanta' },
+  'atl-24-whitewater': { r: 3.9, lat: 33.9578, lng: -84.5210, q: 'Six Flags White Water Marietta' },
+  'atl-24-hurricane':  {        lat: 33.7684, lng: -84.5500, q: 'Hurricane Harbor Six Flags Over Georgia' },
+  'atl-24-aquarium':   { r: 4.7, lat: 33.7634, lng: -84.3951, q: 'Georgia Aquarium' },
+  'atl-25-aquarium':   { r: 4.7, lat: 33.7634, lng: -84.3951, q: 'Georgia Aquarium' },
+  'atl-25-coke':       { r: 4.4, lat: 33.7626, lng: -84.3924, q: 'World of Coca-Cola' },
+  'atl-25-avalon':     { r: 4.6, lat: 34.0708, lng: -84.2772, q: 'Avalon Alpharetta' },
+  'atl-25-sweetwater': { r: 4.8, lat: 33.7525, lng: -84.6287, q: 'Sweetwater Creek State Park GA' },
+  // Tulum
+  'tul-26-calavera':   { r: 4.1, lat: 20.2292, lng: -87.4573, q: 'Cenote Calavera Tulum' },
+  'tul-26-pueblo':     {        lat: 20.2126, lng: -87.4654, q: 'Tulum Pueblo Centro' },
+  'tul-27-xelha':      { r: 4.8, lat: 20.3170, lng: -87.3541, q: 'Xel-Ha Park' },
+  'tul-27-xcaret':     { r: 4.8, lat: 20.5820, lng: -87.1217, q: 'Xcaret Park' },
+  'tul-27-xplor':      { r: 4.8, lat: 20.5938, lng: -87.1225, q: 'Xplor Park' },
+  'tul-27-xavage':     { r: 4.7, lat: 20.9947, lng: -86.8627, q: 'Xavage Cancun' },
+  'tul-28-ruins':      { r: 4.7, lat: 20.2150, lng: -87.4294, q: 'Tulum Ruins Archaeological Zone' },
+  'tul-28-akumal':     { r: 4.3, lat: 20.3951, lng: -87.3137, q: 'Akumal Bay' },
+  'tul-28-grancenote': { r: 4.3, lat: 20.2466, lng: -87.4641, q: 'Gran Cenote Tulum' },
+  'tul-28-cristal':    { r: 4.4, lat: 20.2003, lng: -87.5006, q: 'Cenote Cristal Tulum' },
+  'tul-29-coba':       { r: 4.7, lat: 20.4898, lng: -87.7294, q: 'Coba Ruins' },
+  'tul-29-siankaan':   { r: 4.6, lat: 20.0789, lng: -87.6133, q: "Muyil Sian Ka'an" },
+  'tul-29-beachclub':  { r: 4.6, lat: 20.1458, lng: -87.4600, q: 'La Zebra Tulum' },
+  'tul-29-zacilha':    { r: 4.5, lat: 20.2744, lng: -87.4884, q: 'Cenote Zacil-Ha Tulum' },
+};
+
+Object.assign(window, { FAMILY, VOTERS, LEGS, PLACES, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES });

@@ -1,4 +1,4 @@
-/* global React, LEGS, TIME_ORDER, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn */
+/* global React, LEGS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn */
 const { useState } = React;
 
 // ============ EXTENDED FAMILY (ALPERTS) ============
@@ -92,7 +92,7 @@ function HowVoting() {
       <div style={{ flex: 1, minWidth: 240 }}>
         <div className="display" style={{ fontSize: 20, lineHeight: 1.15 }}>ככה בוחרים יחד</div>
         <p style={{ fontSize: 14, color: 'var(--ink-soft)', margin: '4px 0 0', lineHeight: 1.5 }}>
-          כל יום מציע כמה אופציות, ולכל אחת יש <strong>שעה</strong> (🕒 בוקר · צהריים · אחה״צ · ערב) — אז אפשר לשלב כמה דברים ביום אחד, לא רק לבחור אחד. פותחים יום, ולכל אופציה לוחצים על הפרצוף שלכם כדי לסמן "אני בעניין"; האופציה עם הכי הרבה מצביעים מקבלת תג <strong>מוביל/ה</strong>. בימים עם תג <strong>🔀 אפשר להתפצל</strong> תת-קבוצות יכולות לעשות דברים שונים לפי גיל ורצון, ולהיפגש אחר כך. ההצבעות נשמרות במכשיר שלכם.
+          כל יום הוא <strong>תפריט</strong> של אטרקציות, ולכל אחת יש <strong>משך זמן משוער</strong> (🕒 כמה זמן זה לוקח) — אז אפשר לשלב כמה ביום אחד, לא רק לבחור אחת. פותחים יום, ולכל אופציה לוחצים על הפרצוף שלכם כדי לסמן "אני בעניין"; האופציה עם הכי הרבה מצביעים מקבלת תג <strong>מוביל/ה</strong>. בימים עם תג <strong>🔀 אפשר להתפצל</strong> תת-קבוצות יכולות לעשות דברים שונים לפי גיל ורצון, ולהיפגש אחר כך. ההצבעות נשמרות במכשיר שלכם.
         </p>
       </div>
     </div>
@@ -141,14 +141,14 @@ function OptionRow({ option, color, isLeader }) {
           }}>{option.icon}</div>
         )}
         <div style={{ flex: 1, minWidth: 0 }}>
-          {option.time && (
+          {option.duration && (
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 5,
               background: color, color: 'white',
               fontSize: 11, fontWeight: 700, letterSpacing: '0.02em',
               padding: '2px 9px', borderRadius: 999, marginBottom: 6,
             }}>
-              <span style={{ fontSize: 11 }}>🕒</span>{option.time}
+              <span style={{ fontSize: 11 }}>🕒</span>{option.duration}
             </div>
           )}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
@@ -184,10 +184,6 @@ function OptionRow({ option, color, isLeader }) {
 function DayCard({ day, color, tapeColor, tapeRotate, rotation }) {
   const [open, setOpen] = useState(false);
   const votes = useVotes();
-
-  // Order options into a loose timeline (morning → evening) so a day can stack several.
-  const rank = t => { const i = TIME_ORDER.indexOf(t); return i === -1 ? 99 : i; };
-  const ordered = [...day.options].sort((a, b) => rank(a.time) - rank(b.time));
 
   // Leader = option(s) with the highest (>0) "in" count within this day.
   let max = 0;
@@ -264,7 +260,7 @@ function DayCard({ day, color, tapeColor, tapeRotate, rotation }) {
           display: 'flex', flexDirection: 'column', gap: 14,
           animation: 'float-in 0.4s ease-out',
         }}>
-          {ordered.map(o => (
+          {day.options.map(o => (
             <OptionRow key={o.id} option={o} color={color} isLeader={leaders.has(o.id)} />
           ))}
         </div>

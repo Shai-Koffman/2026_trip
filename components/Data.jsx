@@ -26,12 +26,10 @@ const VOTERS = [
   { id: 'eyal',  name: 'אייל', nameEn: 'Eyal',  age: 11, color: '#3f6b3a', emoji: '🚀', group: 'אלפרט · ג׳ורג׳יה' },
 ];
 
-// time slots — used to order options into a day and show "when". Order matters for sorting.
-const TIME_ORDER = ['כל היום', 'בוקר', 'צהריים', 'אחה״צ', 'ערב', 'גמיש'];
-
 // ============ THE THREE LEGS ============
-// Each leg → days → each day has 2-4 votable options.
-// Option fields: id (unique, for voting), time, icon, title, en (English sub), note, link, tag
+// Each leg → days → each day has a MENU of activities (not just alternatives).
+// Each option shows a `duration` so you can stack several into one day.
+// Option fields: id (unique, for voting), duration, icon, title, en, note, link, tag
 const LEGS = [
   // ---------------------------------------------------------------- PART 1: NY / NJ
   {
@@ -49,20 +47,22 @@ const LEGS = [
         id: 'ny-14', date: '14 ביולי', dow: 'שלישי', icon: '✈️',
         title: 'נחיתה ומפגש', subtitle: 'יום רגוע אחרי הטיסה · עם יאיר, עינת, רום ונור',
         options: [
-          { id: 'ny-14-hoboken', time: 'אחה״צ', icon: '🌆', title: 'טיילת הובוקן + Pier C Park', en: 'Hoboken Waterfront', tag: 'פעוט-פרנדלי', note: 'טיילת שטוחה מול קו הרקיע של מנהטן, פארק משחקי מים וחול לקטנים, וגלידה לאורך Washington St. פתיחה רכה ומושלמת.', link: 'https://www.hobokennj.gov/resources/pier-c-park' },
-          { id: 'ny-14-liberty', time: 'אחה״צ', icon: '🗽', title: 'Liberty State Park', en: 'Jersey City', tag: 'כל המשפחה', note: 'מדשאות ענק עם פסל החירות וקו הרקיע ברקע, מתקני משחק וטיילת — בלי כרטיסים, סתם להיות יחד.', link: 'https://dep.nj.gov/parksandforests/state-park/liberty-state-park/' },
-          { id: 'ny-14-montclair', time: 'ערב', icon: '🍦', title: 'שיטוט במונטקלייר + גלידה', en: 'Montclair', tag: 'רגוע', note: 'עיירה ירוקה והליכתית עם חנויות, פארקים וגלידריית Absolute המפורסמת — נינוח ולא מאמץ.', link: 'https://www.absoluteicecream.com/' },
-          { id: 'ny-14-home', time: 'ערב', icon: '🏡', title: 'סתם בבית עם המשפחה', en: 'Backyard & BBQ', tag: 'ג׳ט-לג', note: 'אם הטיסה גמרה אתכם — מנגל בחצר, הילדים מתחברים, והתאקלמות שקטה לקראת השבוע.' },
+          { id: 'ny-14-hoboken', duration: '~1–2 שעות', icon: '🌆', title: 'טיילת הובוקן + Pier C Park', en: 'Hoboken Waterfront', tag: 'פעוט-פרנדלי', note: 'טיילת שטוחה מול קו הרקיע של מנהטן, פארק משחקי מים וחול לקטנים, וגלידה לאורך Washington St. פתיחה רכה ומושלמת.', link: 'https://www.hobokennj.gov/resources/pier-c-park' },
+          { id: 'ny-14-liberty', duration: '~1–2 שעות', icon: '🗽', title: 'Liberty State Park', en: 'Jersey City', tag: 'כל המשפחה', note: 'מדשאות ענק עם פסל החירות וקו הרקיע ברקע, מתקני משחק וטיילת — בלי כרטיסים, סתם להיות יחד.', link: 'https://dep.nj.gov/parksandforests/state-park/liberty-state-park/' },
+          { id: 'ny-14-montclair', duration: '~1–2 שעות', icon: '🍦', title: 'שיטוט במונטקלייר + גלידה', en: 'Montclair', tag: 'רגוע', note: 'עיירה ירוקה והליכתית עם חנויות, פארקים וגלידריית Absolute המפורסמת — נינוח ולא מאמץ.', link: 'https://www.absoluteicecream.com/' },
+          { id: 'ny-14-home', duration: 'גמיש', icon: '🏡', title: 'סתם בבית עם המשפחה', en: 'Backyard & BBQ', tag: 'ג׳ט-לג', note: 'אם הטיסה גמרה אתכם — מנגל בחצר, הילדים מתחברים, והתאקלמות שקטה לקראת השבוע.' },
         ],
       },
       {
         id: 'ny-15', date: '15 ביולי', dow: 'רביעי', icon: '🗽',
-        title: 'יום מנהטן', subtitle: 'בוחרים ווייב אחד לעיר הגדולה',
-        split: 'אפשר להתפצל — המתבגרים על Spy & Sky, הקטנטנים וההורים על טבע וסנטרל פארק',
+        title: 'יום מנהטן', subtitle: 'תפריט אטרקציות — מרכיבים יום מכמה מהן',
+        split: 'אפשר להתפצל — המתבגרים על SPYSCAPE + The Edge, הקטנטנים על מוזיאון הטבע ומוזיאון הגלידה',
         options: [
-          { id: 'ny-15-spy', time: 'כל היום', icon: '🕵️', title: 'Spy & Sky', en: 'SPYSCAPE + The Edge', tag: 'מתבגרים', note: 'מוזיאון ריגול אינטראקטיבי עם מנהרות לייזר ואתגרי האקינג, ואז The Edge — המרפסת התלויה הגבוהה במערב עם רצפת זכוכית. מסיימים בשופינג ב-Macy\'s.', link: 'https://spyscape.com/' },
-          { id: 'ny-15-nature', time: 'כל היום', icon: '🦋', title: 'טבע היי-טק', en: 'Gilder Center · AMNH', tag: 'כל המשפחה', note: 'אגף Gilder החדש במוזיאון הטבע — אדריכלות עתידנית וחממת פרפרים חיים — ואז הליכה בסנטרל פארק וארוחה ב-Columbus Circle.', link: 'https://www.amnh.org/exhibitions/permanent/gilder-center' },
-          { id: 'ny-15-brooklyn', time: 'כל היום', icon: '🌉', title: 'הווייב של ברוקלין', en: 'Brooklyn Bridge → DUMBO', tag: 'פוטוגני', note: 'חוצים את גשר ברוקלין רגלית, יורדים ל-DUMBO לתמונות האייקוניות, ואוכלים ב-Time Out Market עם נוף למנהטן.', link: 'https://www.timeout.com/time-out-market-new-york' },
+          { id: 'ny-15-spyscape', duration: '~1.5–2 שעות', icon: '🕵️', title: 'SPYSCAPE', en: 'Spy museum', tag: 'מתבגרים', note: 'מוזיאון ריגול אינטראקטיבי — מנהרות לייזר, אתגרי האקינג וגאדג׳טים. כיף ענק לעומר, ענבר וגל.', link: 'https://spyscape.com/' },
+          { id: 'ny-15-edge', duration: '~1 שעה', icon: '🏙️', title: 'The Edge', en: 'Hudson Yards', tag: 'תצפית', note: 'המרפסת התלויה הגבוהה במערב עם רצפת זכוכית. צמוד ל-SPYSCAPE — קל לשלב את שניהם.', link: 'https://www.edgenyc.com/' },
+          { id: 'ny-15-icecream', duration: '~1.5 שעות', icon: '🍦', title: 'Museum of Ice Cream', en: 'SoHo · interactive', tag: 'כיף לכולם', note: 'מוזיאון גלידה צבעוני ואינטראקטיבי בסוהו — בריכת סוכריות, מגלשה וטעימות גלידה בלי הגבלה. פוטוגני ומושלם לכל הגילאים.', link: 'https://www.museumoficecream.com/new-york' },
+          { id: 'ny-15-amnh', duration: '~2–3 שעות', icon: '🦋', title: 'Gilder Center · AMNH', en: 'מוזיאון הטבע', tag: 'כל המשפחה', note: 'אגף Gilder החדש במוזיאון הטבע — אדריכלות עתידנית וחממת פרפרים חיים. מצוין לקטנטנים ולמבוגרים.', link: 'https://www.amnh.org/exhibitions/permanent/gilder-center' },
+          { id: 'ny-15-brooklyn', duration: '~2–3 שעות', icon: '🌉', title: 'גשר ברוקלין → DUMBO', en: 'Bridge walk + Time Out Market', tag: 'פוטוגני', note: 'חוצים את הגשר רגלית, יורדים ל-DUMBO לתמונות האייקוניות, ואוכלים ב-Time Out Market עם נוף למנהטן.', link: 'https://www.timeout.com/time-out-market-new-york' },
         ],
       },
       {
@@ -70,19 +70,19 @@ const LEGS = [
         title: 'שופינג + פארק מים מקורה', subtitle: 'American Dream + אאוטלטים פטורי מס',
         split: 'אפשר להתפצל — חלק בפארק המים, חלק באאוטלטים. נפגשים בערב',
         options: [
-          { id: 'ny-16-dreamworks', time: 'בוקר', icon: '💦', title: 'DreamWorks Water Park', en: 'American Dream', tag: 'אקשן', note: 'פארק המים המקורה הגדול בצפון אמריקה — גלישות, בריכת גלים ונהר עצל, בלי תלות במזג האוויר.', link: 'https://www.americandream.com/venue/dreamworks-water-park' },
-          { id: 'ny-16-mills', time: 'אחה״צ', icon: '🛍️', title: 'The Mills at Jersey Gardens', en: 'Tax-free outlets', tag: 'שופינג', note: 'האאוטלט הגדול בניו ג׳רזי — נייקי, אדידס, ליוויס — ללא מע"מ על ביגוד. 15 דק׳ נסיעה.', link: 'https://www.simon.com/mall/the-mills-at-jersey-gardens' },
-          { id: 'ny-16-amdream', time: 'אחה״צ', icon: '🎢', title: 'Nickelodeon Universe + Big SNOW', en: 'באותו מתחם', tag: 'מקורה', note: 'פארק שעשועים מקורה ומדרון סקי אמיתי תחת קורת גג אחת — אלטרנטיבה לרטובים, באותו American Dream.', link: 'https://www.americandream.com/' },
+          { id: 'ny-16-dreamworks', duration: 'חצי יום', icon: '💦', title: 'DreamWorks Water Park', en: 'American Dream', tag: 'אקשן', note: 'פארק המים המקורה הגדול בצפון אמריקה — גלישות, בריכת גלים ונהר עצל, בלי תלות במזג האוויר.', link: 'https://www.americandream.com/venue/dreamworks-water-park' },
+          { id: 'ny-16-mills', duration: '~2–3 שעות', icon: '🛍️', title: 'The Mills at Jersey Gardens', en: 'Tax-free outlets', tag: 'שופינג', note: 'האאוטלט הגדול בניו ג׳רזי — נייקי, אדידס, ליוויס — ללא מע"מ על ביגוד. 15 דק׳ נסיעה.', link: 'https://www.simon.com/mall/the-mills-at-jersey-gardens' },
+          { id: 'ny-16-amdream', duration: '~2–3 שעות', icon: '🎢', title: 'Nickelodeon Universe + Big SNOW', en: 'באותו מתחם', tag: 'מקורה', note: 'פארק שעשועים מקורה ומדרון סקי אמיתי תחת קורת גג אחת — אלטרנטיבה לרטובים, באותו American Dream.', link: 'https://www.americandream.com/' },
         ],
       },
       {
         id: 'ny-17', date: '17 ביולי', dow: 'שישי', icon: '🕯️',
         title: 'מנהטן קליל + ארוחת שישי', subtitle: 'יום עיר רגוע · בערב ארוחה חגיגית עם אלפרט ניו יורק',
         options: [
-          { id: 'ny-17-centralpark', time: 'בוקר', icon: '🌳', title: 'סנטרל פארק + Columbus Circle', en: 'Central Park', tag: 'רגוע', note: 'בוקר ירוק ונינוח בלב מנהטן — Bow Bridge, סירות, גלידה — וחזרה מוקדמת הביתה לכבוד ארוחת השישי.', link: 'https://www.centralparknyc.org/' },
-          { id: 'ny-17-topofrock', time: 'בוקר', icon: '🏙️', title: 'Top of the Rock', en: 'Rockefeller Center', tag: 'תצפית', note: 'התצפית הקלאסית עם הנוף לאמפייר סטייט וסנטרל פארק, ממש בלב מידטאון — קצר וקולע.', link: 'https://www.rockefellercenter.com/attractions/top-of-the-rock-observation-deck/' },
-          { id: 'ny-17-fifth', time: 'צהריים', icon: '🛒', title: 'Fifth Avenue + Times Square', en: 'Midtown buzz', tag: 'עיר', note: 'מנה מהירה של ניו יורק האנרגטית — שדרה חמישית, חנויות הדגל וטיימס סקוור — לפני שחוזרים למשפחה.' },
-          { id: 'ny-17-dinner', time: 'ערב', icon: '🕯️', title: 'ארוחת שישי משפחתית', en: 'Shabbat dinner', tag: '★ העיקר של היום', note: 'הלב של היום: ארוחת ערב חגיגית עם משפחת אלפרט בניו יורק. כל היום נבנה סביב החזרה הביתה בזמן.' },
+          { id: 'ny-17-centralpark', duration: '~1–2 שעות', icon: '🌳', title: 'סנטרל פארק + Columbus Circle', en: 'Central Park', tag: 'רגוע', note: 'בוקר ירוק ונינוח בלב מנהטן — Bow Bridge, סירות, גלידה — וחזרה מוקדמת הביתה לכבוד ארוחת השישי.', link: 'https://www.centralparknyc.org/' },
+          { id: 'ny-17-topofrock', duration: '~1 שעה', icon: '🏙️', title: 'Top of the Rock', en: 'Rockefeller Center', tag: 'תצפית', note: 'התצפית הקלאסית עם הנוף לאמפייר סטייט וסנטרל פארק, ממש בלב מידטאון — קצר וקולע.', link: 'https://www.rockefellercenter.com/attractions/top-of-the-rock-observation-deck/' },
+          { id: 'ny-17-fifth', duration: '~1–2 שעות', icon: '🛒', title: 'Fifth Avenue + Times Square', en: 'Midtown buzz', tag: 'עיר', note: 'מנה מהירה של ניו יורק האנרגטית — שדרה חמישית, חנויות הדגל וטיימס סקוור — לפני שחוזרים למשפחה.' },
+          { id: 'ny-17-dinner', duration: 'בערב', icon: '🕯️', title: 'ארוחת שישי משפחתית', en: 'Shabbat dinner', tag: '★ העיקר של היום', note: 'הלב של היום: ארוחת ערב חגיגית עם משפחת אלפרט בניו יורק. כל היום נבנה סביב החזרה הביתה בזמן.' },
         ],
       },
       {
@@ -90,20 +90,20 @@ const LEGS = [
         title: 'וויליאמסבורג, ברוקלין', subtitle: 'שווקים · יד שנייה · אופנת רחוב (שבת = יום השוק)',
         split: 'אפשר להתפצל — המתבגרים על יד שנייה ב-Bedford, השאר על השווקים',
         options: [
-          { id: 'ny-18-smorg', time: 'צהריים', icon: '🍔', title: 'Smorgasburg', en: 'Saturday food market', tag: 'כל המשפחה', note: 'שוק האוכל הפתוח הגדול של ברוקלין — שבת בלבד, על קו המים. עשרות דוכנים, כל אחד בוחר מה בא לו.', link: 'https://www.smorgasburg.com/' },
-          { id: 'ny-18-artistsfleas', time: 'בוקר', icon: '🧥', title: 'Artists & Fleas', en: 'Williamsburg', tag: 'מתבגרים', note: 'שוק יוצרים ווינטג׳ מקורה/חיצוני — בגדי יד שנייה, אמנות ואקססוריז. גן עדן למתבגרים.', link: 'https://www.artistsandfleas.com/williamsburg/' },
-          { id: 'ny-18-bedford', time: 'אחה״צ', icon: '👕', title: 'מסע יד-שנייה ב-Bedford Ave', en: 'Vintage crawl', tag: 'אופנת רחוב', note: 'לב הווינטג׳ של וויליאמסבורג — L Train Vintage, Beacon\'s Closet, Awoke — הליכה אחת, מציאות סטריטוור.', link: 'https://www.beaconscloset.com/' },
-          { id: 'ny-18-flea', time: 'בוקר', icon: '🎪', title: 'Brooklyn Flea', en: 'Flea market', tag: 'יריד', note: 'יריד ווינטג׳, עתיקות ואספנות על קו המים בוויליאמסבורג — מעולה לחיטוט במציאות.', link: 'https://www.brooklynflea.com/' },
+          { id: 'ny-18-smorg', duration: '~1–2 שעות', icon: '🍔', title: 'Smorgasburg', en: 'Saturday food market', tag: 'כל המשפחה', note: 'שוק האוכל הפתוח הגדול של ברוקלין — שבת בלבד, על קו המים. עשרות דוכנים, כל אחד בוחר מה בא לו.', link: 'https://www.smorgasburg.com/' },
+          { id: 'ny-18-artistsfleas', duration: '~1 שעה', icon: '🧥', title: 'Artists & Fleas', en: 'Williamsburg', tag: 'מתבגרים', note: 'שוק יוצרים ווינטג׳ מקורה/חיצוני — בגדי יד שנייה, אמנות ואקססוריז. גן עדן למתבגרים.', link: 'https://www.artistsandfleas.com/williamsburg/' },
+          { id: 'ny-18-bedford', duration: '~2 שעות', icon: '👕', title: 'מסע יד-שנייה ב-Bedford Ave', en: 'Vintage crawl', tag: 'אופנת רחוב', note: 'לב הווינטג׳ של וויליאמסבורג — L Train Vintage, Beacon\'s Closet, Awoke — הליכה אחת, מציאות סטריטוור.', link: 'https://www.beaconscloset.com/' },
+          { id: 'ny-18-flea', duration: '~1 שעה', icon: '🎪', title: 'Brooklyn Flea', en: 'Flea market', tag: 'יריד', note: 'יריד ווינטג׳, עתיקות ואספנות על קו המים בוויליאמסבורג — מעולה לחיטוט במציאות.', link: 'https://www.brooklynflea.com/' },
         ],
       },
       {
         id: 'ny-19', date: '19 ביולי', dow: 'ראשון', icon: '🌳',
-        title: 'טיול עם יאיר ועינת', subtitle: 'מקום יפהפה ליום שלם · בוחרים יחד',
+        title: 'טיול עם יאיר ועינת', subtitle: 'מקום יפהפה ליום שלם · בוחרים יעד אחד',
         options: [
-          { id: 'ny-19-grounds', time: 'כל היום', icon: '🗿', title: 'Grounds For Sculpture', en: 'Hamilton, NJ', tag: 'כל המשפחה', note: 'פארק פיסול וגנים על 42 דונם — שבילים נוחים לעגלה, פסלים ענקיים שהילדים מתים עליהם. הבחירה הכי כל-גילאית. (כרטיסים מראש!)', link: 'https://www.groundsforsculpture.org/' },
-          { id: 'ny-19-sandyhook', time: 'כל היום', icon: '🏖️', title: 'Sandy Hook', en: 'Gateway NRA beach', tag: 'פעוט-פרנדלי', note: 'חופי מפרץ ואוקיינוס עם נוף לקו הרקיע של ניו יורק, מצילים ומים רדודים ונוחים לקטנטנים.', link: 'https://www.nps.gov/gate/planyourvisit/sandy-hook.htm' },
-          { id: 'ny-19-stormking', time: 'כל היום', icon: '🎨', title: 'Storm King Art Center', en: 'New Windsor, NY', tag: 'נוף עוצר נשימה', note: 'נוף פיסול ענק על 500 דונם — שדות מתגלגלים ויצירות מונומנטליות. המקום הכי מרהיב; הרבה הליכה, מומלצת עגלה/מנשא.', link: 'https://stormking.org/' },
-          { id: 'ny-19-asbury', time: 'כל היום', icon: '🎡', title: 'Asbury Park Boardwalk', en: 'Jersey Shore', tag: 'כיף לכולם', note: 'טיילת שורצת חיים מול הים — חוף לקטנים וארקייד פינבול Silverball לגדולים. קליל ומהנה.', link: 'https://apboardwalk.com/' },
+          { id: 'ny-19-grounds', duration: '~3–4 שעות', icon: '🗿', title: 'Grounds For Sculpture', en: 'Hamilton, NJ', tag: 'כל המשפחה', note: 'פארק פיסול וגנים על 42 דונם — שבילים נוחים לעגלה, פסלים ענקיים שהילדים מתים עליהם. הבחירה הכי כל-גילאית. (כרטיסים מראש!)', link: 'https://www.groundsforsculpture.org/' },
+          { id: 'ny-19-sandyhook', duration: 'יום שלם', icon: '🏖️', title: 'Sandy Hook', en: 'Gateway NRA beach', tag: 'פעוט-פרנדלי', note: 'חופי מפרץ ואוקיינוס עם נוף לקו הרקיע של ניו יורק, מצילים ומים רדודים ונוחים לקטנטנים.', link: 'https://www.nps.gov/gate/planyourvisit/sandy-hook.htm' },
+          { id: 'ny-19-stormking', duration: '~3–4 שעות', icon: '🎨', title: 'Storm King Art Center', en: 'New Windsor, NY', tag: 'נוף עוצר נשימה', note: 'נוף פיסול ענק על 500 דונם — שדות מתגלגלים ויצירות מונומנטליות. המקום הכי מרהיב; הרבה הליכה, מומלצת עגלה/מנשא.', link: 'https://stormking.org/' },
+          { id: 'ny-19-asbury', duration: 'חצי יום', icon: '🎡', title: 'Asbury Park Boardwalk', en: 'Jersey Shore', tag: 'כיף לכולם', note: 'טיילת שורצת חיים מול הים — חוף לקטנים וארקייד פינבול Silverball לגדולים. קליל ומהנה.', link: 'https://apboardwalk.com/' },
         ],
       },
     ],
@@ -125,19 +125,19 @@ const LEGS = [
         id: 'atl-20', date: '20 ביולי', dow: 'שני', icon: '✈️',
         title: 'טיסה לאטלנטה + מפגש', subtitle: 'נוחתים אצל בועז וליבי · ערב ראשון רגוע',
         options: [
-          { id: 'atl-20-avalon', time: 'ערב', icon: '🛍️', title: 'Avalon', en: 'Alpharetta', tag: 'קרוב לבית', note: 'מתחם פתוח של חנויות, מזרקות וכיכר מרכזית — 5–10 דק׳ מהבית. ערב ראשון נינוח להיות יחד.', link: 'https://experienceavalon.com/' },
-          { id: 'atl-20-topgolf', time: 'אחה״צ', icon: '⛳', title: 'Topgolf Alpharetta', en: '3 floors, A/C', tag: 'כל הגילאים', note: '102 תאי משחק ממוזגים על 3 קומות — פעילות קבוצתית שעובדת מגיל 10 עד מבוגרים, בלי תלות בחום.', link: 'https://topgolf.com/us/alpharetta/' },
-          { id: 'atl-20-citycenter', time: 'ערב', icon: '🌳', title: 'Alpharetta City Center + Avalon', en: 'Evening stroll', tag: 'רגוע', note: 'שילוב של Avalon עם מרכז העיר ההליכתי של אלפארטה — שיטוט ערב שקט ביום הראשון.', link: 'https://awesomealpharetta.com/' },
+          { id: 'atl-20-avalon', duration: '~2 שעות', icon: '🛍️', title: 'Avalon', en: 'Alpharetta', tag: 'קרוב לבית', note: 'מתחם פתוח של חנויות, מזרקות וכיכר מרכזית — 5–10 דק׳ מהבית. ערב ראשון נינוח להיות יחד.', link: 'https://experienceavalon.com/' },
+          { id: 'atl-20-topgolf', duration: '~2 שעות', icon: '⛳', title: 'Topgolf Alpharetta', en: '3 floors, A/C', tag: 'כל הגילאים', note: '102 תאי משחק ממוזגים על 3 קומות — פעילות קבוצתית שעובדת מגיל 10 עד מבוגרים, בלי תלות בחום.', link: 'https://topgolf.com/us/alpharetta/' },
+          { id: 'atl-20-citycenter', duration: '~2 שעות', icon: '🌳', title: 'Alpharetta City Center', en: 'Evening stroll', tag: 'רגוע', note: 'מרכז העיר ההליכתי של אלפארטה לצד Avalon — שיטוט ערב שקט ביום הראשון.', link: 'https://awesomealpharetta.com/' },
         ],
       },
       {
         id: 'atl-21', date: '21 ביולי', dow: 'שלישי', icon: '🚶',
         title: 'טיול הליכה', subtitle: 'נוף, טבע או שיטוט עירוני (מומלץ מוקדם בבוקר — חם!)',
         options: [
-          { id: 'atl-21-vickery', time: 'בוקר', icon: '🏞️', title: 'Vickery Creek / Old Mill Park', en: 'Roswell', tag: 'הכי קרוב', note: 'גשר מקורה, חורבות טחנה מ-1830 ומפל — מסלול לולאה נעים (~6 ק"מ), 15 דק׳ מהבית. הכי טוב מוקדם בבוקר.', link: 'https://www.nps.gov/chat/' },
-          { id: 'atl-21-beltline', time: 'אחה״צ', icon: '🚶', title: 'BeltLine + Ponce City Market', en: 'Eastside Trail', tag: 'עירוני', note: 'טיילת אורבנית שטוחה עם אמנות רחוב, שמסתיימת ב-Ponce City Market — וגג Skyline Park עם משחקים ומיני-גולף למתבגרים.', link: 'https://beltline.org/parks-trails/eastside-trail/' },
-          { id: 'atl-21-piedmont', time: 'בוקר', icon: '🌺', title: 'Piedmont Park + Botanical Garden', en: 'Midtown', tag: 'נוף', note: 'הליכה בפארק העירוני ואז Canopy Walk של הגן הבוטני — מסלול תלוי בין צמרות העצים. נינוח ויפהפה.', link: 'https://atlantabg.org/' },
-          { id: 'atl-21-stonemtn', time: 'כל היום', icon: '⛰️', title: 'Stone Mountain Park', en: 'Walk-up / Skyride', tag: 'נוף + מופע', note: 'טיפוס על כיפת הגרניט (או רכבל) לתצפית, ובערב מופע מזל"טים ולייזרים. יום שלם של טבע ובידור.', link: 'https://stonemountainpark.com/' },
+          { id: 'atl-21-vickery', duration: '~2 שעות', icon: '🏞️', title: 'Vickery Creek / Old Mill Park', en: 'Roswell', tag: 'הכי קרוב', note: 'גשר מקורה, חורבות טחנה מ-1830 ומפל — מסלול לולאה נעים (~6 ק"מ), 15 דק׳ מהבית. הכי טוב מוקדם בבוקר.', link: 'https://www.nps.gov/chat/' },
+          { id: 'atl-21-beltline', duration: '~2–3 שעות', icon: '🚶', title: 'BeltLine + Ponce City Market', en: 'Eastside Trail', tag: 'עירוני', note: 'טיילת אורבנית שטוחה עם אמנות רחוב, שמסתיימת ב-Ponce City Market — וגג Skyline Park עם משחקים ומיני-גולף למתבגרים.', link: 'https://beltline.org/parks-trails/eastside-trail/' },
+          { id: 'atl-21-piedmont', duration: '~2–3 שעות', icon: '🌺', title: 'Piedmont Park + Botanical Garden', en: 'Midtown', tag: 'נוף', note: 'הליכה בפארק העירוני ואז Canopy Walk של הגן הבוטני — מסלול תלוי בין צמרות העצים. נינוח ויפהפה.', link: 'https://atlantabg.org/' },
+          { id: 'atl-21-stonemtn', duration: 'יום שלם', icon: '⛰️', title: 'Stone Mountain Park', en: 'Walk-up / Skyride', tag: 'נוף + מופע', note: 'טיפוס על כיפת הגרניט (או רכבל) לתצפית, ובערב מופע מזל"טים ולייזרים. יום שלם של טבע ובידור.', link: 'https://stonemountainpark.com/' },
         ],
       },
       {
@@ -145,9 +145,9 @@ const LEGS = [
         title: 'פארק שיא · ריגושים', subtitle: 'יום אדרנלין למתבגרים',
         split: 'אפשר להתפצל — הגדולים על הרכבות, אייל ורותם על iFLY / LEGO או האקווריום',
         options: [
-          { id: 'atl-22-sixflags', time: 'כל היום', icon: '🎢', title: 'Six Flags Over Georgia', en: 'Austell', tag: 'ריגושים', note: 'פארק הרכבות הגדול של האזור — רכבות שיא למתבגרים. הכרטיס כולל גם את פארק המים Hurricane Harbor אם בא לכם שניהם ביום אחד.', link: 'https://www.sixflags.com/overgeorgia' },
-          { id: 'atl-22-andretti', time: 'אחה״צ', icon: '🏎️', title: 'Andretti Indoor Karting', en: 'Marietta', tag: 'מקורה', note: 'קארטינג אירופאי (עד 72 קמ"ש), מסלול חבלים, זיפליין מקורה וקיר טיפוס — הכל ממוזג. גיבוי מצוין לימים חמים.', link: 'https://andrettikarting.com/marietta' },
-          { id: 'atl-22-ifly', time: 'אחה״צ', icon: '🪂', title: 'iFLY Indoor Skydiving', en: 'Atlanta', tag: 'גיל 3+', note: 'נפילה חופשית אמיתית במנהרת רוח — ריגוש ענק, מתאים מגיל 3, ממוזג. חצי יום מושלם לשבירת החום.', link: 'https://www.iflyworld.com/atlanta' },
+          { id: 'atl-22-sixflags', duration: 'יום שלם', icon: '🎢', title: 'Six Flags Over Georgia', en: 'Austell', tag: 'ריגושים', note: 'פארק הרכבות הגדול של האזור — רכבות שיא למתבגרים. הכרטיס כולל גם את פארק המים Hurricane Harbor אם בא לכם שניהם ביום אחד.', link: 'https://www.sixflags.com/overgeorgia' },
+          { id: 'atl-22-andretti', duration: '~2–3 שעות', icon: '🏎️', title: 'Andretti Indoor Karting', en: 'Marietta', tag: 'מקורה', note: 'קארטינג אירופאי (עד 72 קמ"ש), מסלול חבלים, זיפליין מקורה וקיר טיפוס — הכל ממוזג. גיבוי מצוין לימים חמים.', link: 'https://andrettikarting.com/marietta' },
+          { id: 'atl-22-ifly', duration: '~1 שעה', icon: '🪂', title: 'iFLY Indoor Skydiving', en: 'Atlanta', tag: 'גיל 3+', note: 'נפילה חופשית אמיתית במנהרת רוח — ריגוש ענק, מתאים מגיל 3, ממוזג. חצי יום מושלם לשבירת החום.', link: 'https://www.iflyworld.com/atlanta' },
         ],
       },
       {
@@ -155,29 +155,29 @@ const LEGS = [
         title: 'שופינג + זמן ביחד', subtitle: 'מאלפארטה ועד באקהד',
         split: 'אפשר להתפצל בין הקניונים — אלפארטה מול באקהד',
         options: [
-          { id: 'atl-23-avalon', time: 'גמיש', icon: '🛍️', title: 'Avalon', en: 'Alpharetta', tag: 'הבחירה המקומית', note: '60+ מותגים (Apple, Lululemon), כיכר פתוחה וקולנוע — קרוב לבית והכי נוח לכל המשפחה.', link: 'https://experienceavalon.com/' },
-          { id: 'atl-23-lenox', time: 'אחה״צ', icon: '🏬', title: 'Lenox Square', en: 'Buckhead', tag: 'פרימיום', note: 'הקניון הגדול והנחשב של באקהד — מותגי על וברנדים אמריקאים, 35 דק׳ נסיעה.', link: 'https://www.simon.com/mall/lenox-square' },
-          { id: 'atl-23-phipps', time: 'אחה״צ', icon: '🧱', title: 'Phipps Plaza + LEGO Discovery', en: 'Buckhead', tag: 'גם לקטנים', note: 'קניון פרימיום שמולו, ובתוכו LEGO Discovery Center — מושלם לאייל ולרותם בזמן שהגדולים קונים.', link: 'https://www.legodiscoverycenter.com/atlanta/' },
-          { id: 'atl-23-ponce', time: 'ערב', icon: '🏛️', title: 'Ponce City Market', en: 'Old Fourth Ward', tag: 'טרנדי', note: 'שוק אוכל וקניות בבניין היסטורי משופץ, עם גג משחקים. שילוב מנצח של שופינג, אוכל וכיף.', link: 'https://www.poncecitymarket.com/' },
+          { id: 'atl-23-avalon', duration: '~2–3 שעות', icon: '🛍️', title: 'Avalon', en: 'Alpharetta', tag: 'הבחירה המקומית', note: '60+ מותגים (Apple, Lululemon), כיכר פתוחה וקולנוע — קרוב לבית והכי נוח לכל המשפחה.', link: 'https://experienceavalon.com/' },
+          { id: 'atl-23-lenox', duration: '~2 שעות', icon: '🏬', title: 'Lenox Square', en: 'Buckhead', tag: 'פרימיום', note: 'הקניון הגדול והנחשב של באקהד — מותגי על וברנדים אמריקאים, 35 דק׳ נסיעה.', link: 'https://www.simon.com/mall/lenox-square' },
+          { id: 'atl-23-phipps', duration: '~2 שעות', icon: '🧱', title: 'Phipps Plaza + LEGO Discovery', en: 'Buckhead', tag: 'גם לקטנים', note: 'קניון פרימיום שמולו, ובתוכו LEGO Discovery Center — מושלם לאייל ולרותם בזמן שהגדולים קונים.', link: 'https://www.legodiscoverycenter.com/atlanta/' },
+          { id: 'atl-23-ponce', duration: '~2–3 שעות', icon: '🏛️', title: 'Ponce City Market', en: 'Old Fourth Ward', tag: 'טרנדי', note: 'שוק אוכל וקניות בבניין היסטורי משופץ, עם גג משחקים. שילוב מנצח של שופינג, אוכל וכיף.', link: 'https://www.poncecitymarket.com/' },
         ],
       },
       {
         id: 'atl-24', date: '24 ביולי', dow: 'שישי', icon: '💦',
         title: 'פארק מים', subtitle: 'להתקרר ביום הכי חם',
         options: [
-          { id: 'atl-24-whitewater', time: 'כל היום', icon: '💦', title: 'Six Flags White Water', en: 'Marietta', tag: 'הכי טוב', note: 'פארק המים הגדול בדרום — 70 דונם, מגלשת Tsunami Surge ובריכת גלים. הבחירה העצמאית הטובה ביותר.', link: 'https://www.sixflags.com/whitewater' },
-          { id: 'atl-24-hurricane', time: 'כל היום', icon: '🌊', title: 'Hurricane Harbor', en: 'בתוך Six Flags', tag: 'משולב', note: 'אם בא לכם גם רכבות וגם מים באותו יום — פארק המים הזה כלול בכרטיס של Six Flags Over Georgia.', link: 'https://www.sixflags.com/overgeorgia/hurricane-harbor-atlanta' },
-          { id: 'atl-24-aquarium', time: 'אחה״צ', icon: '🐠', title: 'Georgia Aquarium', en: 'אלטרנטיבה ממוזגת', tag: 'מקורה', note: 'אם החום מנצח — אחד האקווריומים הגדולים בעולם, ממוזג ורגוע, עם כרישי לווייתן ולווייתנים לבנים.', link: 'https://www.georgiaaquarium.org/' },
+          { id: 'atl-24-whitewater', duration: 'יום שלם', icon: '💦', title: 'Six Flags White Water', en: 'Marietta', tag: 'הכי טוב', note: 'פארק המים הגדול בדרום — 70 דונם, מגלשת Tsunami Surge ובריכת גלים. הבחירה העצמאית הטובה ביותר.', link: 'https://www.sixflags.com/whitewater' },
+          { id: 'atl-24-hurricane', duration: 'יום שלם', icon: '🌊', title: 'Hurricane Harbor', en: 'בתוך Six Flags', tag: 'משולב', note: 'אם בא לכם גם רכבות וגם מים באותו יום — פארק המים הזה כלול בכרטיס של Six Flags Over Georgia.', link: 'https://www.sixflags.com/overgeorgia/hurricane-harbor-atlanta' },
+          { id: 'atl-24-aquarium', duration: '~2–3 שעות', icon: '🐠', title: 'Georgia Aquarium', en: 'אלטרנטיבה ממוזגת', tag: 'מקורה', note: 'אם החום מנצח — אחד האקווריומים הגדולים בעולם, ממוזג ורגוע, עם כרישי לווייתן ולווייתנים לבנים.', link: 'https://www.georgiaaquarium.org/' },
         ],
       },
       {
         id: 'atl-25', date: '25 ביולי', dow: 'שבת', icon: '🐠',
         title: 'שופינג + סיכום לפני מקסיקו', subtitle: 'יום אחרון רגוע באטלנטה',
         options: [
-          { id: 'atl-25-aquarium', time: 'בוקר', icon: '🐠', title: 'Georgia Aquarium', en: 'Downtown', tag: 'נינוח', note: 'אחד הגדולים בעולם — קריר, רגוע ומרהיב. סיום מושלם ואנרגיה נמוכה לפני יום טיסה.', link: 'https://www.georgiaaquarium.org/' },
-          { id: 'atl-25-coke', time: 'צהריים', icon: '🥤', title: 'World of Coca-Cola', en: 'Pemberton Place', tag: 'כיף וקצר', note: 'ממש ליד האקווריום — חוויה קצרה וכיפית עם טעימות משקאות מכל העולם. כרטיס משולב.', link: 'https://www.worldofcoca-cola.com/' },
-          { id: 'atl-25-avalon', time: 'אחה״צ', icon: '🛍️', title: 'Avalon', en: 'קניות אחרונות', tag: 'קרוב לבית', note: 'שופינג של הרגע האחרון קרוב לבית, לפני שאורזים וטסים לטולום.', link: 'https://experienceavalon.com/' },
-          { id: 'atl-25-sweetwater', time: 'בוקר', icon: '🌿', title: 'Sweetwater Creek State Park', en: 'Lithia Springs', tag: 'טבע', note: 'עוד יציאה קלה לטבע — שבילי נחל ואגם אל חורבות טחנה מתקופת מלחמת האזרחים.', link: 'https://gastateparks.org/SweetwaterCreek' },
+          { id: 'atl-25-aquarium', duration: '~2–3 שעות', icon: '🐠', title: 'Georgia Aquarium', en: 'Downtown', tag: 'נינוח', note: 'אחד הגדולים בעולם — קריר, רגוע ומרהיב. סיום מושלם ואנרגיה נמוכה לפני יום טיסה.', link: 'https://www.georgiaaquarium.org/' },
+          { id: 'atl-25-coke', duration: '~1–1.5 שעות', icon: '🥤', title: 'World of Coca-Cola', en: 'Pemberton Place', tag: 'כיף וקצר', note: 'ממש ליד האקווריום — חוויה קצרה וכיפית עם טעימות משקאות מכל העולם. כרטיס משולב.', link: 'https://www.worldofcoca-cola.com/' },
+          { id: 'atl-25-avalon', duration: '~2 שעות', icon: '🛍️', title: 'Avalon', en: 'קניות אחרונות', tag: 'קרוב לבית', note: 'שופינג של הרגע האחרון קרוב לבית, לפני שאורזים וטסים לטולום.', link: 'https://experienceavalon.com/' },
+          { id: 'atl-25-sweetwater', duration: '~2 שעות', icon: '🌿', title: 'Sweetwater Creek State Park', en: 'Lithia Springs', tag: 'טבע', note: 'עוד יציאה קלה לטבע — שבילי נחל ואגם אל חורבות טחנה מתקופת מלחמת האזרחים.', link: 'https://gastateparks.org/SweetwaterCreek' },
         ],
       },
     ],
@@ -199,9 +199,9 @@ const LEGS = [
         id: 'tul-26', date: '26 ביולי', dow: 'ראשון', icon: '🏖️',
         title: 'נחיתה והשתקעות', subtitle: 'נכנסים לוילה, נושמים אוויר קריבי',
         options: [
-          { id: 'tul-26-villa', time: 'אחה״צ', icon: '🏊', title: 'יום בריכה בוילה', en: 'Pool & chill', tag: 'אפס לוגיסטיקה', note: 'פורקים, שוחים ומתאקלמים — ערב ראשון רגוע אחרי הטיסה, בלי שום תכנון.' },
-          { id: 'tul-26-calavera', time: 'אחה״צ', icon: '🦴', title: 'Cenote Calavera', en: '"Temple of Doom"', tag: 'מתבגרים + רדוד', note: 'הסנוטה הקרובה ביותר לעיר — קפיצות לתוך המים לגדולים, ופינה רדודה ובטוחה לקטנטנים. כניסה במקום.' },
-          { id: 'tul-26-pueblo', time: 'ערב', icon: '🛍️', title: 'Tulum Pueblo', en: 'Town center', tag: 'פעוט-פרנדלי', note: 'שיטוט קליל בעיירה — חנויות, גלידה וארוחת ערב נינוחה. שטוח ונוח לעגלה.', link: 'https://www.tulum.com/' },
+          { id: 'tul-26-villa', duration: 'גמיש', icon: '🏊', title: 'יום בריכה בוילה', en: 'Pool & chill', tag: 'אפס לוגיסטיקה', note: 'פורקים, שוחים ומתאקלמים — ערב ראשון רגוע אחרי הטיסה, בלי שום תכנון.' },
+          { id: 'tul-26-calavera', duration: '~1–2 שעות', icon: '🦴', title: 'Cenote Calavera', en: '"Temple of Doom"', tag: 'מתבגרים + רדוד', note: 'הסנוטה הקרובה ביותר לעיר — קפיצות לתוך המים לגדולים, ופינה רדודה ובטוחה לקטנטנים. כניסה במקום.' },
+          { id: 'tul-26-pueblo', duration: '~2 שעות', icon: '🛍️', title: 'Tulum Pueblo', en: 'Town center', tag: 'פעוט-פרנדלי', note: 'שיטוט קליל בעיירה — חנויות, גלידה וארוחת ערב נינוחה. שטוח ונוח לעגלה.', link: 'https://www.tulum.com/' },
         ],
       },
       {
@@ -209,20 +209,20 @@ const LEGS = [
         title: 'פארק אקולוגי גדול', subtitle: 'יום עוגן אחד לכל החבורה',
         split: 'אפשר להתפצל — תת-קבוצת מתבגרים ל-Xplor/Xavage, כל השאר ל-Xel-Há',
         options: [
-          { id: 'tul-27-xelha', time: 'כל היום', icon: '🐠', title: 'Xel-Há', en: 'All-inclusive snorkel', tag: '★ כל המשפחה', note: 'פארק מים טבעי הכל-כלול — מפרץ שנורקלינג רגוע, נהר עצל בצמיגים, סנוטות עדינות ואזור ילדים. בטוח לפעוט וכיף למתבגרים, הכל במקום אחד.', link: 'https://www.xelha.com/en/' },
-          { id: 'tul-27-xcaret', time: 'כל היום', icon: '🪶', title: 'Xcaret', en: 'Eco-cultural park', tag: 'הכי מגוון', note: 'נהרות תת-קרקעיים, חיות בר, ביתן פרפרים ומופע ערב מרהיב. אם רוצים יום שלם אחד שיש בו הכל — זה הוא.', link: 'https://www.xcaret.com/en/' },
-          { id: 'tul-27-xplor', time: 'כל היום', icon: '⚡', title: 'Xplor', en: 'Zip-lines & rivers', tag: 'מתבגרים בלבד', note: 'אומגות הגבוהות בריביירה מאיה, רכבי שטח אמפיביים ונהרות תת-קרקעיים. הגבלת גיל/גובה — לגדולים ולמבוגרים, לא לפעוט.', link: 'https://www.xcaret.com/en/parks-and-tours/about-xplor/' },
-          { id: 'tul-27-xavage', time: 'כל היום', icon: '🌊', title: 'Xavage', en: 'Adventure park', tag: 'אקסטרים', note: 'שייט מים אדירים, מאנסטר-טראק, סירת ג׳ט ומסלול חבלים. הכי אדרנלין — לתת-קבוצת המתבגרים.', link: 'https://www.grupoxcaret.com/en/xavage/' },
+          { id: 'tul-27-xelha', duration: 'יום שלם', icon: '🐠', title: 'Xel-Há', en: 'All-inclusive snorkel', tag: '★ כל המשפחה', note: 'פארק מים טבעי הכל-כלול — מפרץ שנורקלינג רגוע, נהר עצל בצמיגים, סנוטות עדינות ואזור ילדים. בטוח לפעוט וכיף למתבגרים, הכל במקום אחד.', link: 'https://www.xelha.com/en/' },
+          { id: 'tul-27-xcaret', duration: 'יום שלם', icon: '🪶', title: 'Xcaret', en: 'Eco-cultural park', tag: 'הכי מגוון', note: 'נהרות תת-קרקעיים, חיות בר, ביתן פרפרים ומופע ערב מרהיב. אם רוצים יום שלם אחד שיש בו הכל — זה הוא.', link: 'https://www.xcaret.com/en/' },
+          { id: 'tul-27-xplor', duration: 'חצי יום–יום', icon: '⚡', title: 'Xplor', en: 'Zip-lines & rivers', tag: 'מתבגרים בלבד', note: 'אומגות הגבוהות בריביירה מאיה, רכבי שטח אמפיביים ונהרות תת-קרקעיים. הגבלת גיל/גובה — לגדולים ולמבוגרים, לא לפעוט.', link: 'https://www.xcaret.com/en/parks-and-tours/about-xplor/' },
+          { id: 'tul-27-xavage', duration: 'חצי יום', icon: '🌊', title: 'Xavage', en: 'Adventure park', tag: 'אקסטרים', note: 'שייט מים אדירים, מאנסטר-טראק, סירת ג׳ט ומסלול חבלים. הכי אדרנלין — לתת-קבוצת המתבגרים.', link: 'https://www.grupoxcaret.com/en/xavage/' },
         ],
       },
       {
         id: 'tul-28', date: '28 ביולי', dow: 'שלישי', icon: '🏛️',
-        title: 'היסטוריה + טבע', subtitle: 'מאיה, חופים וסנוטות',
+        title: 'היסטוריה + טבע', subtitle: 'מאיה, חופים וסנוטות — אפשר לשלב כמה',
         options: [
-          { id: 'tul-28-ruins', time: 'בוקר', icon: '🏛️', title: 'חורבות המאיה של טולום', en: 'Tulum Ruins', tag: 'כל המשפחה', note: 'חורבות מאיה על צוק מעל הים הקריבי — הליכה קצרה ושטוחה, נוף אייקוני וחוף למטה. הכי טוב להגיע מוקדם (פתיחה 8:00) עם הפעוט.', link: 'https://www.inah.gob.mx/zonas/41-zona-arqueologica-de-tulum' },
-          { id: 'tul-28-akumal', time: 'צהריים', icon: '🐢', title: 'Akumal Bay', en: 'Swim with turtles', tag: 'צבי ים', note: 'שנורקלינג עם צבי ים ירוקים במים רדודים (סיור מודרך נדרש), בעוד הפעוט משחק בחוף. מפרץ רגוע.' },
-          { id: 'tul-28-grancenote', time: 'אחה״צ', icon: '🐢', title: 'Gran Cenote', en: 'Family-friendly cenote', tag: 'פעוט-פרנדלי', note: 'מים טורקיז, נטיפים, צבים אמיתיים ושבילי עץ רדודים — מהסנוטות הכי ידידותיות למשפחה. כניסה במקום.', link: 'https://www.cenote.org/en/gran-cenote-in-tulum/' },
-          { id: 'tul-28-cristal', time: 'אחה״צ', icon: '🏞️', title: 'Cenote Cristal & Escondido', en: 'Open-air cenotes', tag: 'שקט', note: 'שתי סנוטות פתוחות זו מול זו — רדודות, פחות מפותחות ופחות עמוסות. קל ונעים עם ילדים קטנים.' },
+          { id: 'tul-28-ruins', duration: '~2 שעות', icon: '🏛️', title: 'חורבות המאיה של טולום', en: 'Tulum Ruins', tag: 'כל המשפחה', note: 'חורבות מאיה על צוק מעל הים הקריבי — הליכה קצרה ושטוחה, נוף אייקוני וחוף למטה. הכי טוב להגיע מוקדם (פתיחה 8:00) עם הפעוט.', link: 'https://www.inah.gob.mx/zonas/41-zona-arqueologica-de-tulum' },
+          { id: 'tul-28-akumal', duration: '~2–3 שעות', icon: '🐢', title: 'Akumal Bay', en: 'Swim with turtles', tag: 'צבי ים', note: 'שנורקלינג עם צבי ים ירוקים במים רדודים (סיור מודרך נדרש), בעוד הפעוט משחק בחוף. מפרץ רגוע.' },
+          { id: 'tul-28-grancenote', duration: '~1.5–2 שעות', icon: '🐢', title: 'Gran Cenote', en: 'Family-friendly cenote', tag: 'פעוט-פרנדלי', note: 'מים טורקיז, נטיפים, צבים אמיתיים ושבילי עץ רדודים — מהסנוטות הכי ידידותיות למשפחה. כניסה במקום.', link: 'https://www.cenote.org/en/gran-cenote-in-tulum/' },
+          { id: 'tul-28-cristal', duration: '~1.5–2 שעות', icon: '🏞️', title: 'Cenote Cristal & Escondido', en: 'Open-air cenotes', tag: 'שקט', note: 'שתי סנוטות פתוחות זו מול זו — רדודות, פחות מפותחות ופחות עמוסות. קל ונעים עם ילדים קטנים.' },
         ],
       },
       {
@@ -230,10 +230,10 @@ const LEGS = [
         title: 'יום אחרון · גמיש לפי הטיסה', subtitle: 'בוחרים לפי שעת הטיסה הביתה',
         split: 'אפשר להתפצל — מטפסים על Cobá או נחים במועדון חוף, לפי הגיל והכוח',
         options: [
-          { id: 'tul-29-coba', time: 'בוקר', icon: '⛰️', title: 'חורבות Cobá', en: 'Climb the pyramid', tag: 'מתבגרים', note: 'פירמידת Nohoch Mul נפתחה שוב לטיפוס (דצמבר 2025!) — הפירמידה היחידה ביוקטן שמותר לטפס עליה. שוכרים אופניים לשבילי הג׳ונגל (גם הפעוט נהנה ברכיבה).', link: 'https://yucatanmagazine.com/coba-nohoch-mul/' },
-          { id: 'tul-29-siankaan', time: 'כל היום', icon: '🐊', title: 'Sian Ka\'an · Muyil', en: 'Forest & Float', tag: 'טבע UNESCO', note: 'שמורת ביוספרה של אונסק"ו — חורבות Muyil ואז ציפה בתעלת מנגרובים טבעית כמו נהר עצל. יפהפה, לכל גיל.', link: 'https://siankaantours.org/' },
-          { id: 'tul-29-beachclub', time: 'אחה״צ', icon: '🏖️', title: 'מועדון חוף', en: 'La Zebra / Ikal', tag: 'נינוח', note: 'חוף רחב, מתקני ילדים ותפריט ידידותי — סיום נינוח עם מיטות חוף נוחות לשנ"צ של הפעוט.', link: 'https://lazebratulum.com/' },
-          { id: 'tul-29-zacilha', time: 'אחה״צ', icon: '💎', title: 'Cenote Zacil-Há', en: 'Pool + zip-line', tag: 'כיף מתוחם', note: 'סנוטה בסגנון נופש — בריכה פתוחה, אומגה לתוך המים ומסעדה במקום. רגוע ומתוחם, שילוב אחרון של פעוט ומתבגרים.' },
+          { id: 'tul-29-coba', duration: '~3–4 שעות', icon: '⛰️', title: 'חורבות Cobá', en: 'Climb the pyramid', tag: 'מתבגרים', note: 'פירמידת Nohoch Mul נפתחה שוב לטיפוס (דצמבר 2025!) — הפירמידה היחידה ביוקטן שמותר לטפס עליה. שוכרים אופניים לשבילי הג׳ונגל (גם הפעוט נהנה ברכיבה).', link: 'https://yucatanmagazine.com/coba-nohoch-mul/' },
+          { id: 'tul-29-siankaan', duration: 'יום שלם', icon: '🐊', title: 'Sian Ka\'an · Muyil', en: 'Forest & Float', tag: 'טבע UNESCO', note: 'שמורת ביוספרה של אונסק"ו — חורבות Muyil ואז ציפה בתעלת מנגרובים טבעית כמו נהר עצל. יפהפה, לכל גיל.', link: 'https://siankaantours.org/' },
+          { id: 'tul-29-beachclub', duration: 'חצי יום', icon: '🏖️', title: 'מועדון חוף', en: 'La Zebra / Ikal', tag: 'נינוח', note: 'חוף רחב, מתקני ילדים ותפריט ידידותי — סיום נינוח עם מיטות חוף נוחות לשנ"צ של הפעוט.', link: 'https://lazebratulum.com/' },
+          { id: 'tul-29-zacilha', duration: '~2 שעות', icon: '💎', title: 'Cenote Zacil-Há', en: 'Pool + zip-line', tag: 'כיף מתוחם', note: 'סנוטה בסגנון נופש — בריכה פתוחה, אומגה לתוך המים ומסעדה במקום. רגוע ומתוחם, שילוב אחרון של פעוט ומתבגרים.' },
         ],
       },
     ],
@@ -291,4 +291,4 @@ const ALPERT_FAMILIES = [
   },
 ];
 
-Object.assign(window, { FAMILY, VOTERS, TIME_ORDER, LEGS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES });
+Object.assign(window, { FAMILY, VOTERS, LEGS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES });

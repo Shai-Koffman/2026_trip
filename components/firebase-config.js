@@ -23,7 +23,15 @@
 
    Once pushed, everyone's 👍 sync live across all devices in real time.
    ============================================================ */
-window.FIREBASE_CONFIG = null;
+window.FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAwMTzrRhPG2nzWDyFrJ5AJ7lr0efoQ_8s",
+  authDomain: "koffman-trip-2026.firebaseapp.com",
+  databaseURL: "https://koffman-trip-2026-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "koffman-trip-2026",
+  storageBucket: "koffman-trip-2026.firebasestorage.app",
+  messagingSenderId: "1055178823847",
+  appId: "1:1055178823847:web:da8b64c6081ab9f153e382"
+};
 
 /* Example of what it looks like once pasted:
 window.FIREBASE_CONFIG = {

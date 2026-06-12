@@ -341,60 +341,81 @@ function LegMap({ leg }) {
 }
 
 // ============ LEG RESTAURANTS ("where to eat" — 4.6★+ shortlist) ============
+const FOOD_GROUPS = [
+  { key: 'dine', label: '🍽️ מסעדות לארוחה' },
+  { key: 'casual', label: '🍕 מהיר וקז׳ואל' },
+  { key: 'bakery', label: '🥐 מאפיות וקינוחים' },
+];
 function LegRestaurants({ leg }) {
   const list = (typeof RESTAURANTS !== 'undefined' && RESTAURANTS[leg.id]) || [];
   if (!list.length) return null;
+
+  const linkStyle = {
+    display: 'inline-flex', alignItems: 'center', gap: 4,
+    fontSize: 12.5, fontWeight: 600, color: leg.color,
+    textDecoration: 'none', borderBottom: `1px solid ${leg.color}55`,
+  };
+  const card = (r, key) => {
+    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.q)}`;
+    return (
+      <div key={key} style={{
+        position: 'relative', background: 'white', padding: '14px 16px',
+        borderTop: `4px solid ${leg.color}`,
+        borderBottom: `1.5px solid ${leg.color}33`,
+        borderInlineStart: `1.5px solid ${leg.color}33`,
+        borderInlineEnd: `1.5px solid ${leg.color}33`,
+        boxShadow: 'var(--shadow-paper)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
+          <span className="en" style={{ fontSize: 16, fontWeight: 700, fontStyle: 'normal' }}>{r.name}</span>
+          <span dir="ltr" style={{
+            fontSize: 12, fontWeight: 700, color: '#7a5d00',
+            background: '#f4b94022', border: '1px solid #f4b94099',
+            padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap',
+          }}>⭐ {r.r}</span>
+          {r.host && (
+            <span style={{
+              fontSize: 10.5, fontWeight: 700, color: leg.color,
+              background: `${leg.color}1a`, border: `1px solid ${leg.color}55`,
+              padding: '1px 7px', borderRadius: 999, whiteSpace: 'nowrap',
+            }}>★ יעיר ועינת</span>
+          )}
+        </div>
+        <div style={{ fontSize: 12, color: leg.color, fontWeight: 600, marginTop: 2 }}>{r.cuisine}</div>
+        <div style={{ fontSize: 13.5, color: 'var(--ink-soft)', marginTop: 6, lineHeight: 1.45 }}>{r.note}</div>
+        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 8 }}>
+          <a href={mapsUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>🗺️ Google Maps ↗</a>
+          {r.link && <a href={r.link} target="_blank" rel="noopener noreferrer" style={linkStyle}>🌐 אתר ↗</a>}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div style={{ marginTop: 46 }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 6, flexWrap: 'wrap' }}>
         <h3 className="display" style={{ fontSize: 30 }}>איפה אוכלים</h3>
         <span className="handwritten" style={{ fontSize: 24, color: leg.color }}>מקומות מומלצים 🍽️</span>
       </div>
-      <p style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 0, marginBottom: 16, maxWidth: 720 }}>
+      <p style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 0, marginBottom: 18, maxWidth: 720 }}>
         מסעדות ומקומות אוכל מומלצים לקבוצה גדולה — כולל הרשימה של יעיר ועינת (מסומנת ★). כדאי להזמין מקום מראש.
       </p>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(258px, 1fr))', gap: 16 }}>
-        {list.map((r, i) => {
-          const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.q)}`;
-          const linkStyle = {
-            display: 'inline-flex', alignItems: 'center', gap: 4,
-            fontSize: 12.5, fontWeight: 600, color: leg.color,
-            textDecoration: 'none', borderBottom: `1px solid ${leg.color}55`,
-          };
-          return (
-            <div key={i} style={{
-              position: 'relative', background: 'white', padding: '14px 16px',
-              borderTop: `4px solid ${leg.color}`,
-              borderBottom: `1.5px solid ${leg.color}33`,
-              borderInlineStart: `1.5px solid ${leg.color}33`,
-              borderInlineEnd: `1.5px solid ${leg.color}33`,
-              boxShadow: 'var(--shadow-paper)',
-            }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
-                <span className="en" style={{ fontSize: 16, fontWeight: 700, fontStyle: 'normal' }}>{r.name}</span>
-                <span dir="ltr" style={{
-                  fontSize: 12, fontWeight: 700, color: '#7a5d00',
-                  background: '#f4b94022', border: '1px solid #f4b94099',
-                  padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap',
-                }}>⭐ {r.r}</span>
-                {r.host && (
-                  <span style={{
-                    fontSize: 10.5, fontWeight: 700, color: leg.color,
-                    background: `${leg.color}1a`, border: `1px solid ${leg.color}55`,
-                    padding: '1px 7px', borderRadius: 999, whiteSpace: 'nowrap',
-                  }}>★ יעיר ועינת</span>
-                )}
-              </div>
-              <div style={{ fontSize: 12, color: leg.color, fontWeight: 600, marginTop: 2 }}>{r.cuisine}</div>
-              <div style={{ fontSize: 13.5, color: 'var(--ink-soft)', marginTop: 6, lineHeight: 1.45 }}>{r.note}</div>
-              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 8 }}>
-                <a href={mapsUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>🗺️ Google Maps ↗</a>
-                {r.link && <a href={r.link} target="_blank" rel="noopener noreferrer" style={linkStyle}>🌐 אתר ↗</a>}
-              </div>
+      {FOOD_GROUPS.map(g => {
+        const items = list.filter(r => (r.group || 'dine') === g.key);
+        if (!items.length) return null;
+        return (
+          <div key={g.key} style={{ marginBottom: 20 }}>
+            <div style={{
+              fontSize: 13, fontWeight: 700, color: 'var(--ink-faded)',
+              letterSpacing: '0.04em', margin: '0 0 10px',
+              borderBottom: '1px dashed var(--ink-faded)', paddingBottom: 5,
+            }}>{g.label} <span style={{ opacity: 0.6 }}>· {items.length}</span></div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(258px, 1fr))', gap: 16 }}>
+              {items.map((r, i) => card(r, `${g.key}-${i}`))}
             </div>
-          );
-        })}
-      </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

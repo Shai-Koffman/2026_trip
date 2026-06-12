@@ -13,12 +13,12 @@ const FAMILY = [
 // ============ VOTERS (everyone — all three family groups, all 14) ============
 const VOTERS = [
   ...FAMILY.map(p => ({ ...p, group: 'קופמן' })),
-  // NJ Alperts — host Part 1
+  // NJ Alperts — host New York
   { id: 'yair',  name: 'יאיר',  nameEn: 'Yair',  color: '#2e6b8f', emoji: '👨', group: 'אלפרט · ניו ג׳רזי' },
   { id: 'einat', name: 'עינת', nameEn: 'Einat', color: '#e89ba8', emoji: '👩', group: 'אלפרט · ניו ג׳רזי' },
   { id: 'rom',   name: 'רום',   nameEn: 'Rom',   age: 6, color: '#f4b940', emoji: '🎈', group: 'אלפרט · ניו ג׳רזי' },
   { id: 'nur',   name: 'נור',   nameEn: 'Nur',   age: 2, color: '#ee6352', emoji: '🧸', group: 'אלפרט · ניו ג׳רזי' },
-  // GA Alperts — host Part 2 + join Tulum
+  // GA Alperts — host Atlanta
   { id: 'boaz',  name: 'בועז', nameEn: 'Boaz',  color: '#2e6b8f', emoji: '👨', group: 'אלפרט · ג׳ורג׳יה' },
   { id: 'libby', name: 'ליבי', nameEn: 'Libby', color: '#e89ba8', emoji: '👩', group: 'אלפרט · ג׳ורג׳יה' },
   { id: 'ella',  name: 'אלה',  nameEn: 'Ella',  age: 16, color: '#f4b940', emoji: '✨', group: 'אלפרט · ג׳ורג׳יה' },
@@ -26,18 +26,16 @@ const VOTERS = [
   { id: 'eyal',  name: 'אייל', nameEn: 'Eyal',  age: 11, color: '#3f6b3a', emoji: '🚀', group: 'אלפרט · ג׳ורג׳יה' },
 ];
 
-// ============ THE THREE LEGS ============
-// Each leg → days → each day has a MENU of activities (not just alternatives).
-// Each option shows a `duration` so you can stack several into one day.
-// Option fields: id (unique, for voting), duration, icon, title, en, note, link, tag
+// ============ THE TWO LEGS ============
+// Each leg → days → each day is a MENU of options (with duration), votable.
 const LEGS = [
-  // ---------------------------------------------------------------- PART 1: NY / NJ
+  // ---------------------------------------------------------------- PART 1: NY / NJ (14–21)
   {
     id: 'ny',
     part: 'חלק ראשון',
     name: 'ניו יורק וניו ג׳רזי',
     nameEn: 'New York & New Jersey',
-    dates: '14–19 ביולי',
+    dates: '14–21 ביולי',
     color: '#2e4ea8',
     accent: '#8da8e8',
     hostLine: 'הבסיס: הבית של יאיר ועינת בניו ג׳רזי · עם רום ונור',
@@ -106,23 +104,41 @@ const LEGS = [
           { id: 'ny-19-asbury', duration: 'חצי יום', icon: '🎡', title: 'Asbury Park Boardwalk', en: 'Jersey Shore', tag: 'כיף לכולם', note: 'טיילת שורצת חיים מול הים — חוף לקטנים וארקייד פינבול Silverball לגדולים. קליל ומהנה.', link: 'https://apboardwalk.com/' },
         ],
       },
+      {
+        id: 'ny-20', date: '20 ביולי', dow: 'שני', icon: '🗽',
+        title: 'ניו יורק — סיבוב שני', subtitle: 'עוד פנינים בעיר לפני שטסים דרומה',
+        options: [
+          { id: 'ny-20-statue', duration: 'חצי יום', icon: '🗽', title: 'פסל החירות + Ellis Island', en: 'Statue of Liberty', tag: 'כל המשפחה', note: 'מעבורת לאי החירות ולאליס איילנד — אייקון אמיתי, נוף מהמים לקו הרקיע. כדאי כרטיסים מראש לכתר.', link: 'https://www.nps.gov/stli/' },
+          { id: 'ny-20-intrepid', duration: '~2–3 שעות', icon: '🛩️', title: 'Intrepid Museum', en: 'Sea, Air & Space', tag: 'מתבגרים', note: 'נושאת מטוסים אמיתית עם מטוסי קרב, צוללת ומעבורת חלל — חלום לעומר וגל.', link: 'https://intrepidmuseum.org/' },
+          { id: 'ny-20-chelsea', duration: '~2 שעות', icon: '🍴', title: 'Chelsea Market + High Line', en: 'Food hall + park', tag: 'כל המשפחה', note: 'שוק אוכל מקורה ענק, ואז טיול על ה-High Line — פארק על מסילת רכבת מוגבהת. שילוב מנצח.', link: 'https://www.chelseamarket.com/' },
+        ],
+      },
+      {
+        id: 'ny-21', date: '21 ביולי', dow: 'שלישי', icon: '🎡',
+        title: 'יום אחרון בניו יורק', subtitle: 'סיום קליל לפני הטיסה לאטלנטה מחר',
+        options: [
+          { id: 'ny-21-coney', duration: 'חצי יום', icon: '🎡', title: 'Coney Island + Luna Park', en: 'Brooklyn boardwalk', tag: 'כיף לכולם', note: 'חוף, טיילת, רכבת ההרים ההיסטורית Cyclone ונקניקיות Nathan\'s — סיום כיפי וקליל.', link: 'https://lunaparknyc.com/' },
+          { id: 'ny-21-mills', duration: '~2–3 שעות', icon: '🛍️', title: 'קניות אחרונות — The Mills', en: 'Tax-free, last call', tag: 'שופינג', note: 'מילוי אחרון של המזוודות ללא מע"מ על ביגוד לפני הדרום.', link: 'https://www.simon.com/mall/the-mills-at-jersey-gardens' },
+          { id: 'ny-21-family', duration: 'גמיש', icon: '🧳', title: 'זמן אחרון עם יאיר ועינת + אריזה', en: 'Pack & relax', tag: 'רגוע', note: 'בוקר נינוח עם המשפחה, אריזה, ויציאה רעננה לאטלנטה.' },
+        ],
+      },
     ],
   },
 
-  // ---------------------------------------------------------------- PART 2: ATLANTA
+  // ---------------------------------------------------------------- PART 2: ATLANTA (22–29)
   {
     id: 'atl',
     part: 'חלק שני',
     name: 'אטלנטה ואלפארטה',
     nameEn: 'Atlanta & Alpharetta',
-    dates: '20–25 ביולי',
+    dates: '22–29 ביולי',
     color: '#c14050',
     accent: '#f08070',
-    hostLine: 'מתארחים אצל בועז וליבי באלפארטה · עם אלה, גל ואייל',
-    travel: '✈️ טיסה מ-ניוארק (EWR) ל-אטלנטה (ATL) · הבסיס באלפארטה, צפון אטלנטה',
+    hostLine: 'מתארחים אצל בועז וליבי באלפארטה — עד סוף הטיול · עם אלה, גל ואייל',
+    travel: '✈️ טיסה מ-ניוארק (EWR) ל-אטלנטה (ATL) ב-22 ביולי · הבסיס באלפארטה, צפון אטלנטה',
     days: [
       {
-        id: 'atl-20', date: '20 ביולי', dow: 'שני', icon: '✈️',
+        id: 'atl-20', date: '22 ביולי', dow: 'רביעי', icon: '✈️',
         title: 'טיסה לאטלנטה + מפגש', subtitle: 'נוחתים אצל בועז וליבי · ערב ראשון רגוע',
         options: [
           { id: 'atl-20-avalon', duration: '~2 שעות', icon: '🛍️', title: 'Avalon', en: 'Alpharetta', tag: 'קרוב לבית', note: 'מתחם פתוח של חנויות, מזרקות וכיכר מרכזית — 5–10 דק׳ מהבית. ערב ראשון נינוח להיות יחד.', link: 'https://experienceavalon.com/' },
@@ -131,17 +147,17 @@ const LEGS = [
         ],
       },
       {
-        id: 'atl-21', date: '21 ביולי', dow: 'שלישי', icon: '🚶',
+        id: 'atl-21', date: '23 ביולי', dow: 'חמישי', icon: '🚶',
         title: 'טיול הליכה', subtitle: 'נוף, טבע או שיטוט עירוני (מומלץ מוקדם בבוקר — חם!)',
         options: [
           { id: 'atl-21-vickery', duration: '~2 שעות', icon: '🏞️', title: 'Vickery Creek / Old Mill Park', en: 'Roswell', tag: 'הכי קרוב', note: 'גשר מקורה, חורבות טחנה מ-1830 ומפל — מסלול לולאה נעים (~6 ק"מ), 15 דק׳ מהבית. הכי טוב מוקדם בבוקר.', link: 'https://www.nps.gov/chat/' },
-          { id: 'atl-21-beltline', duration: '~2–3 שעות', icon: '🚶', title: 'BeltLine + Ponce City Market', en: 'Eastside Trail', tag: 'עירוני', note: 'טיילת אורבנית שטוחה עם אמנות רחוב, שמסתיימת ב-Ponce City Market — וגג Skyline Park עם משחקים ומיני-גולף למתבגרים.', link: 'https://beltline.org/parks-trails/eastside-trail/' },
+          { id: 'atl-21-beltline', duration: '~2–3 שעות', icon: '🚶', title: 'BeltLine + Ponce City Market', en: 'Eastside Trail', tag: 'עירוני', note: 'טיילת אורבנית שטוחה עם אמנות רחוב, שמסתיימת ב-Ponce City Market — וגג Skyline Park עם משחקים ומיני-גולף למתבגרים. (המלצת בועז)', link: 'https://beltline.org/parks-trails/eastside-trail/' },
           { id: 'atl-21-piedmont', duration: '~2–3 שעות', icon: '🌺', title: 'Piedmont Park + Botanical Garden', en: 'Midtown', tag: 'נוף', note: 'הליכה בפארק העירוני ואז Canopy Walk של הגן הבוטני — מסלול תלוי בין צמרות העצים. נינוח ויפהפה.', link: 'https://atlantabg.org/' },
           { id: 'atl-21-stonemtn', duration: 'יום שלם', icon: '⛰️', title: 'Stone Mountain Park', en: 'Walk-up / Skyride', tag: 'נוף + מופע', note: 'טיפוס על כיפת הגרניט (או רכבל) לתצפית, ובערב מופע מזל"טים ולייזרים. יום שלם של טבע ובידור.', link: 'https://stonemountainpark.com/' },
         ],
       },
       {
-        id: 'atl-22', date: '22 ביולי', dow: 'רביעי', icon: '🎢',
+        id: 'atl-22', date: '24 ביולי', dow: 'שישי', icon: '🎢',
         title: 'פארק שיא · ריגושים', subtitle: 'יום אדרנלין למתבגרים',
         split: 'אפשר להתפצל — הגדולים על הרכבות, אייל ורותם על iFLY / LEGO או האקווריום',
         options: [
@@ -151,150 +167,59 @@ const LEGS = [
         ],
       },
       {
-        id: 'atl-23', date: '23 ביולי', dow: 'חמישי', icon: '🛍️',
-        title: 'שופינג + זמן ביחד', subtitle: 'מאלפארטה ועד באקהד',
+        id: 'atl-23', date: '25 ביולי', dow: 'שבת', icon: '🛍️',
+        title: 'שופינג + זמן ביחד', subtitle: 'מאלפארטה ועד באקהד ועד האאוטלט בצפון',
         split: 'אפשר להתפצל בין הקניונים — אלפארטה מול באקהד',
         options: [
           { id: 'atl-23-avalon', duration: '~2–3 שעות', icon: '🛍️', title: 'Avalon', en: 'Alpharetta', tag: 'הבחירה המקומית', note: '60+ מותגים (Apple, Lululemon), כיכר פתוחה וקולנוע — קרוב לבית והכי נוח לכל המשפחה.', link: 'https://experienceavalon.com/' },
+          { id: 'atl-23-ngoutlets', duration: '~2–3 שעות', icon: '🏷️', title: 'North Georgia Premium Outlets', en: 'Dawsonville', tag: 'אאוטלט · המלצת בועז', note: 'אאוטלט מותגים ענק (~40 דק׳ צפונה) — נייקי, אדידס, פולו ועוד במחירי אאוטלט. בועז המליץ.', link: 'https://www.premiumoutlets.com/outlet/north-georgia' },
           { id: 'atl-23-lenox', duration: '~2 שעות', icon: '🏬', title: 'Lenox Square', en: 'Buckhead', tag: 'פרימיום', note: 'הקניון הגדול והנחשב של באקהד — מותגי על וברנדים אמריקאים, 35 דק׳ נסיעה.', link: 'https://www.simon.com/mall/lenox-square' },
           { id: 'atl-23-phipps', duration: '~2 שעות', icon: '🧱', title: 'Phipps Plaza + LEGO Discovery', en: 'Buckhead', tag: 'גם לקטנים', note: 'קניון פרימיום שמולו, ובתוכו LEGO Discovery Center — מושלם לאייל ולרותם בזמן שהגדולים קונים.', link: 'https://www.legodiscoverycenter.com/atlanta/' },
-          { id: 'atl-23-ponce', duration: '~2–3 שעות', icon: '🏛️', title: 'Ponce City Market', en: 'Old Fourth Ward', tag: 'טרנדי', note: 'שוק אוכל וקניות בבניין היסטורי משופץ, עם גג משחקים. שילוב מנצח של שופינג, אוכל וכיף.', link: 'https://www.poncecitymarket.com/' },
         ],
       },
       {
-        id: 'atl-24', date: '24 ביולי', dow: 'שישי', icon: '💦',
-        title: 'פארק מים', subtitle: 'להתקרר ביום הכי חם',
+        id: 'atl-24', date: '26 ביולי', dow: 'ראשון', icon: '💦',
+        title: 'פארק מים / אגם', subtitle: 'להתקרר ביום הכי חם',
         options: [
-          { id: 'atl-24-whitewater', duration: 'יום שלם', icon: '💦', title: 'Six Flags White Water', en: 'Marietta', tag: 'הכי טוב', note: 'פארק המים הגדול בדרום — 70 דונם, מגלשת Tsunami Surge ובריכת גלים. הבחירה העצמאית הטובה ביותר.', link: 'https://www.sixflags.com/whitewater' },
+          { id: 'atl-24-lanier', duration: 'יום שלם', icon: '🏖️', title: 'Lake Lanier · Margaritaville', en: 'Lanier Islands', tag: 'קרוב לבית · המלצת בועז', note: 'אגם לניר 20–30 דק׳ מהבית — חוף, פארק מים ומגלשות (Margaritaville). הכי קרוב וקליל, ובועז המליץ.', link: 'https://www.margaritavilleresorts.com/margaritaville-at-lanier-islands' },
+          { id: 'atl-24-whitewater', duration: 'יום שלם', icon: '💦', title: 'Six Flags White Water', en: 'Marietta', tag: 'פארק המים הגדול', note: 'פארק המים הגדול בדרום — 70 דונם, מגלשת Tsunami Surge ובריכת גלים.', link: 'https://www.sixflags.com/whitewater' },
           { id: 'atl-24-hurricane', duration: 'יום שלם', icon: '🌊', title: 'Hurricane Harbor', en: 'בתוך Six Flags', tag: 'משולב', note: 'אם בא לכם גם רכבות וגם מים באותו יום — פארק המים הזה כלול בכרטיס של Six Flags Over Georgia.', link: 'https://www.sixflags.com/overgeorgia/hurricane-harbor-atlanta' },
           { id: 'atl-24-aquarium', duration: '~2–3 שעות', icon: '🐠', title: 'Georgia Aquarium', en: 'אלטרנטיבה ממוזגת', tag: 'מקורה', note: 'אם החום מנצח — אחד האקווריומים הגדולים בעולם, ממוזג ורגוע, עם כרישי לווייתן ולווייתנים לבנים.', link: 'https://www.georgiaaquarium.org/' },
         ],
       },
       {
-        id: 'atl-25', date: '25 ביולי', dow: 'שבת', icon: '🐠',
-        title: 'שופינג + סיכום לפני מקסיקו', subtitle: 'יום אחרון רגוע באטלנטה',
+        id: 'atl-27', date: '27 ביולי', dow: 'שני', icon: '⛰️',
+        title: 'טיול ללוקאאוט מאונטיין', subtitle: 'ההמלצה של בועז וליבי · ~1:40 נסיעה צפונה',
+        split: 'אפשר להתפצל — חלק ב-Rock City, חלק ב-Ruby Falls (קשה להספיק את שניהם ביום אחד)',
+        options: [
+          { id: 'atl-27-rockcity', duration: 'חצי יום', icon: '🪨', title: 'Rock City Gardens', en: 'Lookout Mountain', tag: 'נוף + סלעים · המלצת בועז', note: 'גנים בין סלעי ענק, גשר חבלים תלוי (Swing-A-Long) ותצפית ל-7 מדינות. בועז וליבי היו והמליצו — יש גם מסלולים בין הסלעים הגדולים.', link: 'https://www.seerockcity.com/' },
+          { id: 'atl-27-rubyfalls', duration: '~1.5 שעות', icon: '💧', title: 'Ruby Falls', en: 'Underground waterfall', tag: 'מערה', note: 'מפל תת-קרקעי בתוך מערה — סיור מודרך מרהיב אל מעמקי ההר. זאת המערה שאייל אהב!', link: 'https://www.rubyfalls.com/' },
+        ],
+      },
+      {
+        id: 'atl-28', date: '28 ביולי', dow: 'שלישי', icon: '🛶',
+        title: 'הלן + אבובים בנהר', subtitle: 'עיירה אלפיינית ~שעה צפונה · המלצת בועז',
+        options: [
+          { id: 'atl-28-tubing', duration: 'חצי יום', icon: '🛶', title: 'Cool River Tubing', en: 'Chattahoochee, Helen', tag: 'כיף לכולם · המלצת בועז', note: 'אבובים על נהר הצ׳אטהוצ׳י — קליל, מרענן וכיף לכל המשפחה ביום חם. בדיוק מה שבועז תיאר.', link: 'https://www.coolrivertubing.com/' },
+          { id: 'atl-28-helen', duration: '~2–3 שעות', icon: '🏘️', title: 'Helen', en: 'Bavarian alpine town', tag: 'שיטוט', note: 'עיירה בסגנון בוואריה — רחוב ראשי צבעוני, חנויות, גלידה וגרמני-קיטש. (ויש גם סיורי אוכל — בעיקר לבועז 😄)', link: 'https://explorehelen.com/' },
+        ],
+      },
+      {
+        id: 'atl-25', date: '29 ביולי', dow: 'רביעי', icon: '🐠',
+        title: 'יום אחרון לפני הטיסה הביתה', subtitle: 'סיכום רגוע באטלנטה',
         options: [
           { id: 'atl-25-aquarium', duration: '~2–3 שעות', icon: '🐠', title: 'Georgia Aquarium', en: 'Downtown', tag: 'נינוח', note: 'אחד הגדולים בעולם — קריר, רגוע ומרהיב. סיום מושלם ואנרגיה נמוכה לפני יום טיסה.', link: 'https://www.georgiaaquarium.org/' },
           { id: 'atl-25-coke', duration: '~1–1.5 שעות', icon: '🥤', title: 'World of Coca-Cola', en: 'Pemberton Place', tag: 'כיף וקצר', note: 'ממש ליד האקווריום — חוויה קצרה וכיפית עם טעימות משקאות מכל העולם. כרטיס משולב.', link: 'https://www.worldofcoca-cola.com/' },
-          { id: 'atl-25-avalon', duration: '~2 שעות', icon: '🛍️', title: 'Avalon', en: 'קניות אחרונות', tag: 'קרוב לבית', note: 'שופינג של הרגע האחרון קרוב לבית, לפני שאורזים וטסים לטולום.', link: 'https://experienceavalon.com/' },
+          { id: 'atl-25-avalon', duration: '~2 שעות', icon: '🛍️', title: 'Avalon', en: 'קניות אחרונות', tag: 'קרוב לבית', note: 'שופינג של הרגע האחרון קרוב לבית, לפני שאורזים וטסים הביתה.', link: 'https://experienceavalon.com/' },
           { id: 'atl-25-sweetwater', duration: '~2 שעות', icon: '🌿', title: 'Sweetwater Creek State Park', en: 'Lithia Springs', tag: 'טבע', note: 'עוד יציאה קלה לטבע — שבילי נחל ואגם אל חורבות טחנה מתקופת מלחמת האזרחים.', link: 'https://gastateparks.org/SweetwaterCreek' },
         ],
       },
     ],
   },
-
-  // ---------------------------------------------------------------- PART 3: TULUM
-  {
-    id: 'tul',
-    part: 'חלק שלישי',
-    name: 'טולום, מקסיקו',
-    nameEn: 'Tulum, Mexico',
-    dates: '26–29 ביולי',
-    color: '#0e7f94',
-    accent: '#7bc5cf',
-    hostLine: 'כל 3 המשפחות יחד · וילה אחת גדולה · הפינאלה של הטיול 🎉',
-    travel: '✈️ מאטלנטה: טיסה ישירה ל-Tulum (TQO ~2:45) או דרך Cancún (CUN) + נסיעה 1.5–2 שעות',
-    days: [
-      {
-        id: 'tul-26', date: '26 ביולי', dow: 'ראשון', icon: '🏖️',
-        title: 'נחיתה והשתקעות', subtitle: 'נכנסים לוילה, נושמים אוויר קריבי',
-        options: [
-          { id: 'tul-26-villa', duration: 'גמיש', icon: '🏊', title: 'יום בריכה בוילה', en: 'Pool & chill', tag: 'אפס לוגיסטיקה', note: 'פורקים, שוחים ומתאקלמים — ערב ראשון רגוע אחרי הטיסה, בלי שום תכנון.' },
-          { id: 'tul-26-calavera', duration: '~1–2 שעות', icon: '🦴', title: 'Cenote Calavera', en: '"Temple of Doom"', tag: 'מתבגרים + רדוד', note: 'הסנוטה הקרובה ביותר לעיר — קפיצות לתוך המים לגדולים, ופינה רדודה ובטוחה לקטנטנים. כניסה במקום.' },
-          { id: 'tul-26-pueblo', duration: '~2 שעות', icon: '🛍️', title: 'Tulum Pueblo', en: 'Town center', tag: 'פעוטה-פרנדלי', note: 'שיטוט קליל בעיירה — חנויות, גלידה וארוחת ערב נינוחה. שטוח ונוח לעגלה.', link: 'https://www.tulum.com/' },
-        ],
-      },
-      {
-        id: 'tul-27', date: '27 ביולי', dow: 'שני', icon: '🐠',
-        title: 'פארק אקולוגי גדול', subtitle: 'יום עוגן אחד לכל החבורה',
-        split: 'אפשר להתפצל — תת-קבוצת מתבגרים ל-Xplor/Xavage, כל השאר ל-Xel-Há',
-        options: [
-          { id: 'tul-27-xelha', duration: 'יום שלם', icon: '🐠', title: 'Xel-Há', en: 'All-inclusive snorkel', tag: '★ כל המשפחה', note: 'פארק מים טבעי הכל-כלול — מפרץ שנורקלינג רגוע, נהר עצל בצמיגים, סנוטות עדינות ואזור ילדים. בטוח לפעוטה וכיף למתבגרים, הכל במקום אחד.', link: 'https://www.xelha.com/en/' },
-          { id: 'tul-27-xcaret', duration: 'יום שלם', icon: '🪶', title: 'Xcaret', en: 'Eco-cultural park', tag: 'הכי מגוון', note: 'נהרות תת-קרקעיים, חיות בר, ביתן פרפרים ומופע ערב מרהיב. אם רוצים יום שלם אחד שיש בו הכל — זה הוא.', link: 'https://www.xcaret.com/en/' },
-          { id: 'tul-27-xplor', duration: 'חצי יום–יום', icon: '⚡', title: 'Xplor', en: 'Zip-lines & rivers', tag: 'מתבגרים בלבד', note: 'אומגות הגבוהות בריביירה מאיה, רכבי שטח אמפיביים ונהרות תת-קרקעיים. הגבלת גיל/גובה — לגדולים ולמבוגרים, לא לפעוטה.', link: 'https://www.xcaret.com/en/parks-and-tours/about-xplor/' },
-          { id: 'tul-27-xavage', duration: 'חצי יום', icon: '🌊', title: 'Xavage', en: 'Adventure park', tag: 'אקסטרים', note: 'שייט מים אדירים, מאנסטר-טראק, סירת ג׳ט ומסלול חבלים. הכי אדרנלין — לתת-קבוצת המתבגרים.', link: 'https://www.grupoxcaret.com/en/xavage/' },
-        ],
-      },
-      {
-        id: 'tul-28', date: '28 ביולי', dow: 'שלישי', icon: '🏛️',
-        title: 'היסטוריה + טבע', subtitle: 'מאיה, חופים וסנוטות — אפשר לשלב כמה',
-        options: [
-          { id: 'tul-28-ruins', duration: '~2 שעות', icon: '🏛️', title: 'חורבות המאיה של טולום', en: 'Tulum Ruins', tag: 'כל המשפחה', note: 'חורבות מאיה על צוק מעל הים הקריבי — הליכה קצרה ושטוחה, נוף אייקוני וחוף למטה. הכי טוב להגיע מוקדם (פתיחה 8:00) עם הפעוטה.', link: 'https://www.inah.gob.mx/zonas/41-zona-arqueologica-de-tulum' },
-          { id: 'tul-28-akumal', duration: '~2–3 שעות', icon: '🐢', title: 'Akumal Bay', en: 'Swim with turtles', tag: 'צבי ים', note: 'שנורקלינג עם צבי ים ירוקים במים רדודים (סיור מודרך נדרש), בעוד הפעוטה משחקת בחוף. מפרץ רגוע.' },
-          { id: 'tul-28-grancenote', duration: '~1.5–2 שעות', icon: '🐢', title: 'Gran Cenote', en: 'Family-friendly cenote', tag: 'פעוטה-פרנדלי', note: 'מים טורקיז, נטיפים, צבים אמיתיים ושבילי עץ רדודים — מהסנוטות הכי ידידותיות למשפחה. כניסה במקום.', link: 'https://www.cenote.org/en/gran-cenote-in-tulum/' },
-          { id: 'tul-28-cristal', duration: '~1.5–2 שעות', icon: '🏞️', title: 'Cenote Cristal & Escondido', en: 'Open-air cenotes', tag: 'שקט', note: 'שתי סנוטות פתוחות זו מול זו — רדודות, פחות מפותחות ופחות עמוסות. קל ונעים עם ילדים קטנים.' },
-        ],
-      },
-      {
-        id: 'tul-29', date: '29 ביולי', dow: 'רביעי', icon: '⛰️',
-        title: 'יום אחרון · גמיש לפי הטיסה', subtitle: 'בוחרים לפי שעת הטיסה הביתה',
-        split: 'אפשר להתפצל — מטפסים על Cobá או נחים במועדון חוף, לפי הגיל והכוח',
-        options: [
-          { id: 'tul-29-coba', duration: '~3–4 שעות', icon: '⛰️', title: 'חורבות Cobá', en: 'Climb the pyramid', tag: 'מתבגרים', note: 'פירמידת Nohoch Mul נפתחה שוב לטיפוס (דצמבר 2025!) — הפירמידה היחידה ביוקטן שמותר לטפס עליה. שוכרים אופניים לשבילי הג׳ונגל (גם הפעוטה נהנית ברכיבה).', link: 'https://yucatanmagazine.com/coba-nohoch-mul/' },
-          { id: 'tul-29-siankaan', duration: 'יום שלם', icon: '🐊', title: 'Sian Ka\'an · Muyil', en: 'Forest & Float', tag: 'טבע UNESCO', note: 'שמורת ביוספרה של אונסק"ו — חורבות Muyil ואז ציפה בתעלת מנגרובים טבעית כמו נהר עצל. יפהפה, לכל גיל.', link: 'https://siankaantours.org/' },
-          { id: 'tul-29-beachclub', duration: 'חצי יום', icon: '🏖️', title: 'מועדון חוף', en: 'La Zebra / Ikal', tag: 'נינוח', note: 'חוף רחב, מתקני ילדים ותפריט ידידותי — סיום נינוח עם מיטות חוף נוחות לשנ"צ של הפעוטה.', link: 'https://lazebratulum.com/' },
-          { id: 'tul-29-zacilha', duration: '~2 שעות', icon: '💎', title: 'Cenote Zacil-Há', en: 'Pool + zip-line', tag: 'כיף מתוחם', note: 'סנוטה בסגנון נופש — בריכה פתוחה, אומגה לתוך המים ומסעדה במקום. רגוע ומתוחם, שילוב אחרון של פעוטה ומתבגרים.' },
-        ],
-      },
-    ],
-  },
-];
-
-// ============ TULUM HOUSE CANDIDATES ============
-// Couldn't auto-read Airbnb (403). Presented as equal candidates + a verify checklist.
-const TULUM_HOUSES = [
-  { id: 'house-a', label: 'מועמדת א׳', en: 'Airbnb #1', link: 'https://www.airbnb.com/rooms/1571766447679803289' },
-  { id: 'house-b', label: 'מועמדת ב׳', en: 'Airbnb #2', link: 'https://www.airbnb.com/rooms/1566281185356782495' },
-  { id: 'house-c', label: 'מועמדת ג׳', en: 'Airbnb #3', link: 'https://share.google/Wtxab5ZLikomMa7P5' },
-  { id: 'house-d', label: 'מועמדת ד׳', en: 'Airbnb #4', link: 'https://share.google/ziHMaq0kgcs30iAxe' },
-];
-
-const TULUM_HOUSE_CHECKLIST = [
-  { icon: '🛏️', text: 'ישנה 14+ אנשים · 5+ חדרי שינה' },
-  { icon: '🏊', text: 'בריכה פרטית' },
-  { icon: '🌊', text: 'גישה לים או טקסי קצר למועדון חוף' },
-  { icon: '🚼', text: 'בטוח ונוח לעגלה (פעוטה)' },
-];
-
-// ============ EXTENDED FAMILY (ALPERT) ============
-const ALPERT_FAMILIES = [
-  {
-    id: 'alpert-nj',
-    label: 'משפחת אלפרט · ניו ג׳רזי',
-    location: 'מארחים · חלק 1',
-    note: 'מארחים אותנו בניו ג׳רזי בפתיחת הטיול — יאיר הוא בן-הדוד שלנו',
-    color: '#2e6b8f',
-    tape: 'var(--tape-blue)',
-    tapeRotate: -4,
-    members: [
-      { name: 'יאיר', nameEn: 'Yair', role: 'אבא', emoji: '👨', color: '#2e6b8f' },
-      { name: 'עינת', nameEn: 'Einat', role: 'אמא', emoji: '👩', color: '#e89ba8' },
-      { name: 'רום', nameEn: 'Rom', age: 6, emoji: '🎈', color: '#f4b940' },
-      { name: 'נור', nameEn: 'Nur', age: 2, emoji: '🧸', color: '#ee6352' },
-    ],
-  },
-  {
-    id: 'alpert-ga',
-    label: 'משפחת אלפרט · ג׳ורג׳יה',
-    location: 'מארחים · חלק 2',
-    note: 'מארחים אותנו באלפארטה — ומצטרפים לכולם בטולום. אותם גילאים כמו עומר, ענבר ורותם',
-    color: '#c14050',
-    tape: 'var(--tape-pink)',
-    tapeRotate: 4,
-    members: [
-      { name: 'בועז', nameEn: 'Boaz', role: 'אבא', emoji: '👨', color: '#2e6b8f' },
-      { name: 'ליבי', nameEn: 'Libby', role: 'אמא', emoji: '👩', color: '#e89ba8' },
-      { name: 'אלה', nameEn: 'Ella', age: 16, emoji: '✨', color: '#f4b940' },
-      { name: 'גל', nameEn: 'Gal', age: 14, emoji: '⚡', color: '#e05a3e' },
-      { name: 'אייל', nameEn: 'Eyal', age: 11, emoji: '🚀', color: '#3f6b3a' },
-    ],
-  },
 ];
 
 // ============ PLACES METADATA ============
-// Per-option: r = Google rating (≈, omit if unknown), lat/lng, q = Google Maps query.
-// Used for the ⭐ badge, the "open in Maps" link, and the leg map pins.
-// (Entries omitted for non-places: at-home BBQ, Friday dinner, villa pool.)
+// Per-option: r = Google rating (omit if unknown), lat/lng, q = Google Maps query.
 const PLACES = {
   // NY / NJ
   'ny-14-hoboken':     { r: 4.8, lat: 40.7401, lng: -74.0259, q: 'Pier C Park Hoboken NJ' },
@@ -319,6 +244,11 @@ const PLACES = {
   'ny-19-sandyhook':   {        lat: 40.4300, lng: -73.9900, q: 'Sandy Hook Beach NJ' },
   'ny-19-stormking':   { r: 4.7, lat: 41.4234, lng: -74.0623, q: 'Storm King Art Center' },
   'ny-19-asbury':      { r: 4.6, lat: 40.2209, lng: -73.9996, q: 'Asbury Park Boardwalk' },
+  'ny-20-statue':      { r: 4.7, lat: 40.6892, lng: -74.0445, q: 'Statue of Liberty' },
+  'ny-20-intrepid':    { r: 4.6, lat: 40.7646, lng: -73.9996, q: 'Intrepid Museum New York' },
+  'ny-20-chelsea':     { r: 4.6, lat: 40.7421, lng: -74.0049, q: 'Chelsea Market New York' },
+  'ny-21-coney':       { r: 4.4, lat: 40.5738, lng: -73.9803, q: 'Luna Park Coney Island Brooklyn' },
+  'ny-21-mills':       { r: 4.5, lat: 40.6600, lng: -74.1715, q: 'The Mills at Jersey Gardens' },
   // Atlanta
   'atl-20-avalon':     { r: 4.6, lat: 34.0708, lng: -84.2772, q: 'Avalon Alpharetta' },
   'atl-20-topgolf':    { r: 4.4, lat: 34.0448, lng: -84.3083, q: 'Topgolf Alpharetta' },
@@ -331,31 +261,21 @@ const PLACES = {
   'atl-22-andretti':   { r: 4.2, lat: 33.9524, lng: -84.5153, q: 'Andretti Indoor Karting Marietta' },
   'atl-22-ifly':       { r: 4.6, lat: 33.8847, lng: -84.4713, q: 'iFLY Indoor Skydiving Atlanta' },
   'atl-23-avalon':     { r: 4.6, lat: 34.0708, lng: -84.2772, q: 'Avalon Alpharetta' },
+  'atl-23-ngoutlets':  { r: 4.4, lat: 34.3968, lng: -84.0433, q: 'North Georgia Premium Outlets Dawsonville' },
   'atl-23-lenox':      { r: 4.4, lat: 33.8459, lng: -84.3619, q: 'Lenox Square Atlanta' },
   'atl-23-phipps':     { r: 4.5, lat: 33.8525, lng: -84.3620, q: 'Phipps Plaza Atlanta' },
-  'atl-23-ponce':      { r: 4.6, lat: 33.7728, lng: -84.3656, q: 'Ponce City Market Atlanta' },
+  'atl-24-lanier':     {        lat: 34.1793, lng: -84.0314, q: 'Margaritaville at Lanier Islands' },
   'atl-24-whitewater': { r: 3.9, lat: 33.9578, lng: -84.5210, q: 'Six Flags White Water Marietta' },
   'atl-24-hurricane':  {        lat: 33.7684, lng: -84.5500, q: 'Hurricane Harbor Six Flags Over Georgia' },
   'atl-24-aquarium':   { r: 4.7, lat: 33.7634, lng: -84.3951, q: 'Georgia Aquarium' },
+  'atl-27-rockcity':   { r: 4.7, lat: 34.9730, lng: -85.3502, q: 'Rock City Gardens Lookout Mountain GA' },
+  'atl-27-rubyfalls':  { r: 4.6, lat: 35.0191, lng: -85.3394, q: 'Ruby Falls Chattanooga' },
+  'atl-28-tubing':     { r: 4.6, lat: 34.6995, lng: -83.7194, q: 'Cool River Tubing Helen GA' },
+  'atl-28-helen':      {        lat: 34.7018, lng: -83.7269, q: 'Helen GA Main Street' },
   'atl-25-aquarium':   { r: 4.7, lat: 33.7634, lng: -84.3951, q: 'Georgia Aquarium' },
   'atl-25-coke':       { r: 4.4, lat: 33.7626, lng: -84.3924, q: 'World of Coca-Cola' },
   'atl-25-avalon':     { r: 4.6, lat: 34.0708, lng: -84.2772, q: 'Avalon Alpharetta' },
   'atl-25-sweetwater': { r: 4.8, lat: 33.7525, lng: -84.6287, q: 'Sweetwater Creek State Park GA' },
-  // Tulum
-  'tul-26-calavera':   { r: 4.1, lat: 20.2292, lng: -87.4573, q: 'Cenote Calavera Tulum' },
-  'tul-26-pueblo':     {        lat: 20.2126, lng: -87.4654, q: 'Tulum Pueblo Centro' },
-  'tul-27-xelha':      { r: 4.8, lat: 20.3170, lng: -87.3541, q: 'Xel-Ha Park' },
-  'tul-27-xcaret':     { r: 4.8, lat: 20.5820, lng: -87.1217, q: 'Xcaret Park' },
-  'tul-27-xplor':      { r: 4.8, lat: 20.5938, lng: -87.1225, q: 'Xplor Park' },
-  'tul-27-xavage':     { r: 4.7, lat: 20.9947, lng: -86.8627, q: 'Xavage Cancun' },
-  'tul-28-ruins':      { r: 4.7, lat: 20.2150, lng: -87.4294, q: 'Tulum Ruins Archaeological Zone' },
-  'tul-28-akumal':     { r: 4.3, lat: 20.3951, lng: -87.3137, q: 'Akumal Bay' },
-  'tul-28-grancenote': { r: 4.3, lat: 20.2466, lng: -87.4641, q: 'Gran Cenote Tulum' },
-  'tul-28-cristal':    { r: 4.4, lat: 20.2003, lng: -87.5006, q: 'Cenote Cristal Tulum' },
-  'tul-29-coba':       { r: 4.7, lat: 20.4898, lng: -87.7294, q: 'Coba Ruins' },
-  'tul-29-siankaan':   { r: 4.6, lat: 20.0789, lng: -87.6133, q: "Muyil Sian Ka'an" },
-  'tul-29-beachclub':  { r: 4.6, lat: 20.1458, lng: -87.4600, q: 'La Zebra Tulum' },
-  'tul-29-zacilha':    { r: 4.5, lat: 20.2744, lng: -87.4884, q: 'Cenote Zacil-Ha Tulum' },
 };
 
 // ============ TOP-RATED RESTAURANTS per leg (Google ≥ 4.6★, group-friendly) ============
@@ -376,14 +296,41 @@ const RESTAURANTS = {
     { name: '9 Mile Station', r: 4.8, cuisine: 'אמריקאי על הגג', note: 'מסעדת גג מעל Ponce City Market ליד הארקייד והמיני-גולף, מזמינה קבוצות 20+ ולהיט אצל מתבגרים.', link: 'https://9milestation.com/', q: '9 Mile Station Ponce City Market Atlanta', lat: 33.7730, lng: -84.3664 },
     { name: "Ray's in the City", r: 4.6, cuisine: 'דגים / סטייק', note: 'מוסד דגים-וסטייק במרכז, צעדים מהאקווריום, מכיל בנוחות קבוצות משפחתיות גדולות.', link: 'https://www.raysinthecity.com/', q: "Ray's in the City Atlanta", lat: 33.7607, lng: -84.3877 },
   ],
-  tul: [
-    { name: 'Il Bacaro Tulum', r: 4.7, cuisine: 'טרטוריה איטלקית', note: 'טרטוריה פתוחה ומרווחת בעיירה עם פיצה ופסטה ביתיות, רגועה מספיק לקבוצה גדולה עם קטנטנים.', link: 'https://www.instagram.com/ilbacaro.tulum/', q: 'Il Bacaro Tulum Trattoria', lat: 20.2065, lng: -87.4625 },
-    { name: 'Sabor de Mar', r: 4.6, cuisine: 'דגים מקסיקני', note: 'דגים בסגנון סינלואה במרכז טולום עם מתקן משחקים לילדים ומגדלי פירות ים לשיתוף — אידיאלי לקבוצה עם פעוטה.', link: null, q: 'Sabor de Mar Tulum Centro', lat: 20.2125, lng: -87.4585 },
-    { name: 'Don Cafeto', r: 4.6, cuisine: 'מקסיקני מסורתי', note: "מוסד ותיק ומרווח בעיירה עם שירות מהיר ואדיב, מנות גדולות ותפריט מוכר (פחיטס, אנצ'ילדס) לכל הגילאים.", link: 'https://www.facebook.com/DonCafetoTulum/', q: 'Restaurant Don Cafeto Av Tulum', lat: 20.2118, lng: -87.4655 },
-    { name: 'Pizzeria Manglar', r: 4.6, cuisine: 'פיצה איטלקית', note: 'פיצרייה עם טרסת גן נינוחה בעיירה, משבחים אותה שוב ושוב על סבלנות עם משפחות, ילדים וסבים.', link: null, q: 'Pizzeria Manglar Tulum', lat: 20.2150, lng: -87.4610 },
-    { name: 'La Coqueta', r: 4.6, cuisine: 'מקסיקני', note: "מקום צבעוני ומשתלם באב' קובה בעיירה, תפריט מגוון וניסיון בהושבה ושירות מהיר לקבוצות גדולות.", link: 'https://lacoqueta.shop/', q: 'La Coqueta Mexican Food Av Coba Tulum', lat: 20.2155, lng: -87.4625 },
-    { name: 'La Zebra', r: 4.6, cuisine: 'מקסיקני על החוף', note: 'מסעדת חוף ידידותית למשפחות בזונה הוטלרה עם אזורי משחק, מקבלת הזמנות קבוצתיות — טאקו וגוואקמולי מול הים.', link: 'https://lazebratulum.com/restaurant-bar/', q: 'La Zebra Beach Restaurant Tulum', lat: 20.1545, lng: -87.4520 },
-  ],
 };
 
-Object.assign(window, { FAMILY, VOTERS, LEGS, PLACES, RESTAURANTS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES });
+// ============ EXTENDED FAMILY (ALPERT) ============
+const ALPERT_FAMILIES = [
+  {
+    id: 'alpert-nj',
+    label: 'משפחת אלפרט · ניו ג׳רזי',
+    location: 'מארחים · ניו יורק',
+    note: 'מארחים אותנו בניו ג׳רזי בפתיחת הטיול — יאיר הוא בן-הדוד שלנו',
+    color: '#2e6b8f',
+    tape: 'var(--tape-blue)',
+    tapeRotate: -4,
+    members: [
+      { name: 'יאיר', nameEn: 'Yair', role: 'אבא', emoji: '👨', color: '#2e6b8f' },
+      { name: 'עינת', nameEn: 'Einat', role: 'אמא', emoji: '👩', color: '#e89ba8' },
+      { name: 'רום', nameEn: 'Rom', age: 6, emoji: '🎈', color: '#f4b940' },
+      { name: 'נור', nameEn: 'Nur', age: 2, emoji: '🧸', color: '#ee6352' },
+    ],
+  },
+  {
+    id: 'alpert-ga',
+    label: 'משפחת אלפרט · ג׳ורג׳יה',
+    location: 'מארחים · אטלנטה',
+    note: 'מארחים אותנו באלפארטה לכל החצי השני של הטיול. אותם גילאים כמו עומר, ענבר ורותם',
+    color: '#c14050',
+    tape: 'var(--tape-pink)',
+    tapeRotate: 4,
+    members: [
+      { name: 'בועז', nameEn: 'Boaz', role: 'אבא', emoji: '👨', color: '#2e6b8f' },
+      { name: 'ליבי', nameEn: 'Libby', role: 'אמא', emoji: '👩', color: '#e89ba8' },
+      { name: 'אלה', nameEn: 'Ella', age: 16, emoji: '✨', color: '#f4b940' },
+      { name: 'גל', nameEn: 'Gal', age: 14, emoji: '⚡', color: '#e05a3e' },
+      { name: 'אייל', nameEn: 'Eyal', age: 11, emoji: '🚀', color: '#3f6b3a' },
+    ],
+  },
+];
+
+Object.assign(window, { FAMILY, VOTERS, LEGS, PLACES, RESTAURANTS, ALPERT_FAMILIES });

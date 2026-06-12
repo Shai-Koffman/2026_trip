@@ -1,4 +1,4 @@
-/* global React, L, LEGS, PLACES, RESTAURANTS, VOTERS, TULUM_HOUSES, TULUM_HOUSE_CHECKLIST, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn, voteMode, setMe, useMe */
+/* global React, L, LEGS, PLACES, RESTAURANTS, VOTERS, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn, voteMode, setMe, useMe */
 const { useState } = React;
 
 // ============ EXTENDED FAMILY (ALPERTS) ============
@@ -11,7 +11,7 @@ function ExtendedFamilySection() {
         <span className="handwritten" style={{ fontSize: 24, color: 'var(--tomato)' }}>משני הצדדים של אמריקה</span>
       </div>
       <p style={{ maxWidth: 760, color: 'var(--ink-soft)', marginBottom: 24, lineHeight: 1.55, fontSize: 15 }}>
-        יאיר ועינת מארחים אותנו בניו ג׳רזי · בועז וליבי מארחים באטלנטה · וכולם נפגשים בטולום. <span style={{ fontWeight: 600 }}>זאת הסיבה שבאנו</span>.
+        יאיר ועינת מארחים אותנו בניו ג׳רזי · בועז וליבי מארחים באטלנטה עד סוף הטיול. <span style={{ fontWeight: 600 }}>זאת הסיבה שבאנו</span>.
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
@@ -524,83 +524,7 @@ function LegSection({ leg, index }) {
       </div>
 
       <LegRestaurants leg={leg} />
-
-      {leg.id === 'tul' && <TulumHouses color={leg.color} />}
     </section>
-  );
-}
-
-// ============ TULUM HOUSE CANDIDATES ============
-function TulumHouses({ color }) {
-  const votes = useVotes();
-  let max = 0;
-  TULUM_HOUSES.forEach(h => { const c = countIn(votes, h.id); if (c > max) max = c; });
-
-  return (
-    <div style={{ marginTop: 52 }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 10, flexWrap: 'wrap' }}>
-        <h3 className="display" style={{ fontSize: 30 }}>איפה אנחנו ישנים</h3>
-        <span className="handwritten" style={{ fontSize: 24, color }}>4 מועמדות · מצביעים על הבית</span>
-      </div>
-      <p style={{ fontSize: 15, color: 'var(--ink-soft)', maxWidth: 720, marginTop: 0, marginBottom: 16 }}>
-        ארבע וילות שאנחנו שוקלים לכל 14 האנשים. פותחים כל אחת ב-Airbnb, בודקים מול הצ׳קליסט, ומצביעים מי בעניין.
-      </p>
-
-      {/* Checklist */}
-      <div style={{
-        display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 24,
-        padding: '12px 16px', background: 'var(--cream)',
-        border: '1.5px dashed var(--ink-faded)',
-      }}>
-        <span className="label" style={{ fontSize: 11, alignSelf: 'center' }}>מה לבדוק:</span>
-        {TULUM_HOUSE_CHECKLIST.map((c, i) => (
-          <span key={i} style={{ fontSize: 13, color: 'var(--ink-soft)', display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-            <span style={{ fontSize: 16 }}>{c.icon}</span>{c.text}
-          </span>
-        ))}
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 18 }}>
-        {TULUM_HOUSES.map((h, i) => {
-          const isLeader = max > 0 && countIn(votes, h.id) === max;
-          return (
-            <div key={h.id} style={{
-              position: 'relative',
-              background: 'var(--cream)',
-              borderTop: `5px solid ${color}`,
-              borderBottom: `1.5px solid ${isLeader ? color : color + '33'}`,
-              borderInlineStart: `1.5px solid ${isLeader ? color : color + '33'}`,
-              borderInlineEnd: `1.5px solid ${isLeader ? color : color + '33'}`,
-              boxShadow: isLeader ? `4px 4px 0 ${color}` : 'var(--shadow-paper)',
-              padding: '18px 18px 16px',
-              transform: `rotate(${[-0.8, 0.6, -0.6, 0.8][i % 4]}deg)`,
-            }}>
-              {isLeader && (
-                <div style={{
-                  position: 'absolute', top: -11, insetInlineEnd: 12,
-                  background: '#f4b940', color: 'var(--ink)', border: '1.5px solid var(--ink)',
-                  padding: '1px 10px', fontSize: 11, fontWeight: 700, transform: 'rotate(-2deg)',
-                  boxShadow: '1px 1px 0 var(--ink)',
-                }}>★ מוביל/ה</div>
-              )}
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
-                <span style={{ fontSize: 26 }}>🏝️</span>
-                <h4 className="display" style={{ fontSize: 22 }}>{h.label}</h4>
-              </div>
-              <a href={h.link} target="_blank" rel="noopener noreferrer" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 5,
-                fontSize: 13, fontWeight: 600, color, textDecoration: 'none',
-                marginBottom: 4,
-              }}>
-                <span className="en" style={{ fontStyle: 'normal' }}>{h.en}</span>
-                <span>· לצפייה ב-Airbnb ↗</span>
-              </a>
-              <WhoIsIn optionId={h.id} color={color} />
-            </div>
-          );
-        })}
-      </div>
-    </div>
   );
 }
 

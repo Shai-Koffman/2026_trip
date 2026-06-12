@@ -126,7 +126,7 @@ function Hero() {
         </div>
 
         <p style={{ fontSize: 19, maxWidth: 700, margin: '0 auto 28px', color: 'var(--ink-soft)' }}>
-          16 ימים · 3 משפחות · 3 יעדים — ניו יורק אצל יאיר ועינת, אטלנטה אצל בועז וליבי, וכולם יחד בטולום 🇲🇽
+          16 ימים · ניו יורק אצל יאיר ועינת, ואז אטלנטה אצל בועז וליבי — עד סוף הטיול 🇺🇸
         </p>
 
         {/* Dates stamp */}
@@ -157,7 +157,6 @@ function Hero() {
             { href: '#alperts', label: 'משפחת אלפרט' },
             { href: '#ny', label: '① ניו יורק' },
             { href: '#atl', label: '② אטלנטה' },
-            { href: '#tul', label: '③ טולום' },
           ].map((l, i) => (
             <a key={l.href} href={l.href} style={{
               padding: '10px 16px',

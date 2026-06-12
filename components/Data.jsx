@@ -14,7 +14,7 @@ const FAMILY = [
 const VOTERS = [
   ...FAMILY.map(p => ({ ...p, group: 'קופמן' })),
   // NJ Alperts — host New York
-  { id: 'yair',  name: 'יאיר',  nameEn: 'Yair',  color: '#2e6b8f', emoji: '👨', group: 'אלפרט · ניו ג׳רזי' },
+  { id: 'yair',  name: 'יעיר',  nameEn: 'Yaair',  color: '#2e6b8f', emoji: '👨', group: 'אלפרט · ניו ג׳רזי' },
   { id: 'einat', name: 'עינת', nameEn: 'Einat', color: '#e89ba8', emoji: '👩', group: 'אלפרט · ניו ג׳רזי' },
   { id: 'rom',   name: 'רום',   nameEn: 'Rom',   age: 6, color: '#f4b940', emoji: '🎈', group: 'אלפרט · ניו ג׳רזי' },
   { id: 'nur',   name: 'נור',   nameEn: 'Nur',   age: 2, color: '#ee6352', emoji: '🧸', group: 'אלפרט · ניו ג׳רזי' },
@@ -38,12 +38,12 @@ const LEGS = [
     dates: '14–21 ביולי',
     color: '#2e4ea8',
     accent: '#8da8e8',
-    hostLine: 'הבסיס: הבית של יאיר ועינת בניו ג׳רזי · עם רום ונור',
+    hostLine: 'הבסיס: הבית של יעיר ועינת בניו ג׳רזי · עם רום ונור',
     travel: '✈️ נחיתה ב-EWR · מתארחים אצל משפחת אלפרט ניו ג׳רזי',
     days: [
       {
         id: 'ny-14', date: '14 ביולי', dow: 'שלישי', icon: '✈️',
-        title: 'נחיתה ומפגש', subtitle: 'יום רגוע אחרי הטיסה · עם יאיר, עינת, רום ונור',
+        title: 'נחיתה ומפגש', subtitle: 'יום רגוע אחרי הטיסה · עם יעיר, עינת, רום ונור',
         options: [
           { id: 'ny-14-hoboken', duration: '~1–2 שעות', icon: '🌆', title: 'טיילת הובוקן + Pier C Park', en: 'Hoboken Waterfront', tag: 'פעוטה-פרנדלי', note: 'טיילת שטוחה מול קו הרקיע של מנהטן, פארק משחקי מים וחול לקטנים, וגלידה לאורך Washington St. פתיחה רכה ומושלמת.', link: 'https://www.hobokennj.gov/resources/pier-c-park' },
           { id: 'ny-14-liberty', duration: '~1–2 שעות', icon: '🗽', title: 'Liberty State Park', en: 'Jersey City', tag: 'כל המשפחה', note: 'מדשאות ענק עם פסל החירות וקו הרקיע ברקע, מתקני משחק וטיילת — בלי כרטיסים, סתם להיות יחד.', link: 'https://dep.nj.gov/parksandforests/state-park/liberty-state-park/' },
@@ -96,7 +96,7 @@ const LEGS = [
       },
       {
         id: 'ny-19', date: '19 ביולי', dow: 'ראשון', icon: '🌳',
-        title: 'טיול עם יאיר ועינת', subtitle: 'מקום יפהפה ליום שלם · בוחרים יעד אחד',
+        title: 'טיול עם יעיר ועינת', subtitle: 'מקום יפהפה ליום שלם · בוחרים יעד אחד',
         options: [
           { id: 'ny-19-grounds', duration: '~3–4 שעות', icon: '🗿', title: 'Grounds For Sculpture', en: 'Hamilton, NJ', tag: 'כל המשפחה', note: 'פארק פיסול וגנים על 42 דונם — שבילים נוחים לעגלה, פסלים ענקיים שהילדים מתים עליהם. הבחירה הכי כל-גילאית. (כרטיסים מראש!)', link: 'https://www.groundsforsculpture.org/' },
           { id: 'ny-19-sandyhook', duration: 'יום שלם', icon: '🏖️', title: 'Sandy Hook', en: 'Gateway NRA beach', tag: 'פעוטה-פרנדלי', note: 'חופי מפרץ ואוקיינוס עם נוף לקו הרקיע של ניו יורק, מצילים ומים רדודים ונוחים לקטנטנים.', link: 'https://www.nps.gov/gate/planyourvisit/sandy-hook.htm' },
@@ -119,7 +119,7 @@ const LEGS = [
         options: [
           { id: 'ny-21-coney', duration: 'חצי יום', icon: '🎡', title: 'Coney Island + Luna Park', en: 'Brooklyn boardwalk', tag: 'כיף לכולם', note: 'חוף, טיילת, רכבת ההרים ההיסטורית Cyclone ונקניקיות Nathan\'s — סיום כיפי וקליל.', link: 'https://lunaparknyc.com/' },
           { id: 'ny-21-mills', duration: '~2–3 שעות', icon: '🛍️', title: 'קניות אחרונות — The Mills', en: 'Tax-free, last call', tag: 'שופינג', note: 'מילוי אחרון של המזוודות ללא מע"מ על ביגוד לפני הדרום.', link: 'https://www.simon.com/mall/the-mills-at-jersey-gardens' },
-          { id: 'ny-21-family', duration: 'גמיש', icon: '🧳', title: 'זמן אחרון עם יאיר ועינת + אריזה', en: 'Pack & relax', tag: 'רגוע', note: 'בוקר נינוח עם המשפחה, אריזה, ויציאה רעננה לאטלנטה.' },
+          { id: 'ny-21-family', duration: 'גמיש', icon: '🧳', title: 'זמן אחרון עם יעיר ועינת + אריזה', en: 'Pack & relax', tag: 'רגוע', note: 'בוקר נינוח עם המשפחה, אריזה, ויציאה רעננה לאטלנטה.' },
         ],
       },
     ],
@@ -304,12 +304,12 @@ const ALPERT_FAMILIES = [
     id: 'alpert-nj',
     label: 'משפחת אלפרט · ניו ג׳רזי',
     location: 'מארחים · ניו יורק',
-    note: 'מארחים אותנו בניו ג׳רזי בפתיחת הטיול — יאיר הוא בן-הדוד שלנו',
+    note: 'מארחים אותנו בניו ג׳רזי בפתיחת הטיול — יעיר הוא בן-הדוד שלנו',
     color: '#2e6b8f',
     tape: 'var(--tape-blue)',
     tapeRotate: -4,
     members: [
-      { name: 'יאיר', nameEn: 'Yair', role: 'אבא', emoji: '👨', color: '#2e6b8f' },
+      { name: 'יעיר', nameEn: 'Yaair', role: 'אבא', emoji: '👨', color: '#2e6b8f' },
       { name: 'עינת', nameEn: 'Einat', role: 'אמא', emoji: '👩', color: '#e89ba8' },
       { name: 'רום', nameEn: 'Rom', age: 6, emoji: '🎈', color: '#f4b940' },
       { name: 'נור', nameEn: 'Nur', age: 2, emoji: '🧸', color: '#ee6352' },

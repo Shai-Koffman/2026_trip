@@ -11,7 +11,7 @@ function ExtendedFamilySection() {
         <span className="handwritten" style={{ fontSize: 24, color: 'var(--tomato)' }}>משני הצדדים של אמריקה</span>
       </div>
       <p style={{ maxWidth: 760, color: 'var(--ink-soft)', marginBottom: 24, lineHeight: 1.55, fontSize: 15 }}>
-        יאיר ועינת מארחים אותנו בניו ג׳רזי · בועז וליבי מארחים באטלנטה עד סוף הטיול. <span style={{ fontWeight: 600 }}>זאת הסיבה שבאנו</span>.
+        יעיר ועינת מארחים אותנו בניו ג׳רזי · בועז וליבי מארחים באטלנטה עד סוף הטיול. <span style={{ fontWeight: 600 }}>זאת הסיבה שבאנו</span>.
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>

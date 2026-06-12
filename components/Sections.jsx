@@ -1,4 +1,4 @@
-/* global React, L, LEGS, PLACES, RESTAURANTS, HOST_PICKS, VOTERS, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn, voteMode, setMe, useMe */
+/* global React, L, LEGS, PLACES, RESTAURANTS, VOTERS, ALPERT_FAMILIES, Tape, Stamp, WhoIsIn, useVotes, countIn, voteMode, setMe, useMe */
 const { useState } = React;
 
 // ============ EXTENDED FAMILY (ALPERTS) ============
@@ -348,10 +348,10 @@ function LegRestaurants({ leg }) {
     <div style={{ marginTop: 46 }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 6, flexWrap: 'wrap' }}>
         <h3 className="display" style={{ fontSize: 30 }}>איפה אוכלים</h3>
-        <span className="handwritten" style={{ fontSize: 24, color: leg.color }}>מדורגות 4.6★ ומעלה 🍽️</span>
+        <span className="handwritten" style={{ fontSize: 24, color: leg.color }}>מקומות מומלצים 🍽️</span>
       </div>
       <p style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 0, marginBottom: 16, maxWidth: 720 }}>
-        מבחר קצר של מסעדות מובחרות לקבוצה גדולה — רק דירוג גבוה. כדאי להזמין מקום מראש לקבוצה.
+        מסעדות ומקומות אוכל מומלצים לקבוצה גדולה — כולל הרשימה של יעיר ועינת (מסומנת ★). כדאי להזמין מקום מראש.
       </p>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(258px, 1fr))', gap: 16 }}>
         {list.map((r, i) => {
@@ -377,6 +377,13 @@ function LegRestaurants({ leg }) {
                   background: '#f4b94022', border: '1px solid #f4b94099',
                   padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap',
                 }}>⭐ {r.r}</span>
+                {r.host && (
+                  <span style={{
+                    fontSize: 10.5, fontWeight: 700, color: leg.color,
+                    background: `${leg.color}1a`, border: `1px solid ${leg.color}55`,
+                    padding: '1px 7px', borderRadius: 999, whiteSpace: 'nowrap',
+                  }}>★ יעיר ועינת</span>
+                )}
               </div>
               <div style={{ fontSize: 12, color: leg.color, fontWeight: 600, marginTop: 2 }}>{r.cuisine}</div>
               <div style={{ fontSize: 13.5, color: 'var(--ink-soft)', marginTop: 6, lineHeight: 1.45 }}>{r.note}</div>
@@ -524,58 +531,7 @@ function LegSection({ leg, index }) {
       </div>
 
       <LegRestaurants leg={leg} />
-
-      <LegHostPicks leg={leg} />
     </section>
-  );
-}
-
-// ============ HOST PICKS (Yair & Einat's shared list) ============
-function LegHostPicks({ leg }) {
-  const list = (typeof HOST_PICKS !== 'undefined' && HOST_PICKS[leg.id]) || [];
-  if (!list.length) return null;
-  return (
-    <div style={{ marginTop: 46 }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 6, flexWrap: 'wrap' }}>
-        <h3 className="display" style={{ fontSize: 30 }}>ההמלצות של יעיר ועינת</h3>
-        <span className="handwritten" style={{ fontSize: 24, color: leg.color }}>הרשימה ששלחו · {list.length} מקומות 📍</span>
-      </div>
-      <p style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 0, marginBottom: 16, maxWidth: 720 }}>
-        רשימת המקומות ששמרו לנו ב-Google Maps — מסעדות, מאפיות, פארקים וטיולים. כל אחד עם דירוג ולינק למפה.
-      </p>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(228px, 1fr))', gap: 14 }}>
-        {list.map((p, i) => {
-          const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.q)}`;
-          return (
-            <a key={i} href={mapsUrl} target="_blank" rel="noopener noreferrer"
-              style={{
-                display: 'block', background: 'white', padding: '12px 14px',
-                textDecoration: 'none', color: 'inherit',
-                borderTop: `3px solid ${leg.color}`,
-                borderBottom: `1.5px solid ${leg.color}22`,
-                borderInlineStart: `1.5px solid ${leg.color}22`,
-                borderInlineEnd: `1.5px solid ${leg.color}22`,
-                boxShadow: 'var(--shadow-paper)',
-                transition: 'transform 0.15s, box-shadow 0.15s',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = `0 4px 0 ${leg.color}`; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'var(--shadow-paper)'; }}
-            >
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, justifyContent: 'space-between' }}>
-                <span style={{ fontWeight: 700, fontSize: 15, lineHeight: 1.2 }}>{p.name}</span>
-                <span dir="ltr" style={{
-                  fontSize: 11.5, fontWeight: 700, color: '#7a5d00',
-                  background: '#f4b94022', border: '1px solid #f4b94099',
-                  padding: '1px 7px', borderRadius: 999, whiteSpace: 'nowrap', flexShrink: 0,
-                }}>⭐ {p.r}</span>
-              </div>
-              <div style={{ fontSize: 12, color: leg.color, fontWeight: 600, marginTop: 4 }}>{p.cat}</div>
-              <div style={{ fontSize: 12, color: leg.color, fontWeight: 600, marginTop: 8, display: 'inline-flex', alignItems: 'center', gap: 4 }}>🗺️ Google Maps ↗</div>
-            </a>
-          );
-        })}
-      </div>
-    </div>
   );
 }
 

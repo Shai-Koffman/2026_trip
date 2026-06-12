@@ -49,6 +49,7 @@ const LEGS = [
           { id: 'ny-14-liberty', duration: '~1–2 שעות', icon: '🗽', title: 'Liberty State Park', en: 'Jersey City', tag: 'כל המשפחה', note: 'מדשאות ענק עם פסל החירות וקו הרקיע ברקע, מתקני משחק וטיילת — בלי כרטיסים, סתם להיות יחד.', link: 'https://dep.nj.gov/parksandforests/state-park/liberty-state-park/' },
           { id: 'ny-14-montclair', duration: '~1–2 שעות', icon: '🍦', title: 'שיטוט במונטקלייר + גלידה', en: 'Montclair', tag: 'רגוע', note: 'עיירה ירוקה והליכתית עם חנויות, פארקים וגלידריית Absolute המפורסמת — נינוח ולא מאמץ.', link: 'https://www.absoluteicecream.com/' },
           { id: 'ny-14-home', duration: 'גמיש', icon: '🏡', title: 'סתם בבית עם המשפחה', en: 'Backyard & BBQ', tag: 'ג׳ט-לג', note: 'אם הטיסה גמרה אתכם — מנגל בחצר, הילדים מתחברים, והתאקלמות שקטה לקראת השבוע.' },
+          { id: 'ny-14-southmtn', duration: '~2 שעות', icon: '🧚', title: 'South Mountain Reservation', en: 'Hemlock Falls & Fairy Trail', tag: '★ יעיר ועינת', note: 'יער קסום בניו ג׳רזי — Fairy Trail עם בתי-פיות זעירים ומפל Hemlock. קרוב, קליל ויפה. מהרשימה של יעיר ועינת.' },
         ],
       },
       {
@@ -61,6 +62,9 @@ const LEGS = [
           { id: 'ny-15-icecream', duration: '~1.5 שעות', icon: '🍦', title: 'Museum of Ice Cream', en: 'SoHo · interactive', tag: 'כיף לכולם', note: 'מוזיאון גלידה צבעוני ואינטראקטיבי בסוהו — בריכת סוכריות, מגלשה וטעימות גלידה בלי הגבלה. פוטוגני ומושלם לכל הגילאים.', link: 'https://www.museumoficecream.com/new-york' },
           { id: 'ny-15-amnh', duration: '~2–3 שעות', icon: '🦋', title: 'Gilder Center · AMNH', en: 'מוזיאון הטבע', tag: 'כל המשפחה', note: 'אגף Gilder החדש במוזיאון הטבע — אדריכלות עתידנית וחממת פרפרים חיים. מצוין לקטנטנים ולמבוגרים.', link: 'https://www.amnh.org/exhibitions/permanent/gilder-center' },
           { id: 'ny-15-brooklyn', duration: '~2–3 שעות', icon: '🌉', title: 'גשר ברוקלין → DUMBO', en: 'Bridge walk + Time Out Market', tag: 'פוטוגני', note: 'חוצים את הגשר רגלית, יורדים ל-DUMBO לתמונות האייקוניות, ואוכלים ב-Time Out Market עם נוף למנהטן.', link: 'https://www.timeout.com/time-out-market-new-york' },
+          { id: 'ny-15-summit', duration: '~1.5 שעות', icon: '🌆', title: 'SUMMIT One Vanderbilt', en: 'Immersive observation', tag: '★ יעיר ועינת', note: 'תצפית-חוויה אימרסיבית עם מראות ורצפת זכוכית מעל מידטאון. (אם לא הייתם כבר.) מהרשימה של יעיר ועינת.' },
+          { id: 'ny-15-colorfactory', duration: '~1.5 שעות', icon: '🎨', title: 'Color Factory', en: 'SoHo · interactive', tag: '★ יעיר ועינת', note: 'מוזיאון צבעים אינטראקטיבי בסוהו — בריכת בלונים, חדרים צבעוניים והרבה תמונות. צמוד למוזיאון הגלידה. מהרשימה של יעיר ועינת.' },
+          { id: 'ny-15-sloomoo', duration: '~1.5 שעות', icon: '🫧', title: 'Sloomoo Institute', en: 'SoHo · slime', tag: '★ יעיר ועינת · ילדים', note: 'מקדש הסליים — אינטראקטיבי וכיפי, מושלם לרותם, רום והקטנים. מהרשימה של יעיר ועינת.' },
         ],
       },
       {
@@ -92,6 +96,7 @@ const LEGS = [
           { id: 'ny-18-artistsfleas', duration: '~1 שעה', icon: '🧥', title: 'Artists & Fleas', en: 'Williamsburg', tag: 'מתבגרים', note: 'שוק יוצרים ווינטג׳ מקורה/חיצוני — בגדי יד שנייה, אמנות ואקססוריז. גן עדן למתבגרים.', link: 'https://www.artistsandfleas.com/williamsburg/' },
           { id: 'ny-18-bedford', duration: '~2 שעות', icon: '👕', title: 'מסע יד-שנייה ב-Bedford Ave', en: 'Vintage crawl', tag: 'אופנת רחוב', note: 'לב הווינטג׳ של וויליאמסבורג — L Train Vintage, Beacon\'s Closet, Awoke — הליכה אחת, מציאות סטריטוור.', link: 'https://www.beaconscloset.com/' },
           { id: 'ny-18-flea', duration: '~1 שעה', icon: '🎪', title: 'Brooklyn Flea', en: 'Flea market', tag: 'יריד', note: 'יריד ווינטג׳, עתיקות ואספנות על קו המים בוויליאמסבורג — מעולה לחיטוט במציאות.', link: 'https://www.brooklynflea.com/' },
+          { id: 'ny-18-domino', duration: '~1–2 שעות', icon: '🌇', title: 'Domino Park', en: 'Williamsburg waterfront', tag: '★ יעיר ועינת', note: 'פארק על קו המים בוויליאמסבורג עם נוף למנהטן, מתקני מים לילדים וטיילת. מושלם לשלב עם השווקים. מהרשימה של יעיר ועינת.' },
         ],
       },
       {
@@ -102,6 +107,9 @@ const LEGS = [
           { id: 'ny-19-sandyhook', duration: 'יום שלם', icon: '🏖️', title: 'Sandy Hook', en: 'Gateway NRA beach', tag: 'פעוטה-פרנדלי', note: 'חופי מפרץ ואוקיינוס עם נוף לקו הרקיע של ניו יורק, מצילים ומים רדודים ונוחים לקטנטנים.', link: 'https://www.nps.gov/gate/planyourvisit/sandy-hook.htm' },
           { id: 'ny-19-stormking', duration: '~3–4 שעות', icon: '🎨', title: 'Storm King Art Center', en: 'New Windsor, NY', tag: 'נוף עוצר נשימה', note: 'נוף פיסול ענק על 500 דונם — שדות מתגלגלים ויצירות מונומנטליות. המקום הכי מרהיב; הרבה הליכה, מומלצת עגלה/מנשא.', link: 'https://stormking.org/' },
           { id: 'ny-19-asbury', duration: 'חצי יום', icon: '🎡', title: 'Asbury Park Boardwalk', en: 'Jersey Shore', tag: 'כיף לכולם', note: 'טיילת שורצת חיים מול הים — חוף לקטנים וארקייד פינבול Silverball לגדולים. קליל ומהנה.', link: 'https://apboardwalk.com/' },
+          { id: 'ny-19-bloominghill', duration: '~3–4 שעות', icon: '🌻', title: 'Blooming Hill Farm', en: 'Hudson Valley · farm', tag: '★ יעיר ועינת', note: 'חווה אורגנית עם מסעדת farm-to-table בעמק ההדסון (~שעה) — שדות, אוכל טרי ואווירה כפרית. מהרשימה של יעיר ועינת.' },
+          { id: 'ny-19-scribners', duration: 'יום שלם / לינה', icon: '🏔️', title: "Scribner's Catskill Lodge", en: 'Catskills getaway', tag: '★ יעיר ועינת · גטאוויי', note: 'לודג׳ נופי בקטסקילס (~2 שעות צפונה) — אם בא לכם מתיחה צפונה או אפילו לילה בהרים. מהרשימה של יעיר ועינת.' },
+          { id: 'ny-19-prospect', duration: 'יום שלם / לינה', icon: '🌲', title: 'Prospect Berkshires', en: 'Berkshires getaway', tag: '★ יעיר ועינת · גטאוויי', note: 'לודג׳ בהרי הברקשייר (~2.5 שעות) — טבע, שקט ונופים. אופציית גטאוויי מהרשימה של יעיר ועינת.' },
         ],
       },
       {
@@ -111,6 +119,7 @@ const LEGS = [
           { id: 'ny-20-statue', duration: 'חצי יום', icon: '🗽', title: 'פסל החירות + Ellis Island', en: 'Statue of Liberty', tag: 'כל המשפחה', note: 'מעבורת לאי החירות ולאליס איילנד — אייקון אמיתי, נוף מהמים לקו הרקיע. כדאי כרטיסים מראש לכתר.', link: 'https://www.nps.gov/stli/' },
           { id: 'ny-20-intrepid', duration: '~2–3 שעות', icon: '🛩️', title: 'Intrepid Museum', en: 'Sea, Air & Space', tag: 'מתבגרים', note: 'נושאת מטוסים אמיתית עם מטוסי קרב, צוללת ומעבורת חלל — חלום לעומר וגל.', link: 'https://intrepidmuseum.org/' },
           { id: 'ny-20-chelsea', duration: '~2 שעות', icon: '🍴', title: 'Chelsea Market + High Line', en: 'Food hall + park', tag: 'כל המשפחה', note: 'שוק אוכל מקורה ענק, ואז טיול על ה-High Line — פארק על מסילת רכבת מוגבהת. שילוב מנצח.', link: 'https://www.chelseamarket.com/' },
+          { id: 'ny-20-littleisland', duration: '~1 שעה', icon: '🏝️', title: 'Little Island', en: 'Hudson River park', tag: '★ יעיר ועינת', note: 'פארק צף ומעוצב על נהר ההדסון, ממש ליד ה-High Line וצ׳לסי מרקט — קל לשלב באותו יום. מהרשימה של יעיר ועינת.' },
         ],
       },
       {
@@ -249,6 +258,16 @@ const PLACES = {
   'ny-20-chelsea':     { r: 4.6, lat: 40.7421, lng: -74.0049, q: 'Chelsea Market New York' },
   'ny-21-coney':       { r: 4.4, lat: 40.5738, lng: -73.9803, q: 'Luna Park Coney Island Brooklyn' },
   'ny-21-mills':       { r: 4.5, lat: 40.6600, lng: -74.1715, q: 'The Mills at Jersey Gardens' },
+  // NY — Yair & Einat's picks (rating from their list; no coords → no map pin)
+  'ny-14-southmtn':    { r: 4.7, q: 'South Mountain Reservation Fairy Trail Millburn NJ' },
+  'ny-15-summit':      { r: 4.7, q: 'SUMMIT One Vanderbilt New York' },
+  'ny-15-colorfactory':{ r: 4.4, q: 'Color Factory New York' },
+  'ny-15-sloomoo':     { r: 4.3, q: 'Sloomoo Institute New York' },
+  'ny-18-domino':      { r: 4.8, q: 'Domino Park Brooklyn' },
+  'ny-19-bloominghill':{ r: 4.8, q: 'Blooming Hill Farm Monroe NY' },
+  'ny-19-scribners':   { r: 4.4, q: "Scribner's Catskill Lodge" },
+  'ny-19-prospect':    { r: 4.8, q: 'Prospect Berkshires North Egremont' },
+  'ny-20-littleisland':{ r: 4.7, q: 'Little Island New York' },
   // Atlanta
   'atl-20-avalon':     { r: 4.6, lat: 34.0708, lng: -84.2772, q: 'Avalon Alpharetta' },
   'atl-20-topgolf':    { r: 4.4, lat: 34.0448, lng: -84.3083, q: 'Topgolf Alpharetta' },
@@ -287,6 +306,17 @@ const RESTAURANTS = {
     { name: 'Cafe Mogador', r: 4.6, cuisine: 'מרוקאי-ים תיכוני', note: "טאג'ין, קוסקוס וגריל לשיתוף, ווייב וויליאמסבורגי נינוח וידידותי לילדים.", link: 'https://www.cafemogador.com/', q: 'Cafe Mogador Williamsburg Brooklyn', lat: 40.7197, lng: -73.9583 },
     { name: 'Win Son', r: 4.6, cuisine: 'טייוואני-אמריקאי', note: 'מנות טייוואניות כיפיות לשיתוף עם חבילות לקבוצות 10+. כדאי להזמין מראש.', link: 'https://winsonbrooklyn.com/', q: 'Win Son Brooklyn', lat: 40.7075, lng: -73.9434 },
     { name: 'Rumba Cubana', r: 4.6, cuisine: 'קובני-לטיני', note: 'מקום קובני תוסס עם מגשים גדולים לשיתוף ואווירה חגיגית, נוח לקבוצה גדולה עם ילדים.', link: 'https://www.rumbacubana.com/', q: 'Rumba Cubana Jersey City', lat: 40.7270, lng: -74.0354 },
+    { name: 'Levain Bakery', r: 4.7, cuisine: 'מאפייה · עוגיות', note: 'עוגיות ענק חמות — מוסד ניו-יורקי.', q: 'Levain Bakery New York', host: true },
+    { name: 'KazuNori', r: 4.7, cuisine: 'סושי · הנד-רול', note: 'הנד-רולים טריים בבר — מהיר וטעים.', q: 'KazuNori Hand Roll Bar New York', host: true },
+    { name: 'Somedays Bakery', r: 4.7, cuisine: 'מאפייה · Montclair', note: 'מאפיית בוטיק מקסימה במונטקלייר.', q: 'Somedays Bakery Montclair NJ', host: true },
+    { name: 'Tops Diner', r: 4.6, cuisine: 'דיינר אמריקאי', note: 'דיינר ניו-ג׳רזי אגדי, ענק ומשפחתי.', q: 'Tops Diner East Newark NJ', host: true },
+    { name: "Artie's", r: 4.6, cuisine: 'פיצה', note: 'פיצה מקומית אהובה.', q: "Artie's pizza New Jersey", host: true },
+    { name: 'SALSWEE', r: 4.6, cuisine: 'קינוחים', note: 'חנות קינוחים מתוקה.', q: 'Salswee New Jersey', host: true },
+    { name: 'Liv Breads', r: 4.6, cuisine: 'מאפייה · Millburn', note: 'מאפיית בוטיק עם מאפים ייחודיים.', q: 'Liv Breads Millburn NJ', host: true },
+    { name: "Sadelle's", r: 4.3, cuisine: 'בראנץ׳', note: 'בראנץ׳ ובייגלים בסגנון ניו-יורקי קלאסי.', q: "Sadelle's New York", host: true },
+    { name: 'Misi', r: 4.3, cuisine: 'איטלקי · וויליאמסבורג', note: 'פסטה ביתית בברוקלין.', q: 'Misi Williamsburg Brooklyn', host: true },
+    { name: 'Black Seed Bagels', r: 4.2, cuisine: 'בייגלים', note: 'בייגלים בסגנון מונטריאול.', q: 'Black Seed Bagels Nolita New York', host: true },
+    { name: 'Daily Provisions', r: 4.1, cuisine: 'קפה / מסעדה', note: 'קפה-מסעדה נחמד למנה מהירה.', q: 'Daily Provisions Manhattan West New York', host: true },
   ],
   atl: [
     { name: 'Smokejack BBQ', r: 4.6, cuisine: 'ברביקיו דרומי', note: 'ברביקיו וקומפורט-פוד במרכז אלפארטה, מגשים גדולים לשיתוף שמרצים ילדים, מתבגרים ומבוגרים.', link: 'https://www.smokejackbbq.com/', q: 'Smokejack BBQ Alpharetta', lat: 34.0760, lng: -84.2952 },
@@ -333,34 +363,4 @@ const ALPERT_FAMILIES = [
   },
 ];
 
-// ============ HOST PICKS — Yair & Einat's shared Google Maps list ("Kofmans in NYC") ============
-const HOST_PICKS = {
-  ny: [
-    { name: 'Black Seed Bagels · Nolita', r: 4.2, cat: 'בייגלים', q: 'Black Seed Bagels Nolita New York' },
-    { name: "Sadelle's", r: 4.3, cat: 'בראנץ׳ / ארוחת בוקר', q: "Sadelle's New York" },
-    { name: 'SUMMIT One Vanderbilt', r: 4.7, cat: 'תצפית', q: 'SUMMIT One Vanderbilt New York' },
-    { name: 'Levain Bakery', r: 4.7, cat: 'מאפייה · עוגיות מפורסמות', q: 'Levain Bakery New York' },
-    { name: 'Misi', r: 4.3, cat: 'איטלקי · וויליאמסבורג', q: 'Misi Williamsburg Brooklyn' },
-    { name: 'Daily Provisions · Manhattan West', r: 4.1, cat: 'מסעדה / קפה', q: 'Daily Provisions Manhattan West New York' },
-    { name: "Scribner's Catskill Lodge", r: 4.4, cat: 'מלון · קטסקילס', q: "Scribner's Catskill Lodge" },
-    { name: 'Prospect Berkshires', r: 4.8, cat: 'לודג׳ · ברקשייר', q: 'Prospect Berkshires North Egremont' },
-    { name: 'Somedays Bakery · Montclair', r: 4.7, cat: 'מאפייה', q: 'Somedays Bakery Montclair NJ' },
-    { name: 'Hemlock Falls', r: 4.6, cat: 'פארק · מפל (NJ)', q: 'Hemlock Falls South Mountain Reservation NJ' },
-    { name: 'Blooming Hill Farm', r: 4.8, cat: 'חווה · Farm-to-table', q: 'Blooming Hill Farm Monroe NY' },
-    { name: 'American Dream', r: 4.5, cat: 'קניון', q: 'American Dream East Rutherford NJ' },
-    { name: 'South Mountain · Fairy Trail', r: 4.7, cat: 'מסלול הליכה (NJ)', q: 'South Mountain Fairy Trail Millburn NJ' },
-    { name: 'Liv Breads', r: 4.6, cat: 'מאפייה · Millburn', q: 'Liv Breads Millburn NJ' },
-    { name: "Artie's", r: 4.6, cat: 'פיצה', q: "Artie's pizza New Jersey" },
-    { name: 'Sandy Hook Beach', r: 4.7, cat: 'חוף', q: 'Sandy Hook Beach NJ' },
-    { name: 'Tops Diner', r: 4.6, cat: 'דיינר אמריקאי', q: 'Tops Diner East Newark NJ' },
-    { name: 'SALSWEE', r: 4.6, cat: 'קינוחים', q: 'Salswee New Jersey' },
-    { name: 'Museum of Ice Cream', r: 4.2, cat: 'מוזיאון', q: 'Museum of Ice Cream New York' },
-    { name: 'Color Factory · מוזיאון הצבעים', r: 4.4, cat: 'מוזיאון אינטראקטיבי', q: 'Color Factory New York' },
-    { name: 'KazuNori · Hand Roll Bar', r: 4.7, cat: 'סושי', q: 'KazuNori Hand Roll Bar New York' },
-    { name: 'Domino Park', r: 4.8, cat: 'פארק · וויליאמסבורג', q: 'Domino Park Brooklyn' },
-    { name: 'Little Island', r: 4.7, cat: 'פארק על המים', q: 'Little Island New York' },
-    { name: 'Sloomoo Institute', r: 4.3, cat: 'סליים · כיף לילדים', q: 'Sloomoo Institute New York' },
-  ],
-};
-
-Object.assign(window, { FAMILY, VOTERS, LEGS, PLACES, RESTAURANTS, HOST_PICKS, ALPERT_FAMILIES });
+Object.assign(window, { FAMILY, VOTERS, LEGS, PLACES, RESTAURANTS, ALPERT_FAMILIES });

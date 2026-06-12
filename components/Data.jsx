@@ -333,4 +333,34 @@ const ALPERT_FAMILIES = [
   },
 ];
 
-Object.assign(window, { FAMILY, VOTERS, LEGS, PLACES, RESTAURANTS, ALPERT_FAMILIES });
+// ============ HOST PICKS — Yair & Einat's shared Google Maps list ("Kofmans in NYC") ============
+const HOST_PICKS = {
+  ny: [
+    { name: 'Black Seed Bagels · Nolita', r: 4.2, cat: 'בייגלים', q: 'Black Seed Bagels Nolita New York' },
+    { name: "Sadelle's", r: 4.3, cat: 'בראנץ׳ / ארוחת בוקר', q: "Sadelle's New York" },
+    { name: 'SUMMIT One Vanderbilt', r: 4.7, cat: 'תצפית', q: 'SUMMIT One Vanderbilt New York' },
+    { name: 'Levain Bakery', r: 4.7, cat: 'מאפייה · עוגיות מפורסמות', q: 'Levain Bakery New York' },
+    { name: 'Misi', r: 4.3, cat: 'איטלקי · וויליאמסבורג', q: 'Misi Williamsburg Brooklyn' },
+    { name: 'Daily Provisions · Manhattan West', r: 4.1, cat: 'מסעדה / קפה', q: 'Daily Provisions Manhattan West New York' },
+    { name: "Scribner's Catskill Lodge", r: 4.4, cat: 'מלון · קטסקילס', q: "Scribner's Catskill Lodge" },
+    { name: 'Prospect Berkshires', r: 4.8, cat: 'לודג׳ · ברקשייר', q: 'Prospect Berkshires North Egremont' },
+    { name: 'Somedays Bakery · Montclair', r: 4.7, cat: 'מאפייה', q: 'Somedays Bakery Montclair NJ' },
+    { name: 'Hemlock Falls', r: 4.6, cat: 'פארק · מפל (NJ)', q: 'Hemlock Falls South Mountain Reservation NJ' },
+    { name: 'Blooming Hill Farm', r: 4.8, cat: 'חווה · Farm-to-table', q: 'Blooming Hill Farm Monroe NY' },
+    { name: 'American Dream', r: 4.5, cat: 'קניון', q: 'American Dream East Rutherford NJ' },
+    { name: 'South Mountain · Fairy Trail', r: 4.7, cat: 'מסלול הליכה (NJ)', q: 'South Mountain Fairy Trail Millburn NJ' },
+    { name: 'Liv Breads', r: 4.6, cat: 'מאפייה · Millburn', q: 'Liv Breads Millburn NJ' },
+    { name: "Artie's", r: 4.6, cat: 'פיצה', q: "Artie's pizza New Jersey" },
+    { name: 'Sandy Hook Beach', r: 4.7, cat: 'חוף', q: 'Sandy Hook Beach NJ' },
+    { name: 'Tops Diner', r: 4.6, cat: 'דיינר אמריקאי', q: 'Tops Diner East Newark NJ' },
+    { name: 'SALSWEE', r: 4.6, cat: 'קינוחים', q: 'Salswee New Jersey' },
+    { name: 'Museum of Ice Cream', r: 4.2, cat: 'מוזיאון', q: 'Museum of Ice Cream New York' },
+    { name: 'Color Factory · מוזיאון הצבעים', r: 4.4, cat: 'מוזיאון אינטראקטיבי', q: 'Color Factory New York' },
+    { name: 'KazuNori · Hand Roll Bar', r: 4.7, cat: 'סושי', q: 'KazuNori Hand Roll Bar New York' },
+    { name: 'Domino Park', r: 4.8, cat: 'פארק · וויליאמסבורג', q: 'Domino Park Brooklyn' },
+    { name: 'Little Island', r: 4.7, cat: 'פארק על המים', q: 'Little Island New York' },
+    { name: 'Sloomoo Institute', r: 4.3, cat: 'סליים · כיף לילדים', q: 'Sloomoo Institute New York' },
+  ],
+};
+
+Object.assign(window, { FAMILY, VOTERS, LEGS, PLACES, RESTAURANTS, HOST_PICKS, ALPERT_FAMILIES });

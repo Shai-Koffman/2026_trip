@@ -101,8 +101,9 @@ const LEGS = [
       },
       {
         id: 'ny-19', date: '19 ביולי', dow: 'ראשון', icon: '🌳',
-        title: 'טיול עם יעיר ועינת', subtitle: 'מקום יפהפה ליום שלם · בוחרים יעד אחד',
+        title: 'טיול עם יעיר ועינת · אופציה ללינה (19–20)', subtitle: 'יום מחוץ לבסיס — אפשר גם ללון בחוץ לילה אחד. בוחרים יעד.',
         options: [
+          { id: 'ny-19-sixflags', duration: 'יום שלם', icon: '🎢', title: 'Six Flags Great Adventure', en: 'Jackson NJ · קואסטרים + מים', tag: '🎟️ Gold Pass', note: 'פארק הרכבות הגדול של ניו ג׳רזי + פארק המים Hurricane Harbor (~שעה מהבסיס) — אפשר לשלב לילה מול הים ב-Asbury. עם Six Flags Gold Pass אותו מנוי תקף גם לשני הפארקים בג׳ורג׳יה — מנוי אחד זול יותר מ-3 כרטיסי יום.', link: 'https://www.sixflags.com/greatadventure' },
           { id: 'ny-19-grounds', duration: '~3–4 שעות', icon: '🗿', title: 'Grounds For Sculpture', en: 'Hamilton, NJ', tag: 'כל המשפחה', note: 'פארק פיסול וגנים על 42 דונם — שבילים נוחים לעגלה, פסלים ענקיים שהילדים מתים עליהם. הבחירה הכי כל-גילאית. (כרטיסים מראש!)', link: 'https://www.groundsforsculpture.org/' },
           { id: 'ny-19-sandyhook', duration: 'יום שלם', icon: '🏖️', title: 'Sandy Hook', en: 'Gateway NRA beach', tag: 'פעוטה-פרנדלי', note: 'חופי מפרץ ואוקיינוס עם נוף לקו הרקיע של ניו יורק, מצילים ומים רדודים ונוחים לקטנטנים.', link: 'https://www.nps.gov/gate/planyourvisit/sandy-hook.htm' },
           { id: 'ny-19-stormking', duration: '~3–4 שעות', icon: '🎨', title: 'Storm King Art Center', en: 'New Windsor, NY', tag: 'נוף עוצר נשימה', note: 'נוף פיסול ענק על 500 דונם — שדות מתגלגלים ויצירות מונומנטליות. המקום הכי מרהיב; הרבה הליכה, מומלצת עגלה/מנשא.', link: 'https://stormking.org/' },
@@ -170,7 +171,7 @@ const LEGS = [
         title: 'פארק שיא · ריגושים', subtitle: 'יום אדרנלין למתבגרים',
         split: 'אפשר להתפצל — הגדולים על הרכבות, אייל ורותם על iFLY / LEGO או האקווריום',
         options: [
-          { id: 'atl-22-sixflags', duration: 'יום שלם', icon: '🎢', title: 'Six Flags Over Georgia', en: 'Austell', tag: 'ריגושים', note: 'פארק הרכבות הגדול של האזור — רכבות שיא למתבגרים. הכרטיס כולל גם את פארק המים Hurricane Harbor אם בא לכם שניהם ביום אחד.', link: 'https://www.sixflags.com/overgeorgia' },
+          { id: 'atl-22-sixflags', duration: 'יום שלם', icon: '🎢', title: 'Six Flags Over Georgia', en: 'Austell', tag: 'ריגושים · 🎟️ Gold Pass', note: 'פארק הרכבות הגדול של האזור — רכבות שיא למתבגרים. הכרטיס כולל גם את פארק המים Hurricane Harbor. 🎟️ עם Gold Pass אותו מנוי תקף גם ל-Great Adventure בניו ג׳רזי — מנוי אחד לכל הפארקים.', link: 'https://www.sixflags.com/overgeorgia' },
           { id: 'atl-22-andretti', duration: '~2–3 שעות', icon: '🏎️', title: 'Andretti Indoor Karting', en: 'Marietta', tag: 'מקורה', note: 'קארטינג אירופאי (עד 72 קמ"ש), מסלול חבלים, זיפליין מקורה וקיר טיפוס — הכל ממוזג. גיבוי מצוין לימים חמים.', link: 'https://andrettikarting.com/marietta' },
           { id: 'atl-22-ifly', duration: '~1 שעה', icon: '🪂', title: 'iFLY Indoor Skydiving', en: 'Atlanta', tag: 'גיל 3+', note: 'נפילה חופשית אמיתית במנהרת רוח — ריגוש ענק, מתאים מגיל 3, ממוזג. חצי יום מושלם לשבירת החום.', link: 'https://www.iflyworld.com/atlanta' },
         ],
@@ -191,7 +192,7 @@ const LEGS = [
         title: 'פארק מים / אגם', subtitle: 'להתקרר ביום הכי חם',
         options: [
           { id: 'atl-24-lanier', duration: 'יום שלם', icon: '🏖️', title: 'Lake Lanier · Margaritaville', en: 'Lanier Islands', tag: 'קרוב לבית · המלצת בועז', note: 'אגם לניר 20–30 דק׳ מהבית — חוף, פארק מים ומגלשות (Margaritaville). הכי קרוב וקליל, ובועז המליץ.', link: 'https://www.margaritavilleresorts.com/margaritaville-at-lanier-islands' },
-          { id: 'atl-24-whitewater', duration: 'יום שלם', icon: '💦', title: 'Six Flags White Water', en: 'Marietta', tag: 'פארק המים הגדול', note: 'פארק המים הגדול בדרום — 70 דונם, מגלשת Tsunami Surge ובריכת גלים.', link: 'https://www.sixflags.com/whitewater' },
+          { id: 'atl-24-whitewater', duration: 'יום שלם', icon: '💦', title: 'Six Flags White Water', en: 'Marietta', tag: 'פארק המים הגדול · 🎟️ Gold Pass', note: 'פארק המים הגדול בדרום — 70 דונם, מגלשת Tsunami Surge ובריכת גלים. 🎟️ נכלל ב-Six Flags Gold Pass (אותו מנוי כמו NJ).', link: 'https://www.sixflags.com/whitewater' },
           { id: 'atl-24-hurricane', duration: 'יום שלם', icon: '🌊', title: 'Hurricane Harbor', en: 'בתוך Six Flags', tag: 'משולב', note: 'אם בא לכם גם רכבות וגם מים באותו יום — פארק המים הזה כלול בכרטיס של Six Flags Over Georgia.', link: 'https://www.sixflags.com/overgeorgia/hurricane-harbor-atlanta' },
           { id: 'atl-24-aquarium', duration: '~2–3 שעות', icon: '🐠', title: 'Georgia Aquarium', en: 'אלטרנטיבה ממוזגת', tag: 'מקורה', note: 'אם החום מנצח — אחד האקווריומים הגדולים בעולם, ממוזג ורגוע, עם כרישי לווייתן ולווייתנים לבנים.', link: 'https://www.georgiaaquarium.org/' },
         ],
@@ -253,6 +254,7 @@ const PLACES = {
   'ny-19-sandyhook':   {        lat: 40.4300, lng: -73.9900, q: 'Sandy Hook Beach NJ' },
   'ny-19-stormking':   { r: 4.7, lat: 41.4234, lng: -74.0623, q: 'Storm King Art Center' },
   'ny-19-asbury':      { r: 4.6, lat: 40.2209, lng: -73.9996, q: 'Asbury Park Boardwalk' },
+  'ny-19-sixflags':    { r: 4.1, lat: 40.1372, lng: -74.4357, q: 'Six Flags Great Adventure Jackson NJ' },
   'ny-20-statue':      { r: 4.7, lat: 40.6892, lng: -74.0445, q: 'Statue of Liberty' },
   'ny-20-intrepid':    { r: 4.6, lat: 40.7646, lng: -73.9996, q: 'Intrepid Museum New York' },
   'ny-20-chelsea':     { r: 4.6, lat: 40.7421, lng: -74.0049, q: 'Chelsea Market New York' },

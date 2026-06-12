@@ -341,85 +341,6 @@ function LegMap({ leg }) {
 }
 
 // ============ LEG RESTAURANTS ("where to eat" — 4.6★+ shortlist) ============
-const FOOD_GROUPS = [
-  { key: 'dine', label: '🍽️ מסעדות לארוחה' },
-  { key: 'casual', label: '🍕 מהיר וקז׳ואל' },
-  { key: 'bakery', label: '🥐 מאפיות וקינוחים' },
-];
-function LegRestaurants({ leg }) {
-  const list = (typeof RESTAURANTS !== 'undefined' && RESTAURANTS[leg.id]) || [];
-  if (!list.length) return null;
-
-  const linkStyle = {
-    display: 'inline-flex', alignItems: 'center', gap: 4,
-    fontSize: 12.5, fontWeight: 600, color: leg.color,
-    textDecoration: 'none', borderBottom: `1px solid ${leg.color}55`,
-  };
-  const card = (r, key) => {
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.q)}`;
-    return (
-      <div key={key} style={{
-        position: 'relative', background: 'white', padding: '14px 16px',
-        borderTop: `4px solid ${leg.color}`,
-        borderBottom: `1.5px solid ${leg.color}33`,
-        borderInlineStart: `1.5px solid ${leg.color}33`,
-        borderInlineEnd: `1.5px solid ${leg.color}33`,
-        boxShadow: 'var(--shadow-paper)',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
-          <span className="en" style={{ fontSize: 16, fontWeight: 700, fontStyle: 'normal' }}>{r.name}</span>
-          <span dir="ltr" style={{
-            fontSize: 12, fontWeight: 700, color: '#7a5d00',
-            background: '#f4b94022', border: '1px solid #f4b94099',
-            padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap',
-          }}>⭐ {r.r}</span>
-          {r.host && (
-            <span style={{
-              fontSize: 10.5, fontWeight: 700, color: leg.color,
-              background: `${leg.color}1a`, border: `1px solid ${leg.color}55`,
-              padding: '1px 7px', borderRadius: 999, whiteSpace: 'nowrap',
-            }}>★ יעיר ועינת</span>
-          )}
-        </div>
-        <div style={{ fontSize: 12, color: leg.color, fontWeight: 600, marginTop: 2 }}>{r.cuisine}</div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink-soft)', marginTop: 6, lineHeight: 1.45 }}>{r.note}</div>
-        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 8 }}>
-          <a href={mapsUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>🗺️ Google Maps ↗</a>
-          {r.link && <a href={r.link} target="_blank" rel="noopener noreferrer" style={linkStyle}>🌐 אתר ↗</a>}
-        </div>
-      </div>
-    );
-  };
-
-  return (
-    <div style={{ marginTop: 46 }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 6, flexWrap: 'wrap' }}>
-        <h3 className="display" style={{ fontSize: 30 }}>איפה אוכלים</h3>
-        <span className="handwritten" style={{ fontSize: 24, color: leg.color }}>מקומות מומלצים 🍽️</span>
-      </div>
-      <p style={{ fontSize: 14, color: 'var(--ink-soft)', marginTop: 0, marginBottom: 18, maxWidth: 720 }}>
-        מסעדות ומקומות אוכל מומלצים לקבוצה גדולה — כולל הרשימה של יעיר ועינת (מסומנת ★). כדאי להזמין מקום מראש.
-      </p>
-      {FOOD_GROUPS.map(g => {
-        const items = list.filter(r => (r.group || 'dine') === g.key);
-        if (!items.length) return null;
-        return (
-          <div key={g.key} style={{ marginBottom: 20 }}>
-            <div style={{
-              fontSize: 13, fontWeight: 700, color: 'var(--ink-faded)',
-              letterSpacing: '0.04em', margin: '0 0 10px',
-              borderBottom: '1px dashed var(--ink-faded)', paddingBottom: 5,
-            }}>{g.label} <span style={{ opacity: 0.6 }}>· {items.length}</span></div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(258px, 1fr))', gap: 16 }}>
-              {items.map((r, i) => card(r, `${g.key}-${i}`))}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
 // ============ DAY CARD (expandable) ============
 function DayCard({ day, color, tapeColor, tapeRotate, rotation }) {
   const [open, setOpen] = useState(false);
@@ -429,6 +350,10 @@ function DayCard({ day, color, tapeColor, tapeRotate, rotation }) {
   let max = 0;
   day.options.forEach(o => { const c = countIn(votes, o.id); if (c > max) max = c; });
   const leaders = new Set(max > 0 ? day.options.filter(o => countIn(votes, o.id) === max).map(o => o.id) : []);
+
+  // Nearby eats: restaurants tagged as near this specific day.
+  const legId = day.id.split('-')[0];
+  const eats = (typeof RESTAURANTS !== 'undefined' && (RESTAURANTS[legId] || []).filter(r => (r.near || []).includes(day.id))) || [];
 
   return (
     <div style={{
@@ -503,6 +428,31 @@ function DayCard({ day, color, tapeColor, tapeRotate, rotation }) {
           {day.options.map(o => (
             <OptionRow key={o.id} option={o} color={color} isLeader={leaders.has(o.id)} />
           ))}
+
+          {eats.length > 0 && (
+            <div style={{ marginTop: 4, paddingTop: 14, borderTop: '2px dashed var(--ink-faded)' }}>
+              <div className="label" style={{ marginBottom: 8 }}>🍽️ לאכול בסביבה</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {eats.map((r, i) => {
+                  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.q)}`;
+                  return (
+                    <a key={i} href={mapsUrl} target="_blank" rel="noopener noreferrer" style={{
+                      display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap',
+                      padding: '8px 12px', background: 'white', textDecoration: 'none', color: 'inherit',
+                      borderTop: `1px solid ${color}22`, borderBottom: `1px solid ${color}22`,
+                      borderInlineEnd: `1px solid ${color}22`, borderInlineStart: `3px solid ${color}`,
+                    }}>
+                      <span style={{ fontWeight: 700, fontSize: 14 }}>{r.name}</span>
+                      <span dir="ltr" style={{ fontSize: 11, fontWeight: 700, color: '#7a5d00', background: '#f4b94022', border: '1px solid #f4b94099', padding: '1px 6px', borderRadius: 999 }}>⭐ {r.r}</span>
+                      {r.host && <span style={{ fontSize: 10, fontWeight: 700, color, background: `${color}1a`, border: `1px solid ${color}55`, padding: '1px 6px', borderRadius: 999 }}>★ יעיר ועינת</span>}
+                      <span style={{ fontSize: 12, color: 'var(--ink-soft)' }}>{r.cuisine}</span>
+                      <span style={{ marginInlineStart: 'auto', fontSize: 12, color, fontWeight: 600 }}>🗺️ ↗</span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -550,8 +500,6 @@ function LegSection({ leg, index }) {
           />
         ))}
       </div>
-
-      <LegRestaurants leg={leg} />
     </section>
   );
 }

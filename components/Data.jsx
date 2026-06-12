@@ -298,34 +298,34 @@ const PLACES = {
 };
 
 // ============ TOP-RATED RESTAURANTS per leg (Google ≥ 4.6★, group-friendly) ============
-// group: 'dine' (sit-down) · 'casual' (quick/casual) · 'bakery' (bakeries & sweets)
+// Food shown per-day via `near` (the day-ids each spot is close to). group kept for reference.
 const RESTAURANTS = {
   ny: [
-    { name: "Tony's Di Napoli", r: 4.6, cuisine: 'איטלקי משפחתי', group: 'dine', note: 'מנות ענק להגשה משותפת ושולחנות גדולים שמכילים בקלות חבורה שלמה, ליד טיימס סקוור.', link: 'https://www.tonysnyc.com/times-square', q: "Tony's Di Napoli Times Square New York", lat: 40.7570, lng: -73.9858 },
-    { name: 'Pylos', r: 4.6, cuisine: 'יווני', group: 'dine', note: 'הכל מוגש משפחתי לשיתוף, אולם נינוח שמתאים לקבוצה רב-דורית.', link: 'https://pylosrestaurant.com/', q: 'Pylos Restaurant East 7th St New York', lat: 40.7256, lng: -73.9826 },
-    { name: 'Da Andrea', r: 4.6, cuisine: 'טרטוריה איטלקית', group: 'dine', note: 'פסטה ביתית וקלאסיקות אהובות, מקבלים הזמנות גדולות ואוהבים משפחות ומתבגרים.', link: 'https://daandreanyc.com/', q: 'Da Andrea W 13th St New York', lat: 40.7359, lng: -73.9943 },
-    { name: 'Cafe Mogador', r: 4.6, cuisine: 'מרוקאי-ים תיכוני', group: 'dine', note: "טאג'ין, קוסקוס וגריל לשיתוף, ווייב וויליאמסבורגי נינוח וידידותי לילדים.", link: 'https://www.cafemogador.com/', q: 'Cafe Mogador Williamsburg Brooklyn', lat: 40.7197, lng: -73.9583 },
-    { name: 'Win Son', r: 4.6, cuisine: 'טייוואני-אמריקאי', group: 'dine', note: 'מנות טייוואניות כיפיות לשיתוף עם חבילות לקבוצות 10+. כדאי להזמין מראש.', link: 'https://winsonbrooklyn.com/', q: 'Win Son Brooklyn', lat: 40.7075, lng: -73.9434 },
-    { name: 'Rumba Cubana', r: 4.6, cuisine: 'קובני-לטיני', group: 'dine', note: 'מקום קובני תוסס עם מגשים גדולים לשיתוף ואווירה חגיגית, נוח לקבוצה גדולה עם ילדים.', link: 'https://www.rumbacubana.com/', q: 'Rumba Cubana Jersey City', lat: 40.7270, lng: -74.0354 },
-    { name: 'Misi', r: 4.3, cuisine: 'איטלקי · וויליאמסבורג', group: 'dine', note: 'פסטה ביתית בברוקלין.', q: 'Misi Williamsburg Brooklyn', host: true },
-    { name: 'KazuNori', r: 4.7, cuisine: 'סושי · הנד-רול', group: 'casual', note: 'הנד-רולים טריים בבר — מהיר וטעים.', q: 'KazuNori Hand Roll Bar New York', host: true },
-    { name: 'Tops Diner', r: 4.6, cuisine: 'דיינר אמריקאי', group: 'casual', note: 'דיינר ניו-ג׳רזי אגדי, ענק ומשפחתי.', q: 'Tops Diner East Newark NJ', host: true },
-    { name: "Artie's", r: 4.6, cuisine: 'פיצה', group: 'casual', note: 'פיצה מקומית אהובה.', q: "Artie's pizza New Jersey", host: true },
-    { name: "Sadelle's", r: 4.3, cuisine: 'בראנץ׳', group: 'casual', note: 'בראנץ׳ ובייגלים בסגנון ניו-יורקי קלאסי.', q: "Sadelle's New York", host: true },
-    { name: 'Black Seed Bagels', r: 4.2, cuisine: 'בייגלים', group: 'casual', note: 'בייגלים בסגנון מונטריאול.', q: 'Black Seed Bagels Nolita New York', host: true },
-    { name: 'Daily Provisions', r: 4.1, cuisine: 'קפה / מסעדה', group: 'casual', note: 'קפה-מסעדה נחמד למנה מהירה.', q: 'Daily Provisions Manhattan West New York', host: true },
-    { name: 'Levain Bakery', r: 4.7, cuisine: 'מאפייה · עוגיות', group: 'bakery', note: 'עוגיות ענק חמות — מוסד ניו-יורקי.', q: 'Levain Bakery New York', host: true },
-    { name: 'Somedays Bakery', r: 4.7, cuisine: 'מאפייה · Montclair', group: 'bakery', note: 'מאפיית בוטיק מקסימה במונטקלייר.', q: 'Somedays Bakery Montclair NJ', host: true },
-    { name: 'Liv Breads', r: 4.6, cuisine: 'מאפייה · Millburn', group: 'bakery', note: 'מאפיית בוטיק עם מאפים ייחודיים.', q: 'Liv Breads Millburn NJ', host: true },
-    { name: 'SALSWEE', r: 4.6, cuisine: 'קינוחים', group: 'bakery', note: 'חנות קינוחים מתוקה.', q: 'Salswee New Jersey', host: true },
+    { name: "Tony's Di Napoli", r: 4.6, cuisine: 'איטלקי משפחתי', group: 'dine', near: ['ny-15', 'ny-17', 'ny-20'], note: 'מנות ענק להגשה משותפת, ליד טיימס סקוור.', link: 'https://www.tonysnyc.com/times-square', q: "Tony's Di Napoli Times Square New York", lat: 40.7570, lng: -73.9858 },
+    { name: 'Pylos', r: 4.6, cuisine: 'יווני', group: 'dine', near: ['ny-15', 'ny-20'], note: 'יווני שכולו לשיתוף, אולם נינוח לקבוצה רב-דורית. East Village.', link: 'https://pylosrestaurant.com/', q: 'Pylos Restaurant East 7th St New York', lat: 40.7256, lng: -73.9826 },
+    { name: 'Da Andrea', r: 4.6, cuisine: 'טרטוריה איטלקית', group: 'dine', near: ['ny-15', 'ny-20'], note: 'פסטה ביתית, מקבלים קבוצות. West Village.', link: 'https://daandreanyc.com/', q: 'Da Andrea W 13th St New York', lat: 40.7359, lng: -73.9943 },
+    { name: 'Cafe Mogador', r: 4.6, cuisine: 'מרוקאי-ים תיכוני', group: 'dine', near: ['ny-18', 'ny-15'], note: "טאג'ין וגריל לשיתוף, ווייב וויליאמסבורגי.", link: 'https://www.cafemogador.com/', q: 'Cafe Mogador Williamsburg Brooklyn', lat: 40.7197, lng: -73.9583 },
+    { name: 'Win Son', r: 4.6, cuisine: 'טייוואני-אמריקאי', group: 'dine', near: ['ny-18'], note: 'טייוואני כיפי לשיתוף, חבילות לקבוצות 10+. וויליאמסבורג.', link: 'https://winsonbrooklyn.com/', q: 'Win Son Brooklyn', lat: 40.7075, lng: -73.9434 },
+    { name: 'Rumba Cubana', r: 4.6, cuisine: 'קובני-לטיני', group: 'dine', near: ['ny-14', 'ny-16'], note: 'קובני תוסס, מגשים גדולים. ג׳רזי סיטי — קרוב לבסיס.', link: 'https://www.rumbacubana.com/', q: 'Rumba Cubana Jersey City', lat: 40.7270, lng: -74.0354 },
+    { name: 'Misi', r: 4.3, cuisine: 'איטלקי · וויליאמסבורג', group: 'dine', near: ['ny-18'], note: 'פסטה ביתית בברוקלין.', q: 'Misi Williamsburg Brooklyn', host: true },
+    { name: 'KazuNori', r: 4.7, cuisine: 'סושי · הנד-רול', group: 'casual', near: ['ny-15', 'ny-17', 'ny-20'], note: 'הנד-רולים טריים בבר — מהיר וטעים, מנהטן.', q: 'KazuNori Hand Roll Bar New York', host: true },
+    { name: 'Tops Diner', r: 4.6, cuisine: 'דיינר אמריקאי', group: 'casual', near: ['ny-14', 'ny-16', 'ny-21'], note: 'דיינר ניו-ג׳רזי אגדי, ענק ומשפחתי. קרוב לבסיס.', q: 'Tops Diner East Newark NJ', host: true },
+    { name: "Artie's", r: 4.6, cuisine: 'פיצה', group: 'casual', near: ['ny-14', 'ny-16'], note: 'פיצה מקומית אהובה (NJ).', q: "Artie's pizza New Jersey", host: true },
+    { name: "Sadelle's", r: 4.3, cuisine: 'בראנץ׳', group: 'casual', near: ['ny-15', 'ny-20'], note: 'בראנץ׳ ובייגלים קלאסי. SoHo.', q: "Sadelle's New York", host: true },
+    { name: 'Black Seed Bagels', r: 4.2, cuisine: 'בייגלים', group: 'casual', near: ['ny-15', 'ny-20'], note: 'בייגלים בסגנון מונטריאול. Nolita.', q: 'Black Seed Bagels Nolita New York', host: true },
+    { name: 'Daily Provisions', r: 4.1, cuisine: 'קפה / מסעדה', group: 'casual', near: ['ny-15', 'ny-20'], note: 'קפה-מסעדה למנה מהירה. Manhattan West — ליד Hudson Yards.', q: 'Daily Provisions Manhattan West New York', host: true },
+    { name: 'Levain Bakery', r: 4.7, cuisine: 'מאפייה · עוגיות', group: 'bakery', near: ['ny-15', 'ny-17'], note: 'עוגיות ענק חמות. Upper West Side — ליד מוזיאון הטבע.', q: 'Levain Bakery New York', host: true },
+    { name: 'Somedays Bakery', r: 4.7, cuisine: 'מאפייה · Montclair', group: 'bakery', near: ['ny-14'], note: 'מאפיית בוטיק במונטקלייר — קרוב לבסיס.', q: 'Somedays Bakery Montclair NJ', host: true },
+    { name: 'Liv Breads', r: 4.6, cuisine: 'מאפייה · Millburn', group: 'bakery', near: ['ny-14', 'ny-19'], note: 'מאפיית בוטיק במילברן — ליד South Mountain.', q: 'Liv Breads Millburn NJ', host: true },
+    { name: 'SALSWEE', r: 4.6, cuisine: 'קינוחים', group: 'bakery', near: ['ny-14', 'ny-16'], note: 'חנות קינוחים מתוקה (NJ).', q: 'Salswee New Jersey', host: true },
   ],
   atl: [
-    { name: 'Smokejack BBQ', r: 4.6, cuisine: 'ברביקיו דרומי', group: 'dine', note: 'ברביקיו וקומפורט-פוד במרכז אלפארטה, מגשים גדולים לשיתוף שמרצים ילדים, מתבגרים ומבוגרים.', link: 'https://www.smokejackbbq.com/', q: 'Smokejack BBQ Alpharetta', lat: 34.0760, lng: -84.2952 },
-    { name: "Rena's Italian Fishery & Grill", r: 4.6, cuisine: 'איטלקי / דגים', group: 'dine', note: 'איטלקי משפחתי עם פסטה ביתית וקומת אירועים, מכיל בקלות חבורה של 10 וידידותי לילדים.', link: 'https://renasifg.com/', q: "Rena's Italian Fishery Grill Alpharetta", lat: 34.0742, lng: -84.2951 },
-    { name: 'True Food Kitchen', r: 4.6, cuisine: 'אמריקאי בריא', group: 'casual', note: 'מקום מואר ונינוח בבאקהד עם תפריט רחב (פיצות, באולים, המבורגרים) ותפריט ילדים — כולם מוצאים משהו.', link: 'https://www.truefoodkitchen.com/locations/atlanta/', q: 'True Food Kitchen Lenox Atlanta', lat: 33.8470, lng: -84.3620 },
-    { name: 'The Capital Grille', r: 4.7, cuisine: 'סטייקהאוס / דגים', group: 'dine', note: 'סטייקהאוס מהוקצע בבאקהד עם תוספות נדיבות וחדר פרטי לעד 10 לארוחה חגיגית.', link: 'https://www.thecapitalgrille.com/locations/ga/atlanta/atlanta-buckhead-village/8016', q: 'The Capital Grille Buckhead Atlanta', lat: 33.8401, lng: -84.3805 },
-    { name: '9 Mile Station', r: 4.8, cuisine: 'אמריקאי על הגג', group: 'casual', note: 'מסעדת גג מעל Ponce City Market ליד הארקייד והמיני-גולף, מזמינה קבוצות 20+ ולהיט אצל מתבגרים.', link: 'https://9milestation.com/', q: '9 Mile Station Ponce City Market Atlanta', lat: 33.7730, lng: -84.3664 },
-    { name: "Ray's in the City", r: 4.6, cuisine: 'דגים / סטייק', group: 'dine', note: 'מוסד דגים-וסטייק במרכז, צעדים מהאקווריום, מכיל בנוחות קבוצות משפחתיות גדולות.', link: 'https://www.raysinthecity.com/', q: "Ray's in the City Atlanta", lat: 33.7607, lng: -84.3877 },
+    { name: 'Smokejack BBQ', r: 4.6, cuisine: 'ברביקיו דרומי', group: 'dine', near: ['atl-20', 'atl-23'], note: 'ברביקיו וקומפורט-פוד במרכז אלפארטה — קרוב לבסיס.', link: 'https://www.smokejackbbq.com/', q: 'Smokejack BBQ Alpharetta', lat: 34.0760, lng: -84.2952 },
+    { name: "Rena's Italian Fishery & Grill", r: 4.6, cuisine: 'איטלקי / דגים', group: 'dine', near: ['atl-20', 'atl-23'], note: 'איטלקי משפחתי באלפארטה, מכיל קבוצה של 10.', link: 'https://renasifg.com/', q: "Rena's Italian Fishery Grill Alpharetta", lat: 34.0742, lng: -84.2951 },
+    { name: 'True Food Kitchen', r: 4.6, cuisine: 'אמריקאי בריא', group: 'casual', near: ['atl-23'], note: 'תפריט רחב לכולם. Lenox/באקהד — ליד יום הקניות.', link: 'https://www.truefoodkitchen.com/locations/atlanta/', q: 'True Food Kitchen Lenox Atlanta', lat: 33.8470, lng: -84.3620 },
+    { name: 'The Capital Grille', r: 4.7, cuisine: 'סטייקהאוס / דגים', group: 'dine', near: ['atl-23'], note: 'סטייקהאוס מהוקצע בבאקהד, חדר פרטי לעד 10.', link: 'https://www.thecapitalgrille.com/locations/ga/atlanta/atlanta-buckhead-village/8016', q: 'The Capital Grille Buckhead Atlanta', lat: 33.8401, lng: -84.3805 },
+    { name: '9 Mile Station', r: 4.8, cuisine: 'אמריקאי על הגג', group: 'casual', near: ['atl-21'], note: 'מסעדת גג מעל Ponce City Market — בדיוק ביום ה-BeltLine.', link: 'https://9milestation.com/', q: '9 Mile Station Ponce City Market Atlanta', lat: 33.7730, lng: -84.3664 },
+    { name: "Ray's in the City", r: 4.6, cuisine: 'דגים / סטייק', group: 'dine', near: ['atl-24', 'atl-25'], note: 'דגים-וסטייק במרכז, צעדים מהאקווריום.', link: 'https://www.raysinthecity.com/', q: "Ray's in the City Atlanta", lat: 33.7607, lng: -84.3877 },
   ],
 };
 

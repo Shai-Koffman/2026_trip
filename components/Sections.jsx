@@ -504,4 +504,59 @@ function LegSection({ leg, index }) {
   );
 }
 
-Object.assign(window, { ExtendedFamilySection, LegSection, HowVoting, IdentityPicker });
+// ============ FULL TRIP MAP (all legs on one map) ============
+function FullTripMap() {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (typeof L === 'undefined' || !ref.current || typeof LEGS === 'undefined') return;
+    const pts = [];
+    LEGS.forEach(leg => {
+      leg.days.forEach(d => (d.options || []).forEach(o => {
+        const m = (typeof PLACES !== 'undefined') && PLACES[o.id];
+        if (m && m.lat != null && m.lng != null) pts.push({ title: `${o.icon || ''} ${o.title}`, q: m.q, r: m.r, lat: m.lat, lng: m.lng, color: leg.color });
+      }));
+      const food = (typeof RESTAURANTS !== 'undefined' && RESTAURANTS[leg.id]) || [];
+      food.forEach(rr => { if (rr.lat != null && rr.lng != null) pts.push({ title: `🍽️ ${rr.name}`, q: rr.q, r: rr.r, lat: rr.lat, lng: rr.lng, color: '#e67e22' }); });
+    });
+    if (!pts.length) return;
+    const map = L.map(ref.current, { scrollWheelZoom: false });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap', maxZoom: 19 }).addTo(map);
+    const latlngs = [];
+    pts.forEach(p => {
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.q)}`;
+      const popup = `<div style="min-width:150px;font-family:Assistant,sans-serif;direction:rtl"><strong style="font-size:14px">${p.title}</strong>${p.r != null ? `<div style="margin-top:2px">⭐ ${p.r}</div>` : ''}<a href="${mapsUrl}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;color:${p.color};font-weight:600">Google Maps ↗</a></div>`;
+      L.circleMarker([p.lat, p.lng], { radius: 7, color: '#ffffff', weight: 2, fillColor: p.color, fillOpacity: 0.95 }).addTo(map).bindPopup(popup);
+      latlngs.push([p.lat, p.lng]);
+    });
+    map.fitBounds(latlngs, { padding: [30, 30] });
+    return () => map.remove();
+  }, []);
+
+  const nyColor = (LEGS.find(l => l.id === 'ny') || {}).color || '#2e4ea8';
+  const atlColor = (LEGS.find(l => l.id === 'atl') || {}).color || '#c14050';
+  const dot = (c) => ({ display: 'inline-block', width: 11, height: 11, borderRadius: '50%', background: c, border: '1.5px solid #fff', boxShadow: '0 0 0 1px rgba(0,0,0,0.25)', marginInlineEnd: 5, verticalAlign: 'middle' });
+
+  return (
+    <section id="map">
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 10, flexWrap: 'wrap' }}>
+        <div className="section-label" style={{ background: 'var(--forest)' }}>המפה</div>
+        <h2 className="display" style={{ fontSize: 40 }}>כל הטיול על מפה אחת</h2>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 10, flexWrap: 'wrap', fontSize: 13, color: 'var(--ink-soft)' }}>
+        <span><span style={dot(nyColor)} />ניו יורק וניו ג׳רזי</span>
+        <span><span style={dot(atlColor)} />אטלנטה</span>
+        <span><span style={dot('#e67e22')} />מסעדות</span>
+        <span style={{ color: 'var(--ink-faded)' }}>· לחיצה על פין פותחת ב-Google Maps</span>
+      </div>
+      <div ref={ref} style={{
+        height: 460, width: '100%',
+        border: '2px solid var(--ink)', boxShadow: 'var(--shadow-paper)', background: '#dfe7ea',
+      }} />
+      <div style={{ marginTop: 12, fontSize: 13, color: 'var(--ink-soft)' }}>
+        רוצים את זה ב-Google Maps שלכם? <a href="trip-map.csv" download style={{ color: 'var(--ocean)', fontWeight: 600 }}>הורידו את רשימת המקומות (CSV) ↓</a> וייבאו ל-<a href="https://www.google.com/maps/d/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ocean)', fontWeight: 600 }}>Google My Maps</a>.
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, { ExtendedFamilySection, LegSection, HowVoting, IdentityPicker, FullTripMap });

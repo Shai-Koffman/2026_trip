@@ -157,6 +157,7 @@ function Hero() {
             { href: '#alperts', label: 'משפחת אלפרט' },
             { href: '#ny', label: '① ניו יורק' },
             { href: '#atl', label: '② אטלנטה' },
+            { href: '#map', label: '🗺️ מפה' },
           ].map((l, i) => (
             <a key={l.href} href={l.href} style={{
               padding: '10px 16px',

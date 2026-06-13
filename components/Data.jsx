@@ -74,6 +74,7 @@ const LEGS = [
         options: [
           { id: 'ny-16-dreamworks', duration: 'חצי יום', icon: '💦', title: 'DreamWorks Water Park', en: 'American Dream', tag: 'אקשן', note: 'פארק המים המקורה הגדול בצפון אמריקה — גלישות, בריכת גלים ונהר עצל, בלי תלות במזג האוויר.', link: 'https://www.americandream.com/venue/dreamworks-water-park' },
           { id: 'ny-16-mills', duration: '~2–3 שעות', icon: '🛍️', title: 'The Mills at Jersey Gardens', en: 'Tax-free outlets', tag: 'שופינג', note: 'האאוטלט הגדול בניו ג׳רזי — נייקי, אדידס, ליוויס — ללא מע"מ על ביגוד. 15 דק׳ נסיעה.', link: 'https://www.simon.com/mall/the-mills-at-jersey-gardens' },
+          { id: 'ny-16-fivebelow', duration: '~1 שעה', icon: '🛒', title: 'Five Below', en: 'הכל ב-$1–5 · מתבגרים', tag: 'מציאות', note: 'רשת אהובה על מתבגרים — גאדג׳טים, אקססוריז, ממתקים וגיימינג, הכל בכמה דולרים. יש סניפים בכל ניו ג׳רזי כולל קרוב לבסיס — הלינק במפה מוצא את הקרוב אליכם.', link: 'https://www.fivebelow.com/locations' },
           { id: 'ny-16-amdream', duration: '~2–3 שעות', icon: '🎢', title: 'Nickelodeon Universe + Big SNOW', en: 'באותו מתחם', tag: 'מקורה', note: 'פארק שעשועים מקורה ומדרון סקי אמיתי תחת קורת גג אחת — אלטרנטיבה לרטובים, באותו American Dream.', link: 'https://www.americandream.com/' },
         ],
       },
@@ -242,6 +243,7 @@ const PLACES = {
   'ny-15-brooklyn':    { r: 4.5, lat: 40.7034, lng: -73.9921, q: 'Time Out Market New York DUMBO' },
   'ny-16-dreamworks':  { r: 4.3, lat: 40.8074, lng: -74.0688, q: 'DreamWorks Water Park American Dream' },
   'ny-16-mills':       { r: 4.5, lat: 40.6600, lng: -74.1715, q: 'The Mills at Jersey Gardens' },
+  'ny-16-fivebelow':   {        q: 'Five Below near Montclair NJ' },
   'ny-16-amdream':     {        lat: 40.8104, lng: -74.0712, q: 'American Dream Mall' },
   'ny-17-centralpark': { r: 4.8, lat: 40.7681, lng: -73.9819, q: 'Central Park New York' },
   'ny-17-topofrock':   { r: 4.7, lat: 40.7591, lng: -73.9794, q: 'Top of the Rock New York' },

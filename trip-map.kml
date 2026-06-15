@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>טיול קיץ 2026 — כל המקומות</name>
+  <description>New York &amp; New Jersey + Atlanta · 81 מקומות</description>
+  <Style id="ny">
+    <IconStyle><color>ffdb9834</color><scale>1.0</scale><Icon><href>https://maps.google.com/mapfiles/kml/paddle/blu-blank.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="nyEat">
+    <IconStyle><color>ff279bf2</color><scale>1.0</scale><Icon><href>https://maps.google.com/mapfiles/kml/shapes/dining.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="atl">
+    <IconStyle><color>ff4b4be0</color><scale>1.0</scale><Icon><href>https://maps.google.com/mapfiles/kml/paddle/red-blank.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="atlEat">
+    <IconStyle><color>ff279bf2</color><scale>1.0</scale><Icon><href>https://maps.google.com/mapfiles/kml/shapes/dining.png</href></Icon></IconStyle>
+  </Style>
+  <Folder>
+    <name>New York &amp; New Jersey</name>
+    <Placemark>
+      <name>טיילת הובוקן + Pier C Park</name>
+      <description><![CDATA[פעוטה-פרנדלי<br/>⭐ 4.8<br/><a href="https://www.hobokennj.gov/resources/pier-c-park">https://www.hobokennj.gov/resources/pier-c-park</a><br/>https://www.google.com/maps/search/?api=1&query=Pier%20C%20Park%20Hoboken%20NJ]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.0259,40.7401,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Liberty State Park</name>
+      <description><![CDATA[כל המשפחה<br/>⭐ 4.7<br/><a href="https://dep.nj.gov/parksandforests/state-park/liberty-state-park/">https://dep.nj.gov/parksandforests/state-park/liberty-state-park/</a><br/>https://www.google.com/maps/search/?api=1&query=Liberty%20State%20Park]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.0491,40.7058,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>שיטוט במונטקלייר + גלידה</name>
+      <description><![CDATA[רגוע<br/>⭐ 4.7<br/><a href="https://www.absoluteicecream.com/">https://www.absoluteicecream.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Absolute%20Zero%20Ice%20Cream%20Montclair%20NJ]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.2166,40.8129,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>SPYSCAPE</name>
+      <description><![CDATA[מתבגרים<br/>⭐ 4.5<br/><a href="https://spyscape.com/">https://spyscape.com/</a><br/>https://www.google.com/maps/search/?api=1&query=SPYSCAPE%20New%20York]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9835,40.7652,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>The Edge</name>
+      <description><![CDATA[תצפית<br/>⭐ 4.6<br/><a href="https://www.edgenyc.com/">https://www.edgenyc.com/</a><br/>https://www.google.com/maps/search/?api=1&query=The%20Edge%20Hudson%20Yards]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.0015,40.7536,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Museum of Ice Cream</name>
+      <description><![CDATA[כיף לכולם<br/>⭐ 4.2<br/><a href="https://www.museumoficecream.com/new-york">https://www.museumoficecream.com/new-york</a><br/>https://www.google.com/maps/search/?api=1&query=Museum%20of%20Ice%20Cream%20New%20York]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9976,40.7236,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Gilder Center · AMNH</name>
+      <description><![CDATA[כל המשפחה<br/>⭐ 4.6<br/><a href="https://www.amnh.org/exhibitions/permanent/gilder-center">https://www.amnh.org/exhibitions/permanent/gilder-center</a><br/>https://www.google.com/maps/search/?api=1&query=American%20Museum%20of%20Natural%20History]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.974,40.7813,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>גשר ברוקלין → DUMBO</name>
+      <description><![CDATA[פוטוגני<br/>⭐ 4.5<br/><a href="https://www.timeout.com/time-out-market-new-york">https://www.timeout.com/time-out-market-new-york</a><br/>https://www.google.com/maps/search/?api=1&query=Time%20Out%20Market%20New%20York%20DUMBO]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9921,40.7034,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>DreamWorks Water Park</name>
+      <description><![CDATA[אקשן<br/>⭐ 4.3<br/><a href="https://www.americandream.com/venue/dreamworks-water-park">https://www.americandream.com/venue/dreamworks-water-park</a><br/>https://www.google.com/maps/search/?api=1&query=DreamWorks%20Water%20Park%20American%20Dream]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.0688,40.8074,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>The Mills at Jersey Gardens</name>
+      <description><![CDATA[שופינג<br/>⭐ 4.5<br/><a href="https://www.simon.com/mall/the-mills-at-jersey-gardens">https://www.simon.com/mall/the-mills-at-jersey-gardens</a><br/>https://www.google.com/maps/search/?api=1&query=The%20Mills%20at%20Jersey%20Gardens]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.1715,40.66,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Nickelodeon Universe + Big SNOW</name>
+      <description><![CDATA[מקורה<br/><a href="https://www.americandream.com/">https://www.americandream.com/</a><br/>https://www.google.com/maps/search/?api=1&query=American%20Dream%20Mall]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.0712,40.8104,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>סנטרל פארק + Columbus Circle</name>
+      <description><![CDATA[רגוע<br/>⭐ 4.8<br/><a href="https://www.centralparknyc.org/">https://www.centralparknyc.org/</a><br/>https://www.google.com/maps/search/?api=1&query=Central%20Park%20New%20York]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9819,40.7681,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Top of the Rock</name>
+      <description><![CDATA[תצפית<br/>⭐ 4.7<br/><a href="https://www.rockefellercenter.com/attractions/top-of-the-rock-observation-deck/">https://www.rockefellercenter.com/attractions/top-of-the-rock-observation-deck/</a><br/>https://www.google.com/maps/search/?api=1&query=Top%20of%20the%20Rock%20New%20York]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9794,40.7591,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fifth Avenue + Times Square</name>
+      <description><![CDATA[עיר<br/>⭐ 4.7<br/>https://www.google.com/maps/search/?api=1&query=Times%20Square%20New%20York]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9851,40.7589,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Smorgasburg</name>
+      <description><![CDATA[כל המשפחה<br/>⭐ 4.5<br/><a href="https://www.smorgasburg.com/">https://www.smorgasburg.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Smorgasburg%20Williamsburg]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9626,40.7211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Artists &amp; Fleas</name>
+      <description><![CDATA[מתבגרים<br/>⭐ 4.3<br/><a href="https://www.artistsandfleas.com/williamsburg/">https://www.artistsandfleas.com/williamsburg/</a><br/>https://www.google.com/maps/search/?api=1&query=Artists%20and%20Fleas%20Williamsburg]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9613,40.7199,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>מסע יד-שנייה ב-Bedford Ave</name>
+      <description><![CDATA[אופנת רחוב<br/>⭐ 4.3<br/><a href="https://www.beaconscloset.com/">https://www.beaconscloset.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Beacon's%20Closet%20Brooklyn]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9526,40.7236,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Brooklyn Flea</name>
+      <description><![CDATA[יריד<br/>⭐ 4.1<br/><a href="https://www.brooklynflea.com/">https://www.brooklynflea.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Brooklyn%20Flea%20DUMBO]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9878,40.7028,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Six Flags Great Adventure</name>
+      <description><![CDATA[Gold Pass<br/>⭐ 4.1<br/><a href="https://www.sixflags.com/greatadventure">https://www.sixflags.com/greatadventure</a><br/>https://www.google.com/maps/search/?api=1&query=Six%20Flags%20Great%20Adventure%20Jackson%20NJ]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.4357,40.1372,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Grounds For Sculpture</name>
+      <description><![CDATA[כל המשפחה<br/>⭐ 4.8<br/><a href="https://www.groundsforsculpture.org/">https://www.groundsforsculpture.org/</a><br/>https://www.google.com/maps/search/?api=1&query=Grounds%20for%20Sculpture%20Hamilton%20NJ]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.7189,40.2368,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Sandy Hook</name>
+      <description><![CDATA[פעוטה-פרנדלי<br/><a href="https://www.nps.gov/gate/planyourvisit/sandy-hook.htm">https://www.nps.gov/gate/planyourvisit/sandy-hook.htm</a><br/>https://www.google.com/maps/search/?api=1&query=Sandy%20Hook%20Beach%20NJ]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.99,40.43,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Storm King Art Center</name>
+      <description><![CDATA[נוף עוצר נשימה<br/>⭐ 4.7<br/><a href="https://stormking.org/">https://stormking.org/</a><br/>https://www.google.com/maps/search/?api=1&query=Storm%20King%20Art%20Center]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.0623,41.4234,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Asbury Park Boardwalk</name>
+      <description><![CDATA[כיף לכולם<br/>⭐ 4.6<br/><a href="https://apboardwalk.com/">https://apboardwalk.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Asbury%20Park%20Boardwalk]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9996,40.2209,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>פסל החירות + Ellis Island</name>
+      <description><![CDATA[כל המשפחה<br/>⭐ 4.7<br/><a href="https://www.nps.gov/stli/">https://www.nps.gov/stli/</a><br/>https://www.google.com/maps/search/?api=1&query=Statue%20of%20Liberty]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.0445,40.6892,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Intrepid Museum</name>
+      <description><![CDATA[מתבגרים<br/>⭐ 4.6<br/><a href="https://intrepidmuseum.org/">https://intrepidmuseum.org/</a><br/>https://www.google.com/maps/search/?api=1&query=Intrepid%20Museum%20New%20York]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9996,40.7646,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Chelsea Market + High Line</name>
+      <description><![CDATA[כל המשפחה<br/>⭐ 4.6<br/><a href="https://www.chelseamarket.com/">https://www.chelseamarket.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Chelsea%20Market%20New%20York]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.0049,40.7421,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Coney Island + Luna Park</name>
+      <description><![CDATA[כיף לכולם<br/>⭐ 4.4<br/><a href="https://lunaparknyc.com/">https://lunaparknyc.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Luna%20Park%20Coney%20Island%20Brooklyn]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9803,40.5738,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Tony's Di Napoli</name>
+      <description><![CDATA[מסעדה איטלקי משפחתי<br/>⭐ 4.6<br/><a href="https://www.tonysnyc.com/times-square">https://www.tonysnyc.com/times-square</a><br/>https://www.google.com/maps/search/?api=1&query=Tony's%20Di%20Napoli%20Times%20Square%20New%20York]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-73.9858,40.757,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Pylos</name>
+      <description><![CDATA[מסעדה יווני<br/>⭐ 4.6<br/><a href="https://pylosrestaurant.com/">https://pylosrestaurant.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Pylos%20Restaurant%20East%207th%20St%20New%20York]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-73.9826,40.7256,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Da Andrea</name>
+      <description><![CDATA[מסעדה טרטוריה איטלקית<br/>⭐ 4.6<br/><a href="https://daandreanyc.com/">https://daandreanyc.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Da%20Andrea%20W%2013th%20St%20New%20York]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-73.9943,40.7359,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Cafe Mogador</name>
+      <description><![CDATA[מסעדה מרוקאי-ים תיכוני<br/>⭐ 4.6<br/><a href="https://www.cafemogador.com/">https://www.cafemogador.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Cafe%20Mogador%20Williamsburg%20Brooklyn]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-73.9583,40.7197,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Win Son</name>
+      <description><![CDATA[מסעדה טייוואני-אמריקאי<br/>⭐ 4.6<br/><a href="https://winsonbrooklyn.com/">https://winsonbrooklyn.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Win%20Son%20Brooklyn]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-73.9434,40.7075,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Rumba Cubana</name>
+      <description><![CDATA[מסעדה קובני-לטיני<br/>⭐ 4.6<br/><a href="https://www.rumbacubana.com/">https://www.rumbacubana.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Rumba%20Cubana%20Jersey%20City]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-74.0354,40.727,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>South Mountain Reservation</name>
+      <description><![CDATA[יעיר ועינת<br/>https://www.google.com/maps/search/?api=1&query=South%20Mountain%20Reservation%20Fairy%20Trail%20Millburn%20NJ]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.2954261,40.7537118,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>SUMMIT One Vanderbilt</name>
+      <description><![CDATA[יעיר ועינת<br/>https://www.google.com/maps/search/?api=1&query=SUMMIT%20One%20Vanderbilt%20New%20York]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9785218,40.7528374,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Color Factory</name>
+      <description><![CDATA[יעיר ועינת<br/>https://www.google.com/maps/search/?api=1&query=Color%20Factory%20New%20York]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.0054309,40.7257692,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Sloomoo Institute</name>
+      <description><![CDATA[יעיר ועינת  ילדים<br/>https://www.google.com/maps/search/?api=1&query=Sloomoo%20Institute%20New%20York]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.0003936,40.7213839,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Five Below</name>
+      <description><![CDATA[מציאות<br/>https://www.google.com/maps/search/?api=1&query=Five%20Below%20near%20Montclair%20NJ]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.255549,40.7940627,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Domino Park</name>
+      <description><![CDATA[יעיר ועינת<br/>https://www.google.com/maps/search/?api=1&query=Domino%20Park%20Brooklyn]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.9682746,40.7141055,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Blooming Hill Farm</name>
+      <description><![CDATA[יעיר ועינת<br/>https://www.google.com/maps/search/?api=1&query=Blooming%20Hill%20Farm%20Monroe%20NY]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.1811614,41.3868012,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Scribner's Catskill Lodge</name>
+      <description><![CDATA[יעיר ועינת  גטאוויי<br/>https://www.google.com/maps/search/?api=1&query=Scribner's%20Catskill%20Lodge]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.1966627,42.2033813,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Prospect Berkshires</name>
+      <description><![CDATA[יעיר ועינת  גטאוויי<br/>https://www.google.com/maps/search/?api=1&query=Prospect%20Berkshires%20North%20Egremont]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-73.4489205,42.1965676,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Little Island</name>
+      <description><![CDATA[יעיר ועינת<br/>https://www.google.com/maps/search/?api=1&query=Little%20Island%20New%20York]]></description>
+      <styleUrl>#ny</styleUrl>
+      <Point><coordinates>-74.0108,40.742,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Misi</name>
+      <description><![CDATA[מסעדה איטלקי · וויליאמסבורג<br/>https://www.google.com/maps/search/?api=1&query=Misi%20Williamsburg%20Brooklyn]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-73.9671916,40.7134168,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>KazuNori</name>
+      <description><![CDATA[מסעדה סושי · הנד-רול<br/>https://www.google.com/maps/search/?api=1&query=KazuNori%20Hand%20Roll%20Bar%20New%20York]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-73.9881914,40.7451752,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Tops Diner</name>
+      <description><![CDATA[מסעדה דיינר אמריקאי<br/>https://www.google.com/maps/search/?api=1&query=Tops%20Diner%20East%20Newark%20NJ]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-74.1632855,40.7506295,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Sadelle's</name>
+      <description><![CDATA[מסעדה בראנץ׳<br/>https://www.google.com/maps/search/?api=1&query=Sadelle's%20New%20York]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-74.0001116,40.7262525,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Black Seed Bagels</name>
+      <description><![CDATA[מסעדה בייגלים<br/>https://www.google.com/maps/search/?api=1&query=Black%20Seed%20Bagels%20Nolita%20New%20York]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-73.9946997,40.7209019,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Daily Provisions</name>
+      <description><![CDATA[מסעדה קפה / מסעדה<br/>https://www.google.com/maps/search/?api=1&query=Daily%20Provisions%20Manhattan%20West%20New%20York]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-73.999,40.753,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Levain Bakery</name>
+      <description><![CDATA[מסעדה מאפייה · עוגיות<br/>https://www.google.com/maps/search/?api=1&query=Levain%20Bakery%20New%20York]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-73.9803421,40.7798995,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Somedays Bakery</name>
+      <description><![CDATA[מסעדה מאפייה · Montclair<br/>https://www.google.com/maps/search/?api=1&query=Somedays%20Bakery%20Montclair%20NJ]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-74.216,40.8128,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Liv Breads</name>
+      <description><![CDATA[מסעדה מאפייה · Millburn<br/>https://www.google.com/maps/search/?api=1&query=Liv%20Breads%20Millburn%20NJ]]></description>
+      <styleUrl>#nyEat</styleUrl>
+      <Point><coordinates>-74.3085283,40.7247751,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+  <Folder>
+    <name>Atlanta &amp; Alpharetta</name>
+    <Placemark>
+      <name>Avalon</name>
+      <description><![CDATA[קרוב לבית<br/>⭐ 4.6<br/><a href="https://experienceavalon.com/">https://experienceavalon.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Avalon%20Alpharetta]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.2772,34.0708,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Topgolf Alpharetta</name>
+      <description><![CDATA[כל הגילאים<br/>⭐ 4.4<br/><a href="https://topgolf.com/us/alpharetta/">https://topgolf.com/us/alpharetta/</a><br/>https://www.google.com/maps/search/?api=1&query=Topgolf%20Alpharetta]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.3083,34.0448,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Alpharetta City Center</name>
+      <description><![CDATA[רגוע<br/>⭐ 4.8<br/><a href="https://awesomealpharetta.com/">https://awesomealpharetta.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Downtown%20Alpharetta%20City%20Center]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.2945,34.0756,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Vickery Creek / Old Mill Park</name>
+      <description><![CDATA[הכי קרוב<br/>⭐ 4.7<br/><a href="https://www.nps.gov/chat/">https://www.nps.gov/chat/</a><br/>https://www.google.com/maps/search/?api=1&query=Vickery%20Creek%20Old%20Mill%20Park%20Roswell%20GA]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.3596,34.0128,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>BeltLine + Ponce City Market</name>
+      <description><![CDATA[עירוני<br/>⭐ 4.8<br/><a href="https://beltline.org/parks-trails/eastside-trail/">https://beltline.org/parks-trails/eastside-trail/</a><br/>https://www.google.com/maps/search/?api=1&query=Atlanta%20BeltLine%20Eastside%20Trail]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.3685,33.7819,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Piedmont Park + Botanical Garden</name>
+      <description><![CDATA[נוף<br/>⭐ 4.7<br/><a href="https://atlantabg.org/">https://atlantabg.org/</a><br/>https://www.google.com/maps/search/?api=1&query=Atlanta%20Botanical%20Garden]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.3726,33.79,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Stone Mountain Park</name>
+      <description><![CDATA[נוף + מופע<br/>⭐ 4.6<br/><a href="https://stonemountainpark.com/">https://stonemountainpark.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Stone%20Mountain%20Park]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.1451,33.8052,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Six Flags Over Georgia</name>
+      <description><![CDATA[ריגושים   Gold Pass<br/>⭐ 4.1<br/><a href="https://www.sixflags.com/overgeorgia">https://www.sixflags.com/overgeorgia</a><br/>https://www.google.com/maps/search/?api=1&query=Six%20Flags%20Over%20Georgia]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.55,33.7684,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Andretti Indoor Karting</name>
+      <description><![CDATA[מקורה<br/>⭐ 4.2<br/><a href="https://andrettikarting.com/marietta">https://andrettikarting.com/marietta</a><br/>https://www.google.com/maps/search/?api=1&query=Andretti%20Indoor%20Karting%20Marietta]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.5153,33.9524,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>iFLY Indoor Skydiving</name>
+      <description><![CDATA[גיל 3+<br/>⭐ 4.6<br/><a href="https://www.iflyworld.com/atlanta">https://www.iflyworld.com/atlanta</a><br/>https://www.google.com/maps/search/?api=1&query=iFLY%20Indoor%20Skydiving%20Atlanta]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.4713,33.8847,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>North Georgia Premium Outlets</name>
+      <description><![CDATA[אאוטלט  המלצת בועז<br/>⭐ 4.4<br/><a href="https://www.premiumoutlets.com/outlet/north-georgia">https://www.premiumoutlets.com/outlet/north-georgia</a><br/>https://www.google.com/maps/search/?api=1&query=North%20Georgia%20Premium%20Outlets%20Dawsonville]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.0433,34.3968,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Lenox Square</name>
+      <description><![CDATA[פרימיום<br/>⭐ 4.4<br/><a href="https://www.simon.com/mall/lenox-square">https://www.simon.com/mall/lenox-square</a><br/>https://www.google.com/maps/search/?api=1&query=Lenox%20Square%20Atlanta]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.3619,33.8459,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Phipps Plaza + LEGO Discovery</name>
+      <description><![CDATA[גם לקטנים<br/>⭐ 4.5<br/><a href="https://www.legodiscoverycenter.com/atlanta/">https://www.legodiscoverycenter.com/atlanta/</a><br/>https://www.google.com/maps/search/?api=1&query=Phipps%20Plaza%20Atlanta]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.362,33.8525,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Lake Lanier · Margaritaville</name>
+      <description><![CDATA[קרוב לבית  המלצת בועז<br/><a href="https://www.margaritavilleresorts.com/margaritaville-at-lanier-islands">https://www.margaritavilleresorts.com/margaritaville-at-lanier-islands</a><br/>https://www.google.com/maps/search/?api=1&query=Margaritaville%20at%20Lanier%20Islands]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.0314,34.1793,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Six Flags White Water</name>
+      <description><![CDATA[פארק המים הגדול   Gold Pass<br/>⭐ 3.9<br/><a href="https://www.sixflags.com/whitewater">https://www.sixflags.com/whitewater</a><br/>https://www.google.com/maps/search/?api=1&query=Six%20Flags%20White%20Water%20Marietta]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.521,33.9578,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Hurricane Harbor</name>
+      <description><![CDATA[משולב<br/><a href="https://www.sixflags.com/overgeorgia/hurricane-harbor-atlanta">https://www.sixflags.com/overgeorgia/hurricane-harbor-atlanta</a><br/>https://www.google.com/maps/search/?api=1&query=Hurricane%20Harbor%20Six%20Flags%20Over%20Georgia]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.55,33.7684,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Georgia Aquarium</name>
+      <description><![CDATA[מקורה<br/>⭐ 4.7<br/><a href="https://www.georgiaaquarium.org/">https://www.georgiaaquarium.org/</a><br/>https://www.google.com/maps/search/?api=1&query=Georgia%20Aquarium]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.3951,33.7634,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Rock City Gardens</name>
+      <description><![CDATA[נוף + סלעים  המלצת בועז<br/>⭐ 4.7<br/><a href="https://www.seerockcity.com/">https://www.seerockcity.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Rock%20City%20Gardens%20Lookout%20Mountain%20GA]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-85.3502,34.973,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Ruby Falls</name>
+      <description><![CDATA[מערה<br/>⭐ 4.6<br/><a href="https://www.rubyfalls.com/">https://www.rubyfalls.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Ruby%20Falls%20Chattanooga]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-85.3394,35.0191,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Cool River Tubing</name>
+      <description><![CDATA[כיף לכולם  המלצת בועז<br/>⭐ 4.6<br/><a href="https://www.coolrivertubing.com/">https://www.coolrivertubing.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Cool%20River%20Tubing%20Helen%20GA]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-83.7194,34.6995,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Helen</name>
+      <description><![CDATA[שיטוט<br/><a href="https://explorehelen.com/">https://explorehelen.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Helen%20GA%20Main%20Street]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-83.7269,34.7018,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>World of Coca-Cola</name>
+      <description><![CDATA[כיף וקצר<br/>⭐ 4.4<br/><a href="https://www.worldofcoca-cola.com/">https://www.worldofcoca-cola.com/</a><br/>https://www.google.com/maps/search/?api=1&query=World%20of%20Coca-Cola]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.3924,33.7626,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Sweetwater Creek State Park</name>
+      <description><![CDATA[טבע<br/>⭐ 4.8<br/><a href="https://gastateparks.org/SweetwaterCreek">https://gastateparks.org/SweetwaterCreek</a><br/>https://www.google.com/maps/search/?api=1&query=Sweetwater%20Creek%20State%20Park%20GA]]></description>
+      <styleUrl>#atl</styleUrl>
+      <Point><coordinates>-84.6287,33.7525,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Smokejack BBQ</name>
+      <description><![CDATA[מסעדה ברביקיו דרומי<br/>⭐ 4.6<br/><a href="https://www.smokejackbbq.com/">https://www.smokejackbbq.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Smokejack%20BBQ%20Alpharetta]]></description>
+      <styleUrl>#atlEat</styleUrl>
+      <Point><coordinates>-84.2952,34.076,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Rena's Italian Fishery &amp; Grill</name>
+      <description><![CDATA[מסעדה איטלקי / דגים<br/>⭐ 4.6<br/><a href="https://renasifg.com/">https://renasifg.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Rena's%20Italian%20Fishery%20Grill%20Alpharetta]]></description>
+      <styleUrl>#atlEat</styleUrl>
+      <Point><coordinates>-84.2951,34.0742,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>True Food Kitchen</name>
+      <description><![CDATA[מסעדה אמריקאי בריא<br/>⭐ 4.6<br/><a href="https://www.truefoodkitchen.com/locations/atlanta/">https://www.truefoodkitchen.com/locations/atlanta/</a><br/>https://www.google.com/maps/search/?api=1&query=True%20Food%20Kitchen%20Lenox%20Atlanta]]></description>
+      <styleUrl>#atlEat</styleUrl>
+      <Point><coordinates>-84.362,33.847,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>The Capital Grille</name>
+      <description><![CDATA[מסעדה סטייקהאוס / דגים<br/>⭐ 4.7<br/><a href="https://www.thecapitalgrille.com/locations/ga/atlanta/atlanta-buckhead-village/8016">https://www.thecapitalgrille.com/locations/ga/atlanta/atlanta-buckhead-village/8016</a><br/>https://www.google.com/maps/search/?api=1&query=The%20Capital%20Grille%20Buckhead%20Atlanta]]></description>
+      <styleUrl>#atlEat</styleUrl>
+      <Point><coordinates>-84.3805,33.8401,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>9 Mile Station</name>
+      <description><![CDATA[מסעדה אמריקאי על הגג<br/>⭐ 4.8<br/><a href="https://9milestation.com/">https://9milestation.com/</a><br/>https://www.google.com/maps/search/?api=1&query=9%20Mile%20Station%20Ponce%20City%20Market%20Atlanta]]></description>
+      <styleUrl>#atlEat</styleUrl>
+      <Point><coordinates>-84.3664,33.773,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Ray's in the City</name>
+      <description><![CDATA[מסעדה דגים / סטייק<br/>⭐ 4.6<br/><a href="https://www.raysinthecity.com/">https://www.raysinthecity.com/</a><br/>https://www.google.com/maps/search/?api=1&query=Ray's%20in%20the%20City%20Atlanta]]></description>
+      <styleUrl>#atlEat</styleUrl>
+      <Point><coordinates>-84.3877,33.7607,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+</Document>
+</kml>
